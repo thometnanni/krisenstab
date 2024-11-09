@@ -86,23 +86,24 @@
     </p>
     <p>
         Feel free to reach out, share a drawing, or find us at our favorite
-        spots around Berlin.
+        spots around the city.
     </p>
 
-    <p>Cheers,<br />Krisenstab</p>
+    <p>Cheers!</p>
+    <!-- <p>Cheers,<br />Krisenstab</p> -->
 </section>
 
 <style>
     :global(.project):not([data-highlight="true"]) {
-        color: var(--highlite) !important;
+        color: var(--highlite);
     }
 
     :global(.project[data-highlight="true"]) {
-        color: black !important;
+        color: black;
     }
 
     :global(.faded) {
-        color: var(--highlite) !important;
+        color: var(--highlite);
         transition: color 0.3s;
     }
 </style>

@@ -49,7 +49,6 @@
         position: sticky;
         top: 0;
         padding: 0 5px;
-        border-bottom: 1px solid #ccc;
         text-align: center;
     }
 
