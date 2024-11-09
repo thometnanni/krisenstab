@@ -69,7 +69,7 @@
     section {
         flex: 4;
         max-width: 840px;
-        min-width: 360px;
+        /* min-width: 360px; */
         padding: 10px;
         overflow: scroll;
         max-height: 100vh;
