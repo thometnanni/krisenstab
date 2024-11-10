@@ -16,7 +16,7 @@
                 </div>
             {/if}
             <div class="title">
-                <span>K</span>
+                <span>k</span>
                 <span>r</span>
                 <span>i</span>
                 <span>s</span>
