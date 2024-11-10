@@ -2,18 +2,24 @@
     export let data;
 </script>
 
-<section>
-    <h1>
-        {@html data.meta.title}
-    </h1>
-    <p>
-        {@html data.meta.snippet}
-    </p>
-</section>
+{#if data?.meta.title}
+    <section>
+        <h1>
+            {@html data?.meta.title}
+        </h1>
+        <p>
+            {@html data?.meta.snippet}
+        </p>
+    </section>
 
-<div>
-    {@html data.text}
-</div>
+    <div>
+        {@html data?.text}
+    </div>
+{:else}
+    <p>
+        What are you doing here?
+    </p>
+{/if}
 
 <style>
     h1 {
