@@ -8,9 +8,13 @@
     <a href="/">
         <div class="meta">
             {#if isNotHome}
-                <p style=" font-weight: bold; font-size: 1em">←</p>
+                <p
+                    style="font-weight: bold; font-size: 1em; margin-bottom: 1rem;"
+                >
+                    ←
+                </p>
             {:else}
-                <div class="time">
+                <div class="time" style="margin-bottom: 1rem;">
                     <p>Last Updated:</p>
                     <p>10/09/2024</p>
                 </div>
@@ -103,10 +107,9 @@
     section {
         flex: 4;
         max-width: 840px;
-        /* min-width: 360px; */
         padding: 10px;
-        overflow: scroll;
-        max-height: 100vh;
+        overflow: visible;
+        max-height: none;
     }
 
     :global(h1),
@@ -146,5 +149,25 @@
     :global(::selection) {
         background-color: var(--color-1);
         color: white;
+    }
+
+    @media (max-width: 600px) {
+        article {
+            flex-direction: column;
+        }
+
+        article a {
+            max-width: 100%;
+        }
+
+        .meta {
+            margin-bottom: 1rem;
+        }
+
+        section {
+            max-width: 100%;
+            overflow: visible;
+            max-height: none;
+        }
     }
 </style>

@@ -94,50 +94,53 @@
         },
     ];
 
-    let activeItems = writable([]);
+    let activeFilter = writable(null);
 
-    onMount(() => {
-        document
-            .querySelectorAll(".interactive, .project, .people")
-            .forEach((item) => {
-                item.addEventListener("mouseover", handleHover);
-                item.addEventListener("mouseout", clearHover);
-            });
-    });
+    function handleFilterClick(event) {
+        const filterId = event.target.id;
+        activeFilter.update((current) =>
+            current === filterId ? null : filterId,
+        );
+    }
 
     function handleHover(event) {
-        const relatedItems = event.target
-            .getAttribute("data-related")
-            .split(" ");
-        document.querySelectorAll(".intro *").forEach((elem) => {
-            if (relatedItems.includes(elem.id) || elem === event.target) {
-                elem.classList.add("highlighted");
-                elem.classList.remove("faded");
-            } else {
-                elem.classList.add("faded");
-            }
-        });
+        activeFilter.subscribe((current) => {
+            if (current) return;
+            const relatedItems = event.target
+                .getAttribute("data-related")
+                .split(" ");
+            document.querySelectorAll(".intro *").forEach((elem) => {
+                if (relatedItems.includes(elem.id) || elem === event.target) {
+                    elem.classList.add("highlighted");
+                    elem.classList.remove("faded");
+                } else {
+                    elem.classList.add("faded");
+                }
+            });
+        })();
     }
 
     function clearHover() {
-        document.querySelectorAll(".intro *").forEach((elem) => {
-            elem.classList.remove("highlighted", "faded");
-        });
+        activeFilter.subscribe((current) => {
+            if (current) return;
+            document.querySelectorAll(".intro *").forEach((elem) => {
+                elem.classList.remove("highlighted", "faded");
+            });
+        })();
     }
 
-    function toggleActive(event) {
-        const itemId = event.target.id;
-        activeItems.update((current) => {
-            if (current.includes(itemId)) {
-                return current.filter((id) => id !== itemId);
-            } else {
-                return [...current, itemId];
+    onMount(() => {
+        document.addEventListener("click", (event) => {
+            const isFilter = event.target.closest(".interactive");
+            if (!isFilter) {
+                activeFilter.set(null);
+                clearHover();
             }
         });
-    }
+    });
 </script>
 
-<section class="intro">
+<section class="intro" class:filter-active={$activeFilter !== null}>
     <p>{greetingMessage},</p>
     <p>
         Starting in spring 2025, we are a research and design studio working at
@@ -150,27 +153,31 @@
                     .filter((d) => d.domain.includes(category))
                     .map((d) => `${d.id} ${d.authors.join(" ")}`)
                     .join(" ")}
-                on:click={toggleActive}
-                on:mouseover={handleHover}
-                on:mouseout={clearHover}
+                class:active={$activeFilter === category}
+                on:click={handleFilterClick}
+                on:mouseover={() =>
+                    $activeFilter === null && handleHover(event)}
+                on:mouseout={() => $activeFilter === null && clearHover()}
             >
                 {category}
             </button>{i < 2 ? (i === 1 ? " and " : ", ") : "."}
         {/each}
         We make
-        {#each ["interactive-experiences", "spatial-installations", "printed-matter"] as key, i}
+        {#each ["interactive-experiences", "spatial-installations", "printed matter"] as media, i}
             <button
                 class="interactive"
-                id={key}
+                id={media}
                 data-related={data
-                    .filter((d) => d.media.includes(key))
+                    .filter((d) => d.media.includes(media))
                     .map((d) => `${d.id} ${d.authors.join(" ")}`)
                     .join(" ")}
-                on:click={toggleActive}
-                on:mouseover={handleHover}
-                on:mouseout={clearHover}
+                class:active={$activeFilter === media}
+                on:click={handleFilterClick}
+                on:mouseover={() =>
+                    $activeFilter === null && handleHover(event)}
+                on:mouseout={() => $activeFilter === null && clearHover()}
             >
-                {key.replace("-", " ")}
+                {media.replace("-", " ")}
             </button>{i < 2 ? (i === 1 ? " and " : ", ") : "."}
         {/each}
     </p>
@@ -186,19 +193,13 @@
                     project.media,
                     ...project.authors,
                 ].join(" ")}
-                on:mouseover={handleHover}
-                on:mouseout={clearHover}
+                on:mouseover={() =>
+                    $activeFilter === null && handleHover(event)}
+                on:mouseout={() => $activeFilter === null && clearHover()}
             >
                 {project.text}
             </a>{i < data.length - 1 ? ", " : "."}
         {/each}
-    </p>
-    <p>
-        In our work we value collaboration and co-authorship, we are willing to
-        share our knowledge and learn from our partners. It is important to us
-        to create projects that are inclusive, resourceful, and relevant. We're
-        also invested in open source development and in allowing others to reuse
-        and remix our work.
     </p>
     <p>
         We always welcome general inquiries and friendly hellos. Contact us
@@ -215,8 +216,9 @@
                     .map((d) => `${d.id} ${d.domain} ${d.media}`)
                     .flat()
                     .join(" ")}
-                on:mouseover={handleHover}
-                on:mouseout={clearHover}
+                on:mouseover={() =>
+                    $activeFilter === null && handleHover(event)}
+                on:mouseout={() => $activeFilter === null && clearHover()}
             >
                 {person.charAt(0).toUpperCase() + person.slice(1)}
             </span>{i < 2 ? (i === 1 ? " and " : ", ") : "."}
@@ -229,19 +231,14 @@
         max-width: 840px;
         padding-top: 30px;
         overflow-y: auto;
-        max-height: 100vh;
-    }
-
-    :global(.project) {
-        cursor: pointer;
-        color: var(--highlight, rgb(187, 187, 187));
-        transition: color 0.3s;
+        /* max-height: 100vh; */
     }
 
     :global(.interactive),
+    :global(.project),
     :global(.people) {
         cursor: pointer;
-        color: var(--highlight);
+        color: var(--highlight, gainsboro);
         transition: color 0.3s;
     }
 
@@ -252,6 +249,16 @@
         padding: 2px 5px;
         border-radius: 3px;
         vertical-align: middle;
+    }
+
+    :global(.interactive.active) {
+        background-color: black;
+        color: white;
+    }
+
+    section.filter-active :global(.interactive:not(.active)) {
+        pointer-events: none;
+        opacity: 0.5;
     }
 
     :global(.interactive:hover) {
@@ -266,5 +273,6 @@
     :global(.faded) {
         color: var(--faded-color, #bbb);
         transition: color 0.3s;
+        cursor: not-allowed;
     }
 </style>
