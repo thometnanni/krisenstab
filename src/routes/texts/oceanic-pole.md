@@ -1,6 +1,6 @@
 ---
 title: Spacecraft Cemetery
-snippet: "Now and then i follow projects with Julian Peschel.<br>"
+snippet: "blablabla"
 ---
 
 
