@@ -232,7 +232,8 @@
                 on:mouseover={() =>
                     $activeFilter === null && handleHover(event)}
                 on:mouseout={() => $activeFilter === null && clearHover()}
-            >{project.text}</a>{i < data.length - 1 ? ", " : "."}
+                >{project.text}</a
+            >{i < data.length - 1 ? ", " : "."}
         {/each}
     </p>
     <p>
@@ -244,12 +245,14 @@
         {#each ["julian", "giacomo", "fidel"] as person, i (person)}
             <span
                 id={person}
-                class="people"
+                class="people interactive"
                 data-related={data
                     .filter((d) => d.authors.includes(person))
                     .map((d) => `${d.id} ${d.domain} ${d.media}`)
                     .flat()
                     .join(" ")}
+                class:active={$activeFilter === person}
+                on:click={() => handleFilterClick({ target: { id: person } })}
                 on:mouseover={() =>
                     $activeFilter === null && handleHover(event)}
                 on:mouseout={() => $activeFilter === null && clearHover()}
@@ -288,6 +291,18 @@
     :global(.interactive.active) {
         background-color: black;
         color: white;
+    }
+
+    :global(.people.interactive),
+    :global(.people.interactive.active) {
+        background-color: unset !important;
+        border: unset !important;
+        padding: 0;
+        vertical-align: baseline;
+    }
+    :global(.people.interactive.active),
+    :global(.people.interactive:hover) {
+        color: black;
     }
 
     section.filter-active :global(.interactive:not(.active)) {
