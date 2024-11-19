@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"deploy": "gh-pages -d build --cname krisenstab.net",
+		"deploy": "gh-pages -d build --dotfiles --cname krisenstab.net",
 		"preview": "vite preview"
 	},
 	"devDependencies": {
@@ -17,6 +17,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-static": "^3.0.6",
 		"gh-pages": "^6.2.0",
 		"mdsvex": "^0.12.3",
 		"preprocess": "^3.2.0",
