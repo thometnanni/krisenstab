@@ -1,10 +1,7 @@
 ---
-title: Spacecraft Cemetery
-snippet: "blablabla"
+title: The Oceanic Pole of Undefined Liability
+snippet: ""
 ---
-
-
-Blablablabla some text Blablablabla some text Blablablabla some text Blablablabla some textBlablablabla some text Blablablabla some text Blablablabla some text Blablablabla some textBlablablabla some text Blablablabla some text Blablablabla some text Blablablabla some text
 
 
 ![](https://giacomo.website/files/ocean.png)

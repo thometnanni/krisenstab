@@ -2,20 +2,28 @@
     export let data;
 </script>
 
-<section>
-    <h1>
-        {@html data?.meta.title}
-    </h1>
-    <p>
-        {@html data?.meta.snippet}
-    </p>
-</section>
-
-<div>
-    {@html data?.text}
-</div>
+<article>
+    {#if data?.meta.title}
+        <section>
+            <h1>
+                {@html data?.meta.title}
+            </h1>
+            <p>
+                {@html data?.meta.snippet}
+            </p>
+        </section>
+    {/if}
+    <div>
+        {@html data?.text}
+    </div>
+</article>
 
 <style>
+    article {
+        max-height: 100vh;
+        overflow: scroll;
+    }
+
     h1 {
         color: black;
     }

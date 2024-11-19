@@ -92,7 +92,42 @@
             authors: ["giacomo"],
             link: "https://idf-tweets-gaza.airwars.org/",
         },
-    ];
+        {
+            id: "Teaching",
+            text: "taught students in coding, data work, and design",
+            domain: "",
+            media: "",
+            authors: ["giacomo", 'julian,"fidel'],
+            link: "",
+        },
+        {
+            id: "modes-of-perception",
+            text: "reconstructed and narrated the role of satellites surveillance for EU border protection",
+            domain: "technology, journalism",
+            media: "spatial-installations",
+            authors: ["julian"],
+            link: "https://www.youtube.com/watch?v=Wji2Ic4ciOc",
+        },
+        {
+            id: "ashes",
+            text: "curated and visualised the Smithsonian Institution’s main database of active volcanoes around the world",
+            domain: "culture",
+            media: "printed matter",
+            authors: ["julian"],
+            link: "ashes",
+        },
+        {
+            id: "Planet",
+            text: "visualised data of humanitarian conflicts and climate disasters for global news coverage",
+            domain: "journalism",
+            media: "interactive-experiences",
+            authors: ["julian"],
+            link: "",
+        },
+    ]
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
 
     let activeFilter = writable(null);
 
@@ -193,19 +228,18 @@
                     project.media,
                     ...project.authors,
                 ].join(" ")}
+                target={project.link.includes("http") ? "_blank" : "_self"}
                 on:mouseover={() =>
                     $activeFilter === null && handleHover(event)}
                 on:mouseout={() => $activeFilter === null && clearHover()}
-            >
-                {project.text}
-            </a>{i < data.length - 1 ? ", " : "."}
+            >{project.text}</a>{i < data.length - 1 ? ", " : "."}
         {/each}
     </p>
     <p>
         We always welcome general inquiries and friendly hellos. Contact us
         here, or find us at our favourite spots around the city.
     </p>
-    <p>XOXO,</p>
+    <p>Cheers,</p>
     <p>
         {#each ["julian", "giacomo", "fidel"] as person, i (person)}
             <span
@@ -238,7 +272,7 @@
     :global(.project),
     :global(.people) {
         cursor: pointer;
-        color: var(--highlight, gainsboro);
+        color: var(--highlight, rgb(165, 165, 165));
         transition: color 0.3s;
     }
 
