@@ -58,7 +58,7 @@
     article {
         display: flex;
         gap: 1ch;
-        height: 100%;
+        min-height: 100%;
     }
 
     article a {
