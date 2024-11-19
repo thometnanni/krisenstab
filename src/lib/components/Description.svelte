@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { writable } from "svelte/store";
+    import { base } from "$app/paths";
 
     function getGreeting() {
         const hour = new Date().getHours();
@@ -220,7 +221,9 @@
         Before forming Krisenstab, we
         {#each data as project, i (project.id)}
             <a
-                href={project.link}
+                href={project.link.includes("http")
+                    ? project.link
+                    : `${base}/${project.link}`}
                 id={project.id}
                 class="project"
                 data-related={[
