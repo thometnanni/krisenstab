@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"deploy": "gh-pages -d dist --cname krisenstab.net",
+		"deploy": "gh-pages -d build --cname krisenstab.net",
 		"preview": "vite preview"
 	},
 	"devDependencies": {
