@@ -99,7 +99,7 @@
             domain: "",
             media: "",
             authors: ["giacomo", 'julian,"fidel'],
-            link: "",
+            link: "teaching",
         },
         {
             id: "modes-of-perception",
@@ -259,9 +259,8 @@
                 on:mouseover={() =>
                     $activeFilter === null && handleHover(event)}
                 on:mouseout={() => $activeFilter === null && clearHover()}
-            >
-                {person.charAt(0).toUpperCase() + person.slice(1)}
-            </span>{i < 2 ? (i === 1 ? " and " : ", ") : "."}
+                >{person.charAt(0).toUpperCase() + person.slice(1)}</span
+            >{i < 2 ? (i === 1 ? " and " : ", ") : "."}
         {/each}
     </p>
 </section>

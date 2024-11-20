@@ -2,7 +2,7 @@
     export let data;
 </script>
 
-<article>
+<article class="project">
     {#if data?.meta.title}
         <section>
             <h1>
@@ -19,7 +19,8 @@
 </article>
 
 <style>
-    article {
+    :global(.project a) {
+        text-decoration: underline;
         /* max-height: 100vh;
         overflow: scroll; */
     }
