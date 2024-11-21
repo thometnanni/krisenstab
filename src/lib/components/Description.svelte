@@ -16,121 +16,116 @@
         {
             id: "vantage",
             text: "democratised investigative photo matching",
-            domain: "journalism, technology",
-            media: "interactive-experiences",
+            domain: ["journalism", "technology"],
+            media: ["interactive-experiences"],
             authors: ["giacomo", "fidel"],
             link: "https://vantage.thometnanni.net/",
         },
         {
             id: "modes-of-perception",
             text: "reconstructed and narrated the role of satellites surveillance for EU border protection",
-            domain: "technology, journalism",
-            media: "spatial-installations",
+            domain: ["technology", "journalism"],
+            media: ["spatial-installations"],
             authors: ["julian"],
             link: "https://www.youtube.com/watch?v=Wji2Ic4ciOc",
         },
         {
             id: "Teaching",
             text: "taught students in coding, data work, and design",
-            domain: "",
-            media: "",
-            authors: ["giacomo", 'julian,"fidel'],
+            domain: [],
+            media: [],
+            authors: ["giacomo", "julian", "fidel"],
             link: "teaching",
         },
         {
             id: "dither",
             text: "brought fast dithering to the web",
-            domain: "technology",
-            media: "interactive-experiences",
+            domain: ["technology"],
+            media: ["interactive-experiences"],
             authors: ["fidel"],
             link: "https://fidelthomet.github.io/dither-dither/",
         },
         {
             id: "Planet",
             text: "visualised data of humanitarian conflicts and climate disasters for global news coverage",
-            domain: "journalism",
-            media: "interactive-experiences",
+            domain: ["journalism"],
+            media: ["interactive-experiences"],
             authors: ["julian"],
             link: "planet",
         },
         {
             id: "xingu",
             text: "told the entangled stories of the Kuikuro",
-            domain: "culture",
-            media: "interactive-experiences, spatial-installations",
+            domain: ["culture"],
+            media: ["interactive-experiences", "spatial-installations"],
             authors: ["fidel"],
             link: "https://amazoniafuturelab.fh-potsdam.de/",
         },
         {
             id: "airwars",
             text: "analysed IDF tweets during the Gaza conflict",
-            domain: "journalism",
-            media: "interactive-experiences",
+            domain: ["journalism"],
+            media: ["interactive-experiences"],
             authors: ["giacomo"],
             link: "https://idf-tweets-gaza.airwars.org/",
         },
         {
             id: "not-a-network",
             text: "wrote dispersive poetry",
-            domain: "culture",
-            media: "interactive-experiences",
+            domain: ["culture"],
+            media: ["interactive-experiences"],
             authors: ["fidel", "giacomo"],
             link: "https://not-a-network.thometnanni.net/",
         },
         {
             id: "tracing",
             text: "explained the technology behind covid tracing",
-            domain: "technology, journalism",
-            media: "interactive-experiences",
+            domain: ["technology", "journalism"],
+            media: ["interactive-experiences"],
             authors: ["fidel"],
             link: "https://tracing.ft0.ch/#/",
         },
         {
             id: "refa",
             text: "juxtaposed essaying to graph-based representations",
-            domain: "culture",
-            media: "interactive-experiences",
+            domain: ["culture"],
+            media: ["interactive-experiences"],
             authors: ["giacomo"],
             link: "https://refareader.fh-potsdam.de/",
         },
         {
             id: "ashes",
             text: "curated and visualised the Smithsonian Institution’s main database of active volcanoes around the world",
-            domain: "culture",
-            media: "printed matter",
+            domain: ["culture"],
+            media: ["printed matter"],
             authors: ["julian"],
             link: "ashes",
         },
         {
             id: "oceanic",
             text: "georeferenced the space junk that fell into the Spacecraft Cemetery",
-            domain: "culture, journalism",
-            media: "spatial-installations, interactive-experiences",
+            domain: ["culture", "journalism"],
+            media: ["spatial-installations", "interactive-experiences"],
             authors: ["julian", "giacomo"],
             link: "oceanic-pole",
         },
         {
             id: "archives",
             text: "structured and visualised cultural archives",
-            domain: "culture",
-            media: "interactive-experiences",
+            domain: ["culture"],
+            media: ["interactive-experiences"],
             authors: ["giacomo", "julian"],
             link: "archives",
         },
         {
             id: "new-normal",
             text: "invited people to speculate on local futures",
-            domain: "culture",
-            media: "interactive-experiences",
+            domain: ["culture"],
+            media: ["interactive-experiences"],
             authors: ["fidel"],
             link: "https://newnormalneighbourhood.org/",
         },
     ];
-    // .map((value) => ({ value, sort: Math.random() }))
-    // .sort((a, b) => a.sort - b.sort)
-    // .map(({ value }) => value);
-
-    // console.log(data);
 
     let activeFilter = writable(null);
 
@@ -229,8 +224,8 @@
                 id={project.id}
                 class="project"
                 data-related={[
-                    project.domain,
-                    project.media,
+                    ...project.domain,
+                    ...project.media,
                     ...project.authors,
                 ].join(" ")}
                 target={project.link.includes("http") ? "_blank" : "_self"}
@@ -253,8 +248,10 @@
                 class="people interactive"
                 data-related={data
                     .filter((d) => d.authors.includes(person))
-                    .map((d) => `${d.id} ${d.domain} ${d.media}`)
-                    .flat()
+                    .map(
+                        (d) =>
+                            `${d.id} ${d.domain.join(" ")} ${d.media.join(" ")}`,
+                    )
                     .join(" ")}
                 class:active={$activeFilter === person}
                 on:click={() => handleFilterClick({ target: { id: person } })}
@@ -272,7 +269,6 @@
         max-width: 840px;
         padding-top: 30px;
         overflow-y: auto;
-        /* max-height: 100vh; */
     }
 
     :global(.interactive),
