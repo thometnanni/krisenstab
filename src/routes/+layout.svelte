@@ -63,7 +63,7 @@
 <style>
     :root {
         --highlite: gainsboro;
-        --color-1: blue;
+        --color-1: #e9ff00;
     }
 
     :global(body) {
@@ -170,7 +170,7 @@
 
     :global(::selection) {
         background-color: var(--color-1);
-        color: white;
+        color: black;
     }
 
     @media (max-width: 600px) {
