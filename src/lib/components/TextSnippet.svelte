@@ -31,6 +31,7 @@
 
     p {
         color: gainsboro;
+        max-width: 750px;
     }
 
     section {

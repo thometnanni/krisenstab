@@ -22,12 +22,20 @@
             link: "https://vantage.thometnanni.net/",
         },
         {
-            id: "xingu",
-            text: "told the entangled stories of the Kuikuro",
-            domain: "culture",
-            media: "interactive-experiences, spatial-installations",
-            authors: ["fidel"],
-            link: "https://amazoniafuturelab.fh-potsdam.de/",
+            id: "modes-of-perception",
+            text: "reconstructed and narrated the role of satellites surveillance for EU border protection",
+            domain: "technology, journalism",
+            media: "spatial-installations",
+            authors: ["julian"],
+            link: "https://www.youtube.com/watch?v=Wji2Ic4ciOc",
+        },
+        {
+            id: "Teaching",
+            text: "taught students in coding, data work, and design",
+            domain: "",
+            media: "",
+            authors: ["giacomo", 'julian,"fidel'],
+            link: "teaching",
         },
         {
             id: "dither",
@@ -38,20 +46,28 @@
             link: "https://fidelthomet.github.io/dither-dither/",
         },
         {
-            id: "tracing",
-            text: "explained the technology behind covid tracing",
-            domain: "technology, journalism",
+            id: "Planet",
+            text: "visualised data of humanitarian conflicts and climate disasters for global news coverage",
+            domain: "journalism",
             media: "interactive-experiences",
-            authors: ["fidel"],
-            link: "https://tracing.ft0.ch/#/",
+            authors: ["julian"],
+            link: "planet",
         },
         {
-            id: "new-normal",
-            text: "invited people to speculate on local futures",
+            id: "xingu",
+            text: "told the entangled stories of the Kuikuro",
             domain: "culture",
-            media: "interactive-experiences",
+            media: "interactive-experiences, spatial-installations",
             authors: ["fidel"],
-            link: "https://newnormalneighbourhood.org/",
+            link: "https://amazoniafuturelab.fh-potsdam.de/",
+        },
+        {
+            id: "airwars",
+            text: "analysed IDF tweets during the Gaza conflict",
+            domain: "journalism",
+            media: "interactive-experiences",
+            authors: ["giacomo"],
+            link: "https://idf-tweets-gaza.airwars.org/",
         },
         {
             id: "not-a-network",
@@ -62,12 +78,28 @@
             link: "https://not-a-network.thometnanni.net/",
         },
         {
+            id: "tracing",
+            text: "explained the technology behind covid tracing",
+            domain: "technology, journalism",
+            media: "interactive-experiences",
+            authors: ["fidel"],
+            link: "https://tracing.ft0.ch/#/",
+        },
+        {
             id: "refa",
             text: "juxtaposed essaying to graph-based representations",
             domain: "culture",
             media: "interactive-experiences",
             authors: ["giacomo"],
             link: "https://refareader.fh-potsdam.de/",
+        },
+        {
+            id: "ashes",
+            text: "curated and visualised the Smithsonian Institution’s main database of active volcanoes around the world",
+            domain: "culture",
+            media: "printed matter",
+            authors: ["julian"],
+            link: "ashes",
         },
         {
             id: "oceanic",
@@ -83,52 +115,22 @@
             domain: "culture",
             media: "interactive-experiences",
             authors: ["giacomo", "julian"],
-            link: "https://bake.nieuweinstituut.nl/",
+            link: "archives",
         },
         {
-            id: "airwars",
-            text: "analysed IDF tweets during the Gaza conflict",
-            domain: "journalism",
-            media: "interactive-experiences",
-            authors: ["giacomo"],
-            link: "https://idf-tweets-gaza.airwars.org/",
-        },
-        {
-            id: "Teaching",
-            text: "taught students in coding, data work, and design",
-            domain: "",
-            media: "",
-            authors: ["giacomo", 'julian,"fidel'],
-            link: "teaching",
-        },
-        {
-            id: "modes-of-perception",
-            text: "reconstructed and narrated the role of satellites surveillance for EU border protection",
-            domain: "technology, journalism",
-            media: "spatial-installations",
-            authors: ["julian"],
-            link: "https://www.youtube.com/watch?v=Wji2Ic4ciOc",
-        },
-        {
-            id: "ashes",
-            text: "curated and visualised the Smithsonian Institution’s main database of active volcanoes around the world",
+            id: "new-normal",
+            text: "invited people to speculate on local futures",
             domain: "culture",
-            media: "printed matter",
-            authors: ["julian"],
-            link: "ashes",
-        },
-        {
-            id: "Planet",
-            text: "visualised data of humanitarian conflicts and climate disasters for global news coverage",
-            domain: "journalism",
             media: "interactive-experiences",
-            authors: ["julian"],
-            link: "",
+            authors: ["fidel"],
+            link: "https://newnormalneighbourhood.org/",
         },
-    ]
-        .map((value) => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
+    ];
+    // .map((value) => ({ value, sort: Math.random() }))
+    // .sort((a, b) => a.sort - b.sort)
+    // .map(({ value }) => value);
+
+    // console.log(data);
 
     let activeFilter = writable(null);
 
