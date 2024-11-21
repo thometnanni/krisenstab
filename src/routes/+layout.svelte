@@ -1,41 +1,63 @@
 <script>
+    import { base } from "$app/paths";
+    import { onMount } from "svelte";
     import { page } from "$app/stores";
 
-    $: isNotHome = $page.url.pathname !== "/";
+    let lastUpdated = "";
+
+    onMount(async () => {
+        try {
+            const response = await fetch(`${base}/lastUpdated.json`);
+            if (response.ok) {
+                const data = await response.json();
+                lastUpdated = data.lastUpdated;
+                console.log("Last Updated:", lastUpdated);
+            } else {
+                console.error(
+                    "Failed to fetch lastUpdated.json:",
+                    response.status,
+                );
+            }
+        } catch (error) {
+            console.error("Error fetching lastUpdated.json:", error);
+        }
+    });
 </script>
 
 <article>
-    <a href="/">
-        <div class="meta">
-            {#if isNotHome}
-                <p
-                    style="font-weight: bold; font-size: 1em; margin-bottom: 1rem;"
-                >
-                    ←
-                </p>
-            {:else}
-                <div class="time" style="margin-bottom: 1rem;">
-                    <p>Last Updated:</p>
-                    <p>10/09/2024</p>
+    {#if lastUpdated}
+        <a href="/">
+            <div class="meta">
+                {#if $page.url.pathname !== "/"}
+                    <p
+                        style="font-weight: bold; font-size: 1em; margin-bottom: 1rem;"
+                    >
+                        ←
+                    </p>
+                {:else}
+                    <div class="time" style="margin-bottom: 1rem;">
+                        <p>Last Updated:</p>
+                        <p>{lastUpdated}</p>
+                    </div>
+                {/if}
+                <div class="title">
+                    <span>k</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>s</span>
+                    <span>e</span>
+                    <span>n</span>
+                    <span>s</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>b</span>
                 </div>
-            {/if}
-            <div class="title">
-                <span>k</span>
-                <span>r</span>
-                <span>i</span>
-                <span>s</span>
-                <span>e</span>
-                <span>n</span>
-                <span>s</span>
-                <span>t</span>
-                <span>a</span>
-                <span>b</span>
             </div>
-        </div>
-    </a>
-    <section>
-        <slot />
-    </section>
+        </a>
+        <section>
+            <slot />
+        </section>
+    {/if}
 </article>
 
 <style>
