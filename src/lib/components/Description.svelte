@@ -142,7 +142,12 @@
             const relatedItems = event.target
                 .getAttribute("data-related")
                 .split(" ");
-            document.querySelectorAll(".intro *").forEach((elem) => {
+
+            document.querySelectorAll(".intro > *").forEach((elem) => {
+                elem.classList.add("faded");
+            });
+
+            document.querySelectorAll(".intro * > *").forEach((elem) => {
                 if (relatedItems.includes(elem.id) || elem === event.target) {
                     elem.classList.add("highlighted");
                     elem.classList.remove("faded");
@@ -240,12 +245,12 @@
         We always welcome general inquiries and friendly hellos. Contact us
         here, or find us at our favourite spots around the city.
     </p>
-    <p>Cheers,</p>
     <p>
+        Cheers, <br />
         {#each ["julian", "giacomo", "fidel"] as person, i (person)}
             <span
                 id={person}
-                class="people interactive"
+                class="people interactive project"
                 data-related={data
                     .filter((d) => d.authors.includes(person))
                     .map(
@@ -307,7 +312,7 @@
 
     section.filter-active :global(.interactive:not(.active)) {
         pointer-events: none;
-        opacity: 0.5;
+        /* opacity: 0.5; */
     }
 
     :global(.interactive:hover) {

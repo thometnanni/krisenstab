@@ -5,3 +5,16 @@ export const load = async ({ fetch }) => {
         posts
     }
 }
+
+
+import { fetchMarkdownData } from '$lib/utils'
+
+export const entries = async () => {
+    const allPosts = await fetchMarkdownData()
+    const sortedPosts = allPosts.sort()
+
+    return sortedPosts.map(post => ({
+        slug: post.path.replaceAll("/texts/", ""),
+    }));
+
+}

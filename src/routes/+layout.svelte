@@ -41,16 +41,7 @@
                     </div>
                 {/if}
                 <div class="title">
-                    <span>k</span>
-                    <span>r</span>
-                    <span>i</span>
-                    <span>s</span>
-                    <span>e</span>
-                    <span>n</span>
-                    <span>s</span>
-                    <span>t</span>
-                    <span>a</span>
-                    <span>b</span>
+                    <img src="/logo.png" alt="" />
                 </div>
             </div>
         </a>
@@ -67,7 +58,7 @@
     }
 
     :global(body) {
-        font-family: Basel, Arial, Helvetica, sans-serif;
+        font-family: Satoshi, Arial, Helvetica, sans-serif;
         font-size: 24px;
         line-height: 26px;
         height: 100vh;
@@ -103,10 +94,23 @@
         height: 100%;
     }
 
+    @media only screen and (max-width: 600px) {
+        .meta {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+    }
+
     .title {
         display: flex;
         justify-content: space-between;
         width: 100%;
+    }
+
+    .title img {
+        width: 100%;
+        max-width: 450px;
+        /* filter: grayscale(100%); */
     }
 
     .time p {
@@ -155,18 +159,12 @@
     }
 
     @font-face {
-        font-family: "Basel";
-        src: url("/Basel-Grotesk-Book-Trial.otf") format(opentype);
+        font-family: "Satoshi";
+        src: url("/Satoshi-Medium.woff") format("woff");
         font-weight: normal;
         font-style: normal;
     }
 
-    @font-face {
-        font-family: "Basel";
-        src: url("/Basel-Grotesk-Bold-Trial.otf") format(opentype);
-        font-weight: bold;
-        font-style: normal;
-    }
 
     :global(::selection) {
         background-color: var(--color-1);
