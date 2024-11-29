@@ -58,9 +58,9 @@
     }
 
     :global(body) {
-        font-family: Satoshi, Arial, Helvetica, sans-serif;
+        font-family: OurFont, Arial, Helvetica, sans-serif;
         font-size: 24px;
-        line-height: 26px;
+        line-height: 30px;
         height: 100vh;
         padding: 0;
         margin: 0;
@@ -159,8 +159,8 @@
     }
 
     @font-face {
-        font-family: "Satoshi";
-        src: url("/Satoshi-Medium.woff") format("woff");
+        font-family: "OurFont";
+        src: url("/fonts/Archivo-Regular.woff") format("woff");
         font-weight: normal;
         font-style: normal;
     }
