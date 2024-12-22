@@ -252,6 +252,10 @@
         color: black;
     }
 
+    .intro > * {
+        display: inline-table;
+    }
+
     .intro.fading * {
         color: var(--faded-color, #bbb);
         pointer-events: none;
