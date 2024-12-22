@@ -58,7 +58,8 @@
     }
 
     :global(body) {
-        font-family: OurFont, Arial, Helvetica, sans-serif;
+        /* font-family: OurFont, Arial, Helvetica, sans-serif; */
+        font-family: Helvetica, Arial, sans-serif;
         font-size: 24px;
         line-height: 30px;
         height: 100vh;
@@ -164,7 +165,6 @@
         font-weight: normal;
         font-style: normal;
     }
-
 
     :global(::selection) {
         background-color: var(--color-1);

@@ -1,273 +1,196 @@
 <script>
     import { onMount } from "svelte";
-    import { writable } from "svelte/store";
     import { base } from "$app/paths";
+
+    let data = [];
+    let activeFilter = null;
+    let hoveredItems = new Set();
+    let effectiveItems = new Set();
+
+    let fading = false;
+
+    onMount(async () => {
+        const response = await fetch("projects.json");
+        data = await response.json();
+    });
 
     function getGreeting() {
         const hour = new Date().getHours();
         if (hour < 12) return "Good morning";
-        else if (hour < 18) return "Good afternoon";
-        else return "Good evening";
+        if (hour < 18) return "Good afternoon";
+        return "Good evening";
     }
 
     let greetingMessage = getGreeting();
 
-    const data = [
-        {
-            id: "vantage",
-            text: "democratised investigative photo matching",
-            domain: ["journalism", "technology"],
-            media: ["interactive-experiences"],
-            authors: ["giacomo", "fidel"],
-            link: "https://vantage.thometnanni.net/",
-        },
-        {
-            id: "modes-of-perception",
-            text: "reconstructed and narrated the role of satellites surveillance for EU border protection",
-            domain: ["technology", "journalism"],
-            media: ["spatial-installations"],
-            authors: ["julian"],
-            link: "https://www.youtube.com/watch?v=Wji2Ic4ciOc",
-        },
-        {
-            id: "Teaching",
-            text: "taught students in coding, data work, and design",
-            domain: [],
-            media: [],
-            authors: ["giacomo", "julian", "fidel"],
-            link: "teaching",
-        },
-        {
-            id: "dither",
-            text: "brought fast dithering to the web",
-            domain: ["technology"],
-            media: ["interactive-experiences"],
-            authors: ["fidel"],
-            link: "https://fidelthomet.github.io/dither-dither/",
-        },
-        {
-            id: "Planet",
-            text: "visualised data of humanitarian conflicts and climate disasters for global news coverage",
-            domain: ["journalism"],
-            media: ["interactive-experiences"],
-            authors: ["julian"],
-            link: "planet",
-        },
-        {
-            id: "xingu",
-            text: "told the entangled stories of the Kuikuro",
-            domain: ["culture"],
-            media: ["interactive-experiences", "spatial-installations"],
-            authors: ["fidel"],
-            link: "https://amazoniafuturelab.fh-potsdam.de/",
-        },
-        {
-            id: "airwars",
-            text: "analysed IDF tweets during the Gaza conflict",
-            domain: ["journalism"],
-            media: ["interactive-experiences"],
-            authors: ["giacomo"],
-            link: "https://idf-tweets-gaza.airwars.org/",
-        },
-        {
-            id: "not-a-network",
-            text: "wrote dispersive poetry",
-            domain: ["culture"],
-            media: ["interactive-experiences"],
-            authors: ["fidel", "giacomo"],
-            link: "https://not-a-network.thometnanni.net/",
-        },
-        {
-            id: "tracing",
-            text: "explained the technology behind covid tracing",
-            domain: ["technology", "journalism"],
-            media: ["interactive-experiences"],
-            authors: ["fidel"],
-            link: "https://tracing.ft0.ch/#/",
-        },
-        {
-            id: "refa",
-            text: "juxtaposed essaying to graph-based representations",
-            domain: ["culture"],
-            media: ["interactive-experiences"],
-            authors: ["giacomo"],
-            link: "https://refareader.fh-potsdam.de/",
-        },
-        {
-            id: "ashes",
-            text: "curated and visualised the Smithsonian Institution’s main database of active volcanoes around the world",
-            domain: ["culture"],
-            media: ["printed matter"],
-            authors: ["julian"],
-            link: "ashes",
-        },
-        {
-            id: "oceanic",
-            text: "georeferenced the space junk that fell into the Spacecraft Cemetery",
-            domain: ["culture", "journalism"],
-            media: ["spatial-installations", "interactive-experiences"],
-            authors: ["julian", "giacomo"],
-            link: "oceanic-pole",
-        },
-        {
-            id: "archives",
-            text: "structured and visualised cultural archives",
-            domain: ["culture"],
-            media: ["interactive-experiences"],
-            authors: ["giacomo", "julian"],
-            link: "archives",
-        },
-        {
-            id: "new-normal",
-            text: "invited people to speculate on local futures",
-            domain: ["culture"],
-            media: ["interactive-experiences"],
-            authors: ["fidel"],
-            link: "https://newnormalneighbourhood.org/",
-        },
-    ];
-
-    let activeFilter = writable(null);
-
     function handleFilterClick(event) {
-        const filterId = event.target.id;
-        activeFilter.update((current) =>
-            current === filterId ? null : filterId,
-        );
+        const filterId = event.currentTarget.id;
+        activeFilter = activeFilter === filterId ? null : filterId;
     }
 
     function handleHover(event) {
-        activeFilter.subscribe((current) => {
-            if (current) return;
-            const relatedItems = event.target
-                .getAttribute("data-related")
-                .split(" ");
-
-            document.querySelectorAll(".intro > *").forEach((elem) => {
-                elem.classList.add("faded");
-            });
-
-            document.querySelectorAll(".intro * > *").forEach((elem) => {
-                if (relatedItems.includes(elem.id) || elem === event.target) {
-                    elem.classList.add("highlighted");
-                    elem.classList.remove("faded");
-                } else {
-                    elem.classList.add("faded");
-                }
-            });
-        })();
+        if (activeFilter) return;
+        const elem = event.currentTarget;
+        const { id, related } = getElementData(elem);
+        hoveredItems = new Set([...related, id]);
     }
 
-    function clearHover() {
-        activeFilter.subscribe((current) => {
-            if (current) return;
-            document.querySelectorAll(".intro *").forEach((elem) => {
-                elem.classList.remove("highlighted", "faded");
-            });
-        })();
+    function handleOut() {
+        if (!activeFilter) {
+            hoveredItems = new Set();
+        }
     }
 
-    onMount(() => {
-        document.addEventListener("click", (event) => {
-            const isFilter = event.target.closest(".interactive");
-            if (!isFilter) {
-                activeFilter.set(null);
-                clearHover();
+    function getElementData(elem) {
+        const dataRelated = elem.getAttribute("data-related") || "";
+        const related = dataRelated.trim()
+            ? dataRelated.trim().split(/\s+/)
+            : [];
+        return { id: elem.id, related };
+    }
+
+    $: {
+        if (activeFilter) {
+            const lockedElem =
+                typeof document !== "undefined"
+                    ? document.getElementById(activeFilter)
+                    : null;
+            if (!lockedElem) {
+                effectiveItems = new Set();
+            } else {
+                const { id, related } = getElementData(lockedElem);
+                effectiveItems = new Set([...related, id]);
             }
-        });
-    });
+        } else {
+            effectiveItems = hoveredItems;
+        }
+    }
+
+    $: fading = activeFilter !== null || hoveredItems.size > 0;
+
+    function shouldShowX(id) {
+        const categories = ["technology", "journalism", "culture"];
+        const mediaItems = [
+            "interactive-experiences",
+            "spatial-installations",
+            "printed matter",
+        ];
+        return categories.includes(id) || mediaItems.includes(id);
+    }
 </script>
 
-<section class="intro" class:filter-active={$activeFilter !== null}>
-    <p>{greetingMessage},</p>
-    <p>
-        Starting in spring 2025, we are a research and design studio working at
-        the intersection of
-        {#each ["technology", "journalism", "culture"] as category, i}
-            <button
-                class="interactive"
-                id={category}
-                data-related={data
-                    .filter((d) => d.domain.includes(category))
-                    .map((d) => `${d.id} ${d.authors.join(" ")}`)
-                    .join(" ")}
-                class:active={$activeFilter === category}
-                on:click={handleFilterClick}
-                on:mouseover={() =>
-                    $activeFilter === null && handleHover(event)}
-                on:mouseout={() => $activeFilter === null && clearHover()}
-            >
-                {category}
-            </button>{i < 2 ? (i === 1 ? " and " : ", ") : "."}
-        {/each}
-        We make
-        {#each ["interactive-experiences", "spatial-installations", "printed matter"] as media, i}
-            <button
-                class="interactive"
-                id={media}
-                data-related={data
-                    .filter((d) => d.media.includes(media))
-                    .map((d) => `${d.id} ${d.authors.join(" ")}`)
-                    .join(" ")}
-                class:active={$activeFilter === media}
-                on:click={handleFilterClick}
-                on:mouseover={() =>
-                    $activeFilter === null && handleHover(event)}
-                on:mouseout={() => $activeFilter === null && clearHover()}
-            >
-                {media.replace("-", " ")}
-            </button>{i < 2 ? (i === 1 ? " and " : ", ") : "."}
-        {/each}
-    </p>
-    <p>
-        Before forming Krisenstab, we
-        {#each data as project, i (project.id)}
-            <a
-                href={project.link.includes("http")
-                    ? project.link
-                    : `${base}/${project.link}`}
-                id={project.id}
-                class="project"
-                data-related={[
-                    ...project.domain,
-                    ...project.media,
-                    ...project.authors,
-                ].join(" ")}
-                target={project.link.includes("http") ? "_blank" : "_self"}
-                on:mouseover={() =>
-                    $activeFilter === null && handleHover(event)}
-                on:mouseout={() => $activeFilter === null && clearHover()}
-                >{project.text}</a
-            >{i < data.length - 1 ? ", " : "."}
-        {/each}
-    </p>
-    <p>
-        We always welcome general inquiries and friendly hellos. Contact us
-        here, or find us at our favourite spots around the city.
-    </p>
-    <p>
-        Cheers, <br />
-        {#each ["julian", "giacomo", "fidel"] as person, i (person)}
-            <span
-                id={person}
-                class="people interactive project"
-                data-related={data
-                    .filter((d) => d.authors.includes(person))
-                    .map(
-                        (d) =>
-                            `${d.id} ${d.domain.join(" ")} ${d.media.join(" ")}`,
-                    )
-                    .join(" ")}
-                class:active={$activeFilter === person}
-                on:click={() => handleFilterClick({ target: { id: person } })}
-                on:mouseover={() =>
-                    $activeFilter === null && handleHover(event)}
-                on:mouseout={() => $activeFilter === null && clearHover()}
-                >{person.charAt(0).toUpperCase() + person.slice(1)}</span
-            >{i < 2 ? (i === 1 ? " and " : ", ") : "."}
-        {/each}
-    </p>
-</section>
+{#if data.length > 0}
+    <section
+        class="intro"
+        class:fading
+        class:filter-active={activeFilter !== null}
+    >
+        <p>{greetingMessage},</p>
+        <p>
+            Starting in spring 2025, we are a research and design studio working
+            at the intersection of
+            {#each ["technology", "journalism", "culture"] as category, i}
+                <button
+                    class="interactive"
+                    id={category}
+                    data-related={data
+                        .filter((d) => d.domain.includes(category))
+                        .map((d) => `${d.id} ${d.authors.join(" ")}`)
+                        .join(" ")}
+                    class:active={activeFilter === category}
+                    on:click={handleFilterClick}
+                    on:mouseover={handleHover}
+                    on:mouseout={handleOut}
+                    class:highlighted={effectiveItems.has(category)}
+                >
+                    {#if activeFilter === category && shouldShowX(category)}
+                        {category} (x)
+                    {:else}
+                        {category}
+                    {/if}
+                </button>
+                {i < 2 ? (i === 1 ? " and " : ", ") : "."}
+            {/each}
+            We make
+            {#each ["interactive-experiences", "spatial-installations", "printed matter"] as media, i}
+                <button
+                    class="interactive"
+                    id={media}
+                    data-related={data
+                        .filter((d) => d.media.includes(media))
+                        .map((d) => `${d.id} ${d.authors.join(" ")}`)
+                        .join(" ")}
+                    class:active={activeFilter === media}
+                    on:click={handleFilterClick}
+                    on:mouseover={handleHover}
+                    on:mouseout={handleOut}
+                    class:highlighted={effectiveItems.has(media)}
+                >
+                    {#if activeFilter === media && shouldShowX(media)}
+                        {media.replace("-", " ")} (x)
+                    {:else}
+                        {media.replace("-", " ")}
+                    {/if}
+                </button>
+                {i < 2 ? (i === 1 ? " and " : ", ") : "."}
+            {/each}
+        </p>
+        <p>
+            Before forming Krisenstab, we
+            {#each data as project, i (project.id)}
+                <a
+                    href={project.link.includes("http")
+                        ? project.link
+                        : `${base}/${project.link}`}
+                    id={project.id}
+                    class="project"
+                    data-related={[
+                        ...project.domain,
+                        ...project.media,
+                        ...project.authors,
+                    ].join(" ")}
+                    target={project.link.includes("http") ? "_blank" : "_self"}
+                    on:mouseover={handleHover}
+                    on:mouseout={handleOut}
+                    class:highlighted={effectiveItems.has(project.id)}
+                >
+                    {project.text}
+                </a>
+                {i < data.length - 1 ? ", " : "."}
+            {/each}
+        </p>
+        <p>
+            We always welcome general inquiries and friendly hellos. Contact us
+            here, or find us at our favourite spots around the city.
+        </p>
+        <p>
+            Cheers, <br />
+            {#each ["julian", "giacomo", "fidel"] as person, i (person)}
+                <span
+                    id={person}
+                    class="people interactive project"
+                    data-related={data
+                        .filter((d) => d.authors.includes(person))
+                        .map(
+                            (d) =>
+                                `${d.id} ${d.domain.join(" ")} ${d.media.join(" ")}`,
+                        )
+                        .join(" ")}
+                    class:active={activeFilter === person}
+                    on:click={() => {
+                        activeFilter = activeFilter === person ? null : person;
+                    }}
+                    on:mouseover={handleHover}
+                    on:mouseout={handleOut}
+                    class:highlighted={effectiveItems.has(person)}
+                >
+                    {person.charAt(0).toUpperCase() + person.slice(1)}
+                </span>
+                {i < 2 ? (i === 1 ? " and " : ", ") : "."}
+            {/each}
+        </p>
+    </section>
+{/if}
 
 <style>
     section {
@@ -276,57 +199,67 @@
         overflow-y: auto;
     }
 
-    :global(.interactive),
-    :global(.project),
-    :global(.people) {
+    section.filter-active :global(.highlighted) {
+        pointer-events: auto;
+    }
+
+    .interactive,
+    .project,
+    .people {
         cursor: pointer;
         color: var(--highlight, rgb(165, 165, 165));
         transition: color 0.3s;
     }
 
-    :global(.interactive) {
+    .interactive {
         background-color: white;
         color: black;
         border: 1px solid black;
-        padding: 2px 5px;
+        padding: 0 4px;
         border-radius: 3px;
         vertical-align: middle;
+        font-size: 1rem;
     }
 
-    :global(.interactive.active) {
+    .people {
+        font-size: unset;
+    }
+
+    .interactive.active {
         background-color: black;
-        color: white;
+        color: white !important;
     }
 
-    :global(.people.interactive),
-    :global(.people.interactive.active) {
+    .people.interactive,
+    .people.interactive.active {
         background-color: unset !important;
         border: unset !important;
         padding: 0;
         vertical-align: baseline;
     }
-    :global(.people.interactive.active),
-    :global(.people.interactive:hover) {
-        color: black;
+
+    .people.interactive.active,
+    .people.interactive:hover {
+        color: black !important;
     }
 
-    section.filter-active :global(.interactive:not(.active)) {
-        pointer-events: none;
-        /* opacity: 0.5; */
-    }
-
-    :global(.interactive:hover) {
+    .interactive:hover {
         background-color: black;
-        color: white;
+        color: white !important;
     }
 
-    :global(.highlighted) {
+    .highlighted {
         color: black;
     }
 
-    :global(.faded) {
+    .intro.fading * {
         color: var(--faded-color, #bbb);
-        transition: color 0.3s;
-        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .intro.fading .highlighted {
+        color: black;
+        pointer-events: auto;
+        cursor: pointer;
     }
 </style>
