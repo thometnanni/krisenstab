@@ -208,7 +208,7 @@
     .people {
         cursor: pointer;
         color: var(--highlight, rgb(165, 165, 165));
-        transition: color 0.3s;
+        transition: color 0.5s;
     }
 
     .interactive {
