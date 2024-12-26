@@ -199,6 +199,10 @@
         overflow-y: auto;
     }
 
+    * {
+        transition: color .5s;
+    }
+
     section.filter-active :global(.highlighted) {
         pointer-events: auto;
     }
@@ -208,7 +212,6 @@
     .people {
         cursor: pointer;
         color: var(--highlight, rgb(165, 165, 165));
-        transition: color 0.5s;
     }
 
     .interactive {
