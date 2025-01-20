@@ -75,7 +75,12 @@
             "spatial-installations",
             "printed matter",
         ];
-        return categories.includes(id) || mediaItems.includes(id);
+        const people = ["giacomo", "julian", "fidel"];
+        return (
+            categories.includes(id) ||
+            mediaItems.includes(id) ||
+            people.includes(id)
+        );
     }
 </script>
 
@@ -161,8 +166,9 @@
         </p>
         <p>
             We always welcome general inquiries and friendly hellos. Contact us
-            
-            <a href="mailto:krisenstab@protonmail.com">here</a>, or find us at our favourite spots around Berlin.
+
+            <a href="mailto:thometnanni@protonmail.com">here</a>, or find us at
+            our favourite spots around Berlin.
         </p>
         <p>
             Cheers, <br />
@@ -185,7 +191,12 @@
                     on:mouseout={handleOut}
                     class:highlighted={effectiveItems.has(person)}
                 >
-                    {person.charAt(0).toUpperCase() + person.slice(1)}
+                    {#if activeFilter === person && shouldShowX(person)}
+                        {person.charAt(0).toUpperCase() + person.slice(1)}
+                        <span class="tiny">(x)</span>
+                    {:else}
+                        {person.charAt(0).toUpperCase() + person.slice(1)}
+                    {/if}
                 </span>
                 {i < 2 ? (i === 1 ? " and " : ", ") : "."}
             {/each}
@@ -223,6 +234,13 @@
         border-radius: 3px;
         vertical-align: middle;
         font-size: 1rem;
+    }
+    
+    .tiny {
+        vertical-align: middle;
+        font-size: .9rem;
+        color: black !important;
+        margin-left: -5px;
     }
 
     .people {
