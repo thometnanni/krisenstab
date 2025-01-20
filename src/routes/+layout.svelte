@@ -66,7 +66,7 @@
         margin: 0;
         background-color: white;
         text-rendering: geometricPrecision;
-        
+    
         hyphens: auto;
     }
 
