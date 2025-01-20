@@ -161,7 +161,8 @@
         </p>
         <p>
             We always welcome general inquiries and friendly hellos. Contact us
-            here, or find us at our favourite spots around the city.
+            
+            <a href="mailto:krisenstab@protonmail.com">here</a>, or find us at our favourite spots around Berlin.
         </p>
         <p>
             Cheers, <br />
@@ -200,7 +201,7 @@
     }
 
     * {
-        transition: color .5s;
+        transition: color 0.5s;
     }
 
     section.filter-active :global(.highlighted) {
