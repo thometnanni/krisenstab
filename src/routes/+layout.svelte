@@ -58,15 +58,16 @@
     }
 
     :global(body) {
-        /* font-family: OurFont, Arial, Helvetica, sans-serif; */
         font-family: Helvetica, Arial, sans-serif;
-        font-size: 24px;
-        line-height: 30px;
+        font-size: 23px;
+        line-height: 28px;
         height: 100vh;
         padding: 0;
         margin: 0;
-        -webkit-font-smoothing: antialiased;
         background-color: white;
+        text-rendering: geometricPrecision;
+        
+        hyphens: auto;
     }
 
     article {
@@ -157,13 +158,6 @@
         color: inherit;
         position: relative;
         cursor: pointer;
-    }
-
-    @font-face {
-        font-family: "OurFont";
-        src: url("/fonts/Archivo-Regular.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
     }
 
     :global(::selection) {
