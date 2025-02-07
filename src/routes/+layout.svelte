@@ -23,7 +23,6 @@
 
 <article>
   {#if lastUpdated}
-    <!-- Left meta column fixed at 350px wide -->
     <a href="/">
       <div class="meta">
         {#if $page.url.pathname !== "/"}
@@ -37,11 +36,14 @@
           </div>
         {/if}
         <div class="title">
-          <img src="/logo.svg" alt="" />
+          {#if new Date().getHours() > 9 && new Date().getHours() < 18}
+            <img src="/krisenstab_work.svg" alt="" />
+          {:else}
+            <img src="/krisenstab_leisure.svg" alt="" />
+          {/if}
         </div>
       </div>
     </a>
-
     <section>
       <slot />
     </section>
@@ -73,10 +75,19 @@
     min-height: 100%;
   }
 
-  article a {
-    width: 350px;
+  article > a {
+    flex: 0 0 200px;
     padding: 5px;
     background-color: rgb(246, 246, 246);
+    display: block;
+  }
+
+  section {
+    flex: 0 0 800px;
+    padding: 10px;
+    overflow-x: visible;
+    max-height: none;
+    overflow: hidden;
   }
 
   .meta {
@@ -90,6 +101,8 @@
     top: 0;
     padding: 0 5px;
     height: 100%;
+    max-height: 100vh;
+    width: 100%;
   }
 
   @media only screen and (max-width: 600px) {
@@ -108,7 +121,6 @@
   .title img {
     width: 100%;
     max-width: 450px;
-    /* filter: grayscale(100%); */
   }
 
   .time p {
@@ -161,23 +173,24 @@
   }
 
   @font-face {
-    font-family: Karrik;
+    font-family: Ronzino;
     src: url("/fonts/Ronzino-Regular.woff2");
     font-weight: normal;
   }
-  /* 
-    @font-face {
-      font-family: Karrik;
-      src: url("/fonts/Karrik-Italic.woff");
-      font-weight: italic;
-    } */
+
+  @font-face {
+    font-family: Ronzino;
+    src: url("/fonts/Ronzino-Italic.woff");
+    font-weight: italic;
+  }
 
   @media (max-width: 600px) {
     article {
       flex-direction: column;
     }
 
-    article a {
+    article > a {
+      flex: none;
       max-width: 100%;
     }
 

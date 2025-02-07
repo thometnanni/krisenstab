@@ -15,7 +15,7 @@
   <div class="gallery-items">
     {#each filteredData as item (item.id)}
       <div class="gallery-item">
-        {#each item.images as m}
+        {#each item.images.sort(() => 0.5 - Math.random()) as m}
           <img src="/media/{m}" alt="" />
         {/each}
       </div>
@@ -25,7 +25,7 @@
 
 <style>
   .gallery {
-    max-width: 1980px;
+    max-width: calc(100vw - 230px);
     height: 400px;
   }
 
@@ -35,7 +35,6 @@
     /* flex-wrap: wrap; */
     gap: 10px;
     height: 400px;
-
   }
 
   img {
@@ -43,7 +42,6 @@
     width: 100%;
   }
 
-  
   .gallery-item {
     height: 100%;
     flex: 0 0 auto;
@@ -55,5 +53,4 @@
     object-fit: cover;
     display: block;
   }
-
 </style>
