@@ -1,6 +1,7 @@
 <script>
   export let data = [];
   export let activeFilter;
+
   $: filteredData = activeFilter
     ? data.filter(
         (item) =>
@@ -9,11 +10,13 @@
           (item.authors && item.authors.includes(activeFilter))
       )
     : data;
+
+  $: sorted = [...filteredData].sort(() => 0.5 - Math.random());
 </script>
 
 <section class="gallery">
   <div class="gallery-items">
-    {#each filteredData.sort(() => 0.5 - Math.random()) as item (item.id)}
+    {#each sorted as item (item.id)}
       {#each item.images as m}
         <div class="gallery-item">
           <img src="/media/{m}" alt="" />
@@ -32,14 +35,8 @@
   .gallery-items {
     overflow: scroll;
     display: flex;
-    /* flex-wrap: wrap; */
     gap: 10px;
     height: 400px;
-  }
-
-  img {
-    height: 100%;
-    width: 100%;
   }
 
   .gallery-item {
