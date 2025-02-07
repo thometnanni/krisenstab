@@ -13,8 +13,8 @@
 
 <section class="gallery">
   <div class="gallery-items">
-    {#each filteredData as item (item.id)}
-      {#each item.images.sort(() => 0.5 - Math.random()) as m}
+    {#each filteredData.sort(() => 0.5 - Math.random()) as item (item.id)}
+      {#each item.images as m}
         <div class="gallery-item">
           <img src="/media/{m}" alt="" />
         </div>
