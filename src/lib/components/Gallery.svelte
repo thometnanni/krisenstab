@@ -25,7 +25,7 @@
 
 <style>
   .gallery {
-    max-width: calc(100vw - 240px);
+    max-width: calc(100vw - 250px);
     height: 400px;
   }
 
