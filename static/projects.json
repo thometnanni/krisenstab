@@ -13,6 +13,7 @@
             "giacomo",
             "fidel"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://vantage.thometnanni.net/"
     },
     {
@@ -28,6 +29,7 @@
         "authors": [
             "julian"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://vimeo.com/1043455413"
     },
     {
@@ -42,6 +44,7 @@
         "authors": [
             "fidel"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://fidelthomet.github.io/dither-dither/"
     },
     {
@@ -57,6 +60,7 @@
         "authors": [
             "fidel"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://amazoniafuturelab.fh-potsdam.de/"
     },
     {
@@ -71,6 +75,7 @@
         "authors": [
             "giacomo"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://idf-tweets-gaza.airwars.org/"
     },
     {
@@ -86,6 +91,7 @@
             "fidel",
             "giacomo"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://not-a-network.thometnanni.net/"
     },
     {
@@ -101,6 +107,7 @@
         "authors": [
             "fidel"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://tracing.ft0.ch/#/"
     },
     {
@@ -115,6 +122,7 @@
         "authors": [
             "giacomo"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://refareader.fh-potsdam.de/"
     },
     {
@@ -132,6 +140,7 @@
             "julian",
             "giacomo"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "oceanic-pole"
     },
     {
@@ -146,6 +155,7 @@
         "authors": [
             "fidel"
         ],
+        "images": ["ashes-to-ashes_01.jpg"],
         "link": "https://newnormalneighbourhood.org/"
     }
 ]
