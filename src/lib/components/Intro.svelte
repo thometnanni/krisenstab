@@ -73,6 +73,11 @@
   section {
     margin-bottom: 20px;
   }
+
+  button {
+    font-family: "Ronzino", Helvetica, Arial, sans-serif;
+  }
+  
   .interactive,
   .project,
   .people {
