@@ -50,4 +50,10 @@
     object-fit: cover;
     display: block;
   }
+
+  @media only screen and (max-width: 600px) {
+    .gallery {
+      max-width: calc(100vw - 20px);
+    }
+  }
 </style>

@@ -36,7 +36,7 @@
           </div>
         {/if}
         <div class="title">
-          {#if new Date().getHours() > 9 && new Date().getHours() < 18}
+          {#if new Date().getHours() >= 9 && new Date().getHours() < 18}
             <img src="/krisenstab_work.svg" alt="" />
           {:else}
             <img src="/krisenstab_leisure.svg" alt="" />
@@ -121,6 +121,10 @@
   .title img {
     width: 100%;
     max-width: 450px;
+  }
+
+  .time {
+    padding: 10px;
   }
 
   .time p {
