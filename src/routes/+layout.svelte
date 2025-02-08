@@ -58,7 +58,7 @@
   }
 
   :global(body) {
-    font-family: "Karrik", Helvetica, Arial, sans-serif;
+    font-family: "Ronzino", Helvetica, Arial, sans-serif;
     font-size: 23px;
     line-height: 28px;
     height: 100vh;
@@ -77,7 +77,7 @@
 
   article > a {
     flex: 0 0 200px;
-    padding: 5px;
+    /* padding: 5px; */
     background-color: rgb(246, 246, 246);
     display: block;
   }
@@ -99,7 +99,7 @@
     align-content: space-between;
     position: sticky;
     top: 0;
-    padding: 0 5px;
+    /* padding: 0 5px; */
     height: 100%;
     max-height: 100vh;
     width: 100%;
@@ -124,7 +124,7 @@
   }
 
   .time {
-    padding: 10px;
+    padding: 5px 10px;
   }
 
   .time p {

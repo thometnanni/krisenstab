@@ -43,8 +43,8 @@
     color: var(--highlight, rgb(165, 165, 165));
   }
   .active {
-    background-color: black;
-    color: white !important;
+    /* background-color: black; */
+    color: black !important;
   }
   .highlighted {
     color: black;

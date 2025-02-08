@@ -70,6 +70,7 @@
     const handleGlobalClick = () => {
       if (activeFilter) clearFilter();
     };
+
     document.addEventListener("click", handleGlobalClick);
     return () => {
       document.removeEventListener("click", handleGlobalClick);
