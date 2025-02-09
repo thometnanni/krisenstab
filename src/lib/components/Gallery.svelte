@@ -19,7 +19,7 @@
     {#each sorted as item (item.id)}
       {#each item.images as m}
         <div class="gallery-item">
-          <img src="/media/{m}" alt="" />
+          <img src={"/media/" + m} alt="" />
         </div>
       {/each}
     {/each}
@@ -28,20 +28,26 @@
 
 <style>
   .gallery {
-    max-width: calc(100vw - 250px);
+    width: 100vw;
+    margin-left: calc((-1 * var(--col1) - 35px));
     height: 400px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
   }
 
   .gallery-items {
-    overflow: scroll;
+    overflow-x: auto;
     display: flex;
     gap: 10px;
-    height: 400px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   .gallery-item {
-    height: 100%;
     flex: 0 0 auto;
+    height: 100%;
   }
 
   .gallery-item img {
@@ -53,7 +59,8 @@
 
   @media only screen and (max-width: 600px) {
     .gallery {
-      max-width: calc(100vw - 20px);
+      width: 100vw;
+      margin-left: 0;
     }
   }
 </style>

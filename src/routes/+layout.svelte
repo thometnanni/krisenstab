@@ -55,6 +55,7 @@
     --highlite: gainsboro;
     --color-1: #e9ff00;
     --faded-color: #ebebeb;
+    --col1: 120px;
   }
 
   :global(body) {
@@ -76,9 +77,9 @@
   }
 
   article > a {
-    flex: 0 0 200px;
+    flex: 0 0 var(--col1);
     /* padding: 5px; */
-    background-color: rgb(246, 246, 246);
+    /* background-color: rgb(246, 246, 246); */
     display: block;
   }
 
