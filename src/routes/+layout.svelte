@@ -72,7 +72,7 @@
 
   article {
     display: flex;
-    gap: 1ch;
+    gap: 10px;
     min-height: 100%;
   }
 
@@ -85,7 +85,7 @@
 
   section {
     flex: 0 0 800px;
-    padding: 10px;
+    /* padding: 10px; */
     overflow-x: visible;
     max-height: none;
     overflow: hidden;
@@ -147,7 +147,7 @@
 
   section {
     flex: 1;
-    padding: 10px;
+    /* padding: 10px; */
     overflow: visible;
     max-height: none;
   }

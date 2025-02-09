@@ -29,7 +29,7 @@
 <style>
   .gallery {
     width: 100vw;
-    margin-left: calc((-1 * var(--col1) - 35px));
+    margin-left: calc((-1 * var(--col1) - 10px));
     height: 400px;
     overflow: hidden;
     position: relative;
@@ -41,7 +41,6 @@
     display: flex;
     gap: 10px;
     height: 100%;
-    padding: 10px;
     box-sizing: border-box;
   }
 
