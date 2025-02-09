@@ -25,7 +25,7 @@
 <section class="intro" class:fading class:filter-active={activeFilter !== null}>
   <p>{greetingMessage},</p>
   <p>
-    Starting in spring 2025, we are a research and design studio working at the
+    Starting in spring 2025, we are a design studio working at the
     intersection of
     {#each categories as category, i}
       <button
