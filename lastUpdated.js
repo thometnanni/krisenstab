@@ -3,10 +3,14 @@ import path from "path";
 
 const __dirname = path.resolve();
 
-const lastUpdated = new Date().toLocaleDateString("en-US");
+const lastUpdated = new Date().toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
 
 const data = {
-    lastUpdated: lastUpdated
+  lastUpdated,
 };
 
 const filePath = path.resolve(__dirname, "static", "lastUpdated.json");
