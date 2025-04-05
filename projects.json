@@ -13,7 +13,7 @@
             "giacomo",
             "fidel"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": ["vantage-1.png", "vantage-2.png"],
         "link": "https://vantage.thometnanni.net/"
     },
     {
@@ -44,7 +44,7 @@
         "authors": [
             "fidel"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": [],
         "link": "https://fidelthomet.github.io/dither-dither/"
     },
     {
@@ -60,7 +60,7 @@
         "authors": [
             "fidel"
         ],
-        "images": ["kristenstab_images_installation_3.jpg","kristenstab_images_installation_4.jpg"], 
+        "images": ["xingu-1.JPG", "xingu-2.jpeg", "xingu-3.jpeg"], 
         "link": "https://amazoniafuturelab.fh-potsdam.de/"
     },
     {
@@ -75,7 +75,7 @@
         "authors": [
             "giacomo"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": [],
         "link": "https://idf-tweets-gaza.airwars.org/"
     },
     {
@@ -91,7 +91,7 @@
             "fidel",
             "giacomo"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": ["not-a-network-1.jpeg"],
         "link": "https://not-a-network.thometnanni.net/"
     },
     {
@@ -107,7 +107,7 @@
         "authors": [
             "fidel"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": ["tracing-1.png", "tracing-4.png"],
         "link": "https://tracing.ft0.ch/#/"
     },
     {
@@ -122,7 +122,7 @@
         "authors": [
             "giacomo"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": [],
         "link": "https://refareader.fh-potsdam.de/"
     },
     {
@@ -140,7 +140,7 @@
             "julian",
             "giacomo"
         ],
-        "images": ["kristenstab_images_installation_1.jpg", "kristenstab_images_installation_2.jpg" ],
+        "images": ["kristenstab_images_installation_2.jpg" ],
         "link": "oceanic-pole"
     },
     {
@@ -155,7 +155,7 @@
         "authors": [
             "fidel"
         ],
-        "images": ["ashes-to-ashes_01.jpg"],
+        "images": [],
         "link": "https://newnormalneighbourhood.org/"
     }
 ]
