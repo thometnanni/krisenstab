@@ -8,7 +8,7 @@
   export let base;
   const handleClick = (e) => {
     e.stopPropagation();
-    dispatch("filterClick", e);
+    // dispatch("filterClick", e);
   };
   const handleHover = (e) => dispatch("hover", e);
   const handleOut = (e) => dispatch("out", e);

@@ -7,12 +7,13 @@
   const handleClick = (e) => dispatch("filterClick", e);
   const handleHover = (e) => dispatch("hover", e);
   const handleOut = (e) => dispatch("out", e);
-  const people = ["julian", "giacomo", "fidel"];
+  const people = ["fidel", "giacomo", "julian"];
 </script>
 
 <section class="cheers">
   <p>
-    We always welcome general inquiries and friendly hellos. Contact us
+    We always welcome general inquiries and friendly hellos.
+    <br />Contact us
     <a href="mailto:thometnanni@protonmail.com">here</a>, or find us at our
     favourite spots around Berlin.
   </p>
@@ -31,7 +32,8 @@
         on:mouseover={handleHover}
         on:mouseout={handleOut}
         class:highlighted={effectiveItems.has(person)}
-      >{person.charAt(0).toUpperCase() + person.slice(1)}</span>{i < people.length - 1 ? (i === people.length - 2 ? " and " : ", ") : ""}
+        >{person.charAt(0).toUpperCase() + person.slice(1)}</span
+      >{i < people.length - 1 ? (i === people.length - 2 ? " and " : ", ") : ""}
     {/each}
   </p>
 </section>
