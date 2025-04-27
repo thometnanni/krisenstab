@@ -14,8 +14,8 @@
   <p>
     We always welcome general inquiries and friendly hellos.
     <br />Contact us
-    <a href="mailto:thometnanni@protonmail.com">here</a>, or find us at our
-    favourite spots around Berlin.
+    <a href="mailto:thometnanni@protonmail.com">here</a>, or find us at our favourite
+    <a target="_blank" href="https://www.mapillary.com/app/?lat=52.469174399972&lng=13.4311687&z=18.309253095562156&focus=photo&x=0.8456445813647833&y=0.36374892204492837&zoom=0&menu=false&pKey=1254106615818435">spots</a> around Berlin.
   </p>
   <p>
     Cheers, <br />
@@ -44,6 +44,11 @@
     cursor: pointer;
     color: var(--highlight, rgb(165, 165, 165));
   }
+
+  a {
+    border-bottom: 1px dashed;
+  }
+
   .active {
     /* background-color: black; */
     color: black !important;

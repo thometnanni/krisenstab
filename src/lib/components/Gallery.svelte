@@ -39,7 +39,7 @@
   .gallery-items {
     overflow-x: auto;
     display: flex;
-    gap: 10px;
+    gap: 5px;
     height: 100%;
     box-sizing: border-box;
   }

@@ -26,7 +26,7 @@
     <a href="/">
       <div class="meta">
         {#if $page.url.pathname !== "/"}
-          <p style="font-weight: bold; font-size: 1em; margin-bottom: 1rem;">
+          <p style="font-weight: bold; font-size: 1em; margin: .25rem;">
             ←
           </p>
         {:else}
