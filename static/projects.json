@@ -5,7 +5,7 @@
     "domain": ["journalism", "technology"],
     "media": ["interactive-experiences"],
     "authors": ["giacomo", "fidel"],
-    "images": ["vantage-1.png"],
+    "images": ["vantage-3.png", "vantage-2.png"],
     "link": "https://vantage.thometnanni.net/"
   },
   {
@@ -96,7 +96,7 @@
     "domain": ["culture", "journalism"],
     "media": ["spatial-installations", "interactive-experiences"],
     "authors": ["julian", "giacomo"],
-    "images": ["kristenstab_images_installation_2.jpg"],
+    "images": ["oceanic.jpg", "oceanic1.jpg"],
     "link": "https://player.vimeo.com/video/1038960024?h=62fa9151ce"
   },
   {
