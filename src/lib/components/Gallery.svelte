@@ -54,6 +54,7 @@
     width: auto;
     object-fit: cover;
     display: block;
+    filter: grayscale(100%);
   }
 
   @media only screen and (max-width: 600px) {
