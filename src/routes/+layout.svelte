@@ -26,9 +26,7 @@
     <a href="/">
       <div class="meta">
         {#if $page.url.pathname !== "/"}
-          <p style="font-weight: bold; font-size: 1em; margin: .25rem;">
-            ←
-          </p>
+          <p style="font-weight: bold; font-size: 1em; margin: .25rem;">←</p>
         {:else}
           <div class="time" style="margin-bottom: 1rem;">
             <p>Last Updated:</p>
@@ -116,12 +114,12 @@
   .title {
     display: flex;
     justify-content: space-between;
+    margin: 10px;
     width: 100%;
   }
 
   .title img {
     width: 100%;
-    max-width: 450px;
   }
 
   .time {
@@ -147,7 +145,6 @@
 
   section {
     flex: 1;
-    /* padding: 10px; */
     overflow: visible;
     max-height: none;
   }
@@ -192,6 +189,7 @@
   @media (max-width: 600px) {
     article {
       flex-direction: column;
+      padding: 10px;
     }
 
     article > a {
