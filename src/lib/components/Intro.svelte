@@ -1,32 +1,32 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
+
   export let data = [];
   export let activeFilter;
   export let fading;
   export let effectiveItems;
+
   let greetingMessage =
     new Date().getHours() < 12
       ? "Good morning"
       : new Date().getHours() < 18
         ? "Good afternoon"
         : "Good evening";
-  const handleClick = (e) => dispatch("filterClick", e);
+
+  const handleClick = (e) =>
+    dispatch("filterClick", { filterId: e.currentTarget.id });
   const handleHover = (e) => dispatch("hover", e);
   const handleOut = (e) => dispatch("out", e);
+
   const categories = ["technology", "journalism", "culture"];
-  const mediaTypes = [
-    "interactive-experiences",
-    "spatial-installations",
-    // "printed matter",
-  ];
+  const mediaTypes = ["interactive-experiences", "spatial-installations"];
 </script>
 
 <section class="intro" class:fading class:filter-active={activeFilter !== null}>
   <p>{greetingMessage},</p>
   <p>
-    Starting in 2025, we are a design studio working at the
-    intersection of
+    Starting in 2025, we are a design studio working at the intersection of
     {#each categories as category, i}
       <button
         class="interactive"
@@ -39,15 +39,15 @@
         on:click|stopPropagation={handleClick}
         on:mouseover={handleHover}
         on:mouseout={handleOut}
-        class:highlighted={effectiveItems.has(category)}
-      >{category}</button>{i < categories.length - 1
+        class:highlighted={effectiveItems.has(category)}>{category}</button
+      >{i < categories.length - 1
         ? i === categories.length - 2
           ? " and "
           : ", "
         : "."}
     {/each}
     We make
-{#each mediaTypes as media, i}
+    {#each mediaTypes as media, i}
       <button
         class="interactive"
         id={media}
@@ -60,7 +60,8 @@
         on:mouseover={handleHover}
         on:mouseout={handleOut}
         class:highlighted={effectiveItems.has(media)}
-      >{media.replace("-", " ")}</button>{i < mediaTypes.length - 1
+        >{media.replace("-", " ")}</button
+      >{i < mediaTypes.length - 1
         ? i === mediaTypes.length - 2
           ? " and "
           : ", "
@@ -77,6 +78,7 @@
   button {
     font-family: "Ronzino", Helvetica, Arial, sans-serif;
   }
+
   
   .interactive,
   .project,
@@ -85,7 +87,7 @@
     color: var(--highlight, rgb(165, 165, 165));
   }
   .interactive {
-    background-color: white;
+    background: white;
     color: black;
     border: 1px solid black;
     padding: 0 4px;
@@ -94,14 +96,14 @@
     font-size: 1rem;
   }
   .active {
-    background-color: black;
+    background: black;
     color: white !important;
   }
   .highlighted {
     color: black;
   }
   .intro.fading .interactive {
-    pointer-events: none;
+    /* pointer-events: none; */
   }
   .intro.fading .interactive.highlighted {
     color: black;

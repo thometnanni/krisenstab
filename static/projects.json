@@ -30,7 +30,7 @@
     "id": "performance",
     "text": "visualised the 22,560 athletes who have competed in the Games since 1924",
     "domain": ["technology", "culture"],
-    "media": ["interactive-experiences"],
+    "media": ["interactive-experiences", "spatial-installations"],
     "authors": ["giacomo"],
     "images": ["performance.jpg"],
     "link": "https://performance.mlml.io/movement/search/"

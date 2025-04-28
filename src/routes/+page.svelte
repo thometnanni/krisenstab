@@ -12,44 +12,33 @@
   let effectiveItems = new Set();
   let fading = false;
 
-  function handleFilterClick(event) {
-    event.stopPropagation();
-    const target = event.currentTarget || event.detail?.currentTarget;
-    if (!target) return;
-    const filterId = target.id;
+  function handleFilterClick({ detail }) {
+    const filterId = detail.filterId;
+    if (!filterId) return;
     activeFilter = activeFilter === filterId ? null : filterId;
   }
 
   function handleHover(event) {
     if (activeFilter) return;
-    const target = event.currentTarget;
-    if (!target) return;
-    const { id, related } = getElementData(target);
+    const { id, related } = getElementData(event.currentTarget);
     hoveredItems = new Set([...related, id]);
   }
 
   function handleOut() {
-    if (!activeFilter) {
-      hoveredItems = new Set();
-    }
+    if (!activeFilter) hoveredItems = new Set();
   }
 
   function getElementData(elem) {
-    if (!elem) return { id: "", related: [] };
-    const dataRelated = elem.getAttribute("data-related") || "";
-    const related = dataRelated.trim() ? dataRelated.trim().split(/\s+/) : [];
+    const dataRelated = elem?.getAttribute("data-related") ?? "";
+    const related = dataRelated.trim() ? dataRelated.split(/\s+/) : [];
     return { id: elem.id, related };
   }
 
   $: {
     if (activeFilter) {
-      const lockedElem =
-        typeof document !== "undefined"
-          ? document.getElementById(activeFilter)
-          : null;
-      if (!lockedElem) {
-        effectiveItems = new Set();
-      } else {
+      const lockedElem = document.getElementById(activeFilter);
+      if (!lockedElem) effectiveItems = new Set();
+      else {
         const { id, related } = getElementData(lockedElem);
         effectiveItems = new Set([...related, id]);
       }
@@ -64,17 +53,15 @@
     activeFilter = null;
   }
 
+  $: console.log("activeFilter", activeFilter);
+
   onMount(async () => {
-    const response = await fetch("projects.json");
-    data = await response.json();
+    data = await (await fetch("projects.json")).json();
     const handleGlobalClick = () => {
       if (activeFilter) clearFilter();
     };
-
     document.addEventListener("click", handleGlobalClick);
-    return () => {
-      document.removeEventListener("click", handleGlobalClick);
-    };
+    return () => document.removeEventListener("click", handleGlobalClick);
   });
 </script>
 
@@ -90,7 +77,9 @@
       on:out={handleOut}
     />
   </div>
+
   <Gallery {data} {activeFilter} />
+
   <div class="container">
     <ProjectList
       {data}
