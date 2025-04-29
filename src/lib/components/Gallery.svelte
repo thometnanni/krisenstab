@@ -57,6 +57,10 @@
     filter: grayscale(100%);
   }
 
+  img:hover {
+    filter: grayscale(0%);
+  }
+
   @media only screen and (max-width: 600px) {
     .gallery {
       width: 100vw;
