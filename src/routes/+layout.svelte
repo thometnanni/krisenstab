@@ -69,8 +69,7 @@
   }
 
   :global(a):hover {
-    color: var(--color-1) !important;
-    border-bottom: 1px dashed !important;
+    border-bottom: 2px dashed var(--color-1) !important;
   }
 
   article {
