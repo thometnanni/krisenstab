@@ -68,6 +68,11 @@
     hyphens: auto;
   }
 
+  :global(a):hover {
+    color: var(--color-1) !important;
+    border-bottom: 1px dashed !important;
+  }
+
   article {
     display: flex;
     gap: 10px;
