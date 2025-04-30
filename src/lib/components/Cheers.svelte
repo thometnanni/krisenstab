@@ -18,7 +18,7 @@
   <p>
     We always welcome general inquiries and friendly hellos.<br />
     Contact us
-    <a href="mailto:thometnanni@protonmail.com">here</a>, or find us at our
+    <a href="mailto:hi@thometnanni.net">here</a>, or find us at our
     favourite
     <a
       target="_blank"
