@@ -73,8 +73,7 @@
       {fading}
       {effectiveItems}
       on:filterClick={handleFilterClick}
-      on:hover={handleHover}
-      on:out={handleOut}
+    
     />
   </div>
 
@@ -87,8 +86,6 @@
       {fading}
       {effectiveItems}
       on:filterClick={handleFilterClick}
-      on:hover={handleHover}
-      on:out={handleOut}
       {base}
     />
     <Cheers
@@ -96,8 +93,6 @@
       {activeFilter}
       {effectiveItems}
       on:filterClick={handleFilterClick}
-      on:hover={handleHover}
-      on:out={handleOut}
     />
   </div>
 {/if}

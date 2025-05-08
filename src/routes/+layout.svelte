@@ -184,11 +184,11 @@
     font-weight: normal;
   }
 
-  @font-face {
+  /* @font-face {
     font-family: Ronzino;
-    src: url("/fonts/Ronzino-Italic.woff");
+    src: url("/fonts/Ronzino-Oblique.woff2");
     font-weight: italic;
-  }
+  } */
 
   @media (max-width: 600px) {
     article {
