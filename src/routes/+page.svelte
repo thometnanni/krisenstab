@@ -5,6 +5,7 @@
   import Gallery from "$lib/components/Gallery.svelte";
   import ProjectList from "$lib/components/ProjectList.svelte";
   import Cheers from "$lib/components/Cheers.svelte";
+  import Impressum from "$lib/components/Impressum.svelte";
 
   let data = [];
   let activeFilter = null;
@@ -65,39 +66,45 @@
   });
 </script>
 
-{#if data.length > 0}
-  <div class="container">
-    <Intro
-      {data}
-      {activeFilter}
-      {fading}
-      {effectiveItems}
-      on:filterClick={handleFilterClick}
-    
-    />
-  </div>
+<article>
+  {#if data.length > 0}
+    <div class="container">
+      <Intro
+        {data}
+        {activeFilter}
+        {fading}
+        {effectiveItems}
+        on:filterClick={handleFilterClick}
+      />
+    </div>
 
-  <Gallery {data} {activeFilter} />
+    <Gallery {data} {activeFilter} />
 
-  <div class="container">
-    <ProjectList
-      {data}
-      {activeFilter}
-      {fading}
-      {effectiveItems}
-      on:filterClick={handleFilterClick}
-      {base}
-    />
-    <Cheers
-      {data}
-      {activeFilter}
-      {effectiveItems}
-      on:filterClick={handleFilterClick}
-    />
-  </div>
-{/if}
+    <div class="container">
+      <ProjectList
+        {data}
+        {activeFilter}
+        {fading}
+        {effectiveItems}
+        on:filterClick={handleFilterClick}
+        {base}
+      />
+      <Cheers
+        {data}
+        {activeFilter}
+        {effectiveItems}
+        on:filterClick={handleFilterClick}
+      />
+    </div>
+    <Impressum />
+  {/if}
+</article>
 
 <style>
+  article {
+    margin-top: 50px;
+  }
+  
   .container {
     max-width: 840px;
     padding-top: 30px;

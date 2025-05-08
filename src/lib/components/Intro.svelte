@@ -26,7 +26,7 @@
 <section class="intro" class:fading class:filter-active={activeFilter !== null}>
   <p>{greetingMessage},</p>
   <p>
-    Starting in 2025, we are a design studio working at the intersection of
+    Since 2025, we are a design studio working at the intersection of
     {#each categories as category, i}
       <button
         class="interactive"
@@ -46,8 +46,9 @@
           : ", "
         : "."}
     {/each}
-    We make
-    {#each mediaTypes as media, i}
+
+    We write software, build tools and
+    design interfaces to create {#each mediaTypes as media, i}
       <button
         class="interactive"
         id={media}
@@ -79,7 +80,6 @@
     font-family: "Ronzino", Helvetica, Arial, sans-serif;
   }
 
-  
   .interactive,
   .project,
   .people {

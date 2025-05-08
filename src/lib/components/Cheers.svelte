@@ -16,16 +16,9 @@
 
 <section class="cheers">
   <p>
-    We always welcome general inquiries and friendly hellos.<br />
-    Contact us
-    <a href="mailto:hi@thometnanni.net">here</a>, or find us at our
-    favourite
-    <a
-      target="_blank"
-      href="https://www.mapillary.com/app/?lat=52.469174399972&lng=13.4311687&z=18.309253095562156&focus=photo&x=0.8456445813647833&y=0.36374892204492837&zoom=0&menu=false&pKey=1254106615818435"
-      >spots</a
-    >
-    around Berlin.
+    We always welcome <a href="mailto:hi@thometnanni.net">
+      general inquiries and friendly hellos</a
+    >.<br />
   </p>
   <p>
     Cheers, <br />
@@ -43,14 +36,14 @@
         on:mouseout={handleOut}
         class:highlighted={effectiveItems.has(person)}
       >
-        {person.charAt(0).toUpperCase() + person.slice(1)}
-      </span>{i < people.length - 1
+        {person.charAt(0).toUpperCase() + person.slice(1)}</span>{i < people.length - 1
         ? i === people.length - 2
           ? " and "
           : ", "
         : ""}
     {/each}
   </p>
+ 
 </section>
 
 <style>
@@ -68,13 +61,5 @@
   .highlighted {
     color: black;
   }
-  .cheers.fading .interactive {
-    color: var(--faded-color);
-    pointer-events: none;
-  }
-  .cheers.fading .interactive.highlighted {
-    color: black;
-    pointer-events: auto;
-    cursor: pointer;
-  }
+
 </style>
