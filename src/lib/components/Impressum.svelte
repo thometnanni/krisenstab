@@ -14,4 +14,11 @@
     line-height: 0.9em;
     /* color: var(--faded-color); */
   }
+
+  @media only screen and (max-width: 600px) {
+    .tiny {
+      margin: 0;
+      margin-top: 80px;
+    }
+  }
 </style>
