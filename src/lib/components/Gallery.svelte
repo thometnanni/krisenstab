@@ -12,14 +12,27 @@
     : data;
 
   $: sorted = [...filteredData].sort(() => 0.5 - Math.random());
+
+  let landscapeMap = {};
+
+  function markLandscape(e, src) {
+    const img = e.target;
+    landscapeMap[src] = img.naturalWidth > img.naturalHeight;
+  }
 </script>
 
 <section class="gallery">
   <div class="gallery-items">
     {#each sorted as item (item.id)}
       {#each item.images as m}
-        <div class="gallery-item">
-          <img src={"/media/" + m} alt="" />
+        <div
+          class="gallery-item {landscapeMap['/media/' + m] ? 'landscape' : ''}"
+        >
+          <img
+            src={"/media/" + m}
+            alt=""
+            on:load={(e) => markLandscape(e, "/media/" + m)}
+          />
         </div>
       {/each}
     {/each}
@@ -47,14 +60,28 @@
   .gallery-item {
     flex: 0 0 auto;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .gallery-item img {
     height: 100%;
     width: auto;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     filter: grayscale(100%);
+  }
+
+  .gallery-item.landscape {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+  }
+
+  .gallery-item.landscape img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   img:hover {

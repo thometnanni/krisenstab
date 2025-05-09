@@ -5,7 +5,7 @@
     "domain": ["journalism", "technology"],
     "media": ["interactive-experiences"],
     "authors": ["giacomo", "fidel"],
-    "images": ["vantage-3.png", "vantage-2.png"],
+    "images": ["vantage-1.jpeg", "vantage-2.jpeg"],
     "link": "https://vantage.thometnanni.net/"
   },
   {
@@ -14,7 +14,7 @@
     "domain": ["culture"],
     "media": ["interactive-experiences", "spatial-installations"],
     "authors": ["fidel"],
-    "images": ["xingu-1.JPG", "xingu-3.jpeg"],
+    "images": ["xingu-1.jpeg", "xingu-3.jpeg"],
     "link": "https://amazoniafuturelab.fh-potsdam.de/"
   },
   {
@@ -23,7 +23,7 @@
     "domain": ["technology", "journalism"],
     "media": ["spatial-installations"],
     "authors": ["julian"],
-    "images": ["kristenstab_images_installation_5.jpg"],
+    "images": ["modes-1.jpeg", "modes-2.jpeg"],
     "link": "https://vimeo.com/1043455413"
   },
   {
@@ -32,7 +32,7 @@
     "domain": ["technology", "culture"],
     "media": ["interactive-experiences", "spatial-installations"],
     "authors": ["giacomo"],
-    "images": ["performance.jpg"],
+    "images": ["performance.jpeg"],
     "link": "https://performance.mlml.io/movement/search/"
   },
   {
@@ -69,7 +69,7 @@
     "domain": ["technology", "journalism"],
     "media": ["interactive-experiences"],
     "authors": ["fidel"],
-    "images": ["tracing-3.png", "tracing-4.png"],
+    "images": ["tracing-3.jpeg", "tracing-4.jpeg"],
     "link": "https://tracing.ft0.ch/#/"
   },
   {
@@ -93,10 +93,10 @@
   {
     "id": "oceanic",
     "text": "georeferenced the space junk that fell into the Spacecraft Cemetery",
-    "domain": ["culture", "journalism"],
+    "domain": ["technology", "journalism"],
     "media": ["spatial-installations", "interactive-experiences"],
     "authors": ["julian", "giacomo"],
-    "images": ["oceanic.jpg", "oceanic1.jpg"],
+    "images": ["oceanic.jpeg", "oceanic1.jpeg"],
     "link": "https://player.vimeo.com/video/1038960024?h=62fa9151ce"
   },
   {

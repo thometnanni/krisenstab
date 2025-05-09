@@ -54,7 +54,7 @@
     activeFilter = null;
   }
 
-  $: console.log("activeFilter", activeFilter);
+  // $: console.log("activeFilter", activeFilter);
 
   onMount(async () => {
     data = await (await fetch("projects.json")).json();
