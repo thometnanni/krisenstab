@@ -104,10 +104,20 @@
   article {
     margin-top: 50px;
   }
-  
+
   .container {
     max-width: 840px;
     padding-top: 30px;
     overflow-y: auto;
+  }
+
+  @media only screen and (max-width: 600px) {
+    article {
+      margin-top: 0px;
+    }
+
+    .container {
+      padding-top: 0px;
+    }
   }
 </style>

@@ -135,18 +135,6 @@
     margin-bottom: 0;
   }
 
-  .title > a {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    font-weight: 400;
-    color: black;
-  }
-
-  .title span {
-    display: inline-block;
-  }
-
   section {
     flex: 1;
     overflow: visible;
@@ -209,6 +197,11 @@
       max-width: 100%;
       overflow: visible;
       max-height: none;
+    }
+
+    .title img {
+      width: 50%;
+      margin: 0 auto;
     }
   }
 </style>

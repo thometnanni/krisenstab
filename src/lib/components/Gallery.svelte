@@ -90,7 +90,7 @@
 
   @media only screen and (max-width: 600px) {
     .gallery {
-      width: 100vw;
+      width: calc(100vw - 20px);
       margin-left: 0;
     }
   }
