@@ -19,6 +19,28 @@
       console.error("Error fetching lastUpdated.json:", error);
     }
   });
+
+  function isWeekend() {
+    const day = new Date().getDay();
+    return day === 0 || day === 6; // Sunday = 0, Saturday = 6
+  }
+
+  function isEvening() {
+    const hour = new Date().getHours();
+    return hour >= 18 || hour < 9;
+  }
+
+  function isWeekendEvening() {
+    return isWeekend() && isEvening();
+  }
+
+  function isWorkTime() {
+    const now = new Date();
+    const hour = now.getHours();
+    const day = now.getDay();
+    const isWeekday = day >= 1 && day <= 5;
+    return isWeekday && hour >= 9 && hour < 18;
+  }
 </script>
 
 <article>
@@ -34,10 +56,12 @@
           </div>
         {/if}
         <div class="title">
-          {#if new Date().getHours() >= 9 && new Date().getHours() < 18}
-            <img src="/krisenstab_work.svg" alt="" />
+          {#if isWeekendEvening()}
+            <img src="/krisenstab_leisure_drink.svg" alt="Leisure Drink" />
+          {:else if isWorkTime()}
+            <img src="/krisenstab_work.svg" alt="Work" />
           {:else}
-            <img src="/krisenstab_leisure.svg" alt="" />
+            <img src="/krisenstab_leisure.svg" alt="Leisure" />
           {/if}
         </div>
       </div>
@@ -80,14 +104,11 @@
 
   article > a {
     flex: 0 0 var(--col1);
-    /* padding: 5px; */
-    /* background-color: rgb(246, 246, 246); */
     display: block;
   }
 
   section {
     flex: 0 0 800px;
-    /* padding: 10px; */
     overflow-x: visible;
     max-height: none;
     overflow: hidden;
@@ -102,7 +123,6 @@
     align-content: space-between;
     position: sticky;
     top: 0;
-    /* padding: 0 5px; */
     height: 100%;
     max-height: 100vh;
     width: 100%;
@@ -171,12 +191,6 @@
     src: url("/fonts/Ronzino-Regular.woff2");
     font-weight: normal;
   }
-
-  /* @font-face {
-    font-family: Ronzino;
-    src: url("/fonts/Ronzino-Oblique.woff2");
-    font-weight: italic;
-  } */
 
   @media (max-width: 600px) {
     article {
