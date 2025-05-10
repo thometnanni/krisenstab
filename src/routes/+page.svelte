@@ -115,9 +115,5 @@
     article {
       margin-top: 0px;
     }
-
-    .container {
-      padding-top: 0px;
-    }
   }
 </style>
