@@ -84,9 +84,9 @@
     object-fit: cover;
   }
 
-  img:hover {
+  /* img:hover {
     filter: grayscale(0%);
-  }
+  } */
 
   @media only screen and (max-width: 600px) {
     .gallery {
