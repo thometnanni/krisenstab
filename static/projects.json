@@ -28,12 +28,12 @@
   },
   {
     "id": "performance",
-    "text": "visualised the 22,560 athletes who have competed in the Games since 1924",
+    "text": "visualised the 22,560 athletes who have competed in the Olympic Winter Games since 1924",
     "domain": ["technology", "culture"],
     "media": ["interactive-experiences", "spatial-installations"],
     "authors": ["giacomo"],
     "images": ["performance.jpeg"],
-    "link": "https://performance.mlml.io/movement/search/"
+    "link": "https://performance.mlml.io/movement/"
   },
   {
     "id": "dither",
@@ -94,7 +94,7 @@
     "id": "oceanic",
     "text": "georeferenced the space junk that fell into the Spacecraft Cemetery",
     "domain": ["technology", "journalism"],
-    "media": ["spatial-installations", "interactive-experiences"],
+    "media": ["spatial-installations"],
     "authors": ["julian", "giacomo"],
     "images": ["oceanic.jpeg", "oceanic1.jpeg"],
     "link": "https://player.vimeo.com/video/1038960024?h=62fa9151ce"
