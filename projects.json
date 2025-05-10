@@ -94,7 +94,7 @@
     "id": "oceanic",
     "text": "georeferenced the space junk that fell into the Spacecraft Cemetery",
     "domain": ["technology", "journalism"],
-    "media": ["spatial-installations", "interactive-experiences"],
+    "media": ["spatial-installations"],
     "authors": ["julian", "giacomo"],
     "images": ["oceanic.jpeg", "oceanic1.jpeg"],
     "link": "https://player.vimeo.com/video/1038960024?h=62fa9151ce"
