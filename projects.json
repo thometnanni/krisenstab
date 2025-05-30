@@ -3,7 +3,7 @@
     "id": "vantage",
     "text": "democratised investigative photo matching",
     "domain": ["journalism", "technology"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["giacomo", "fidel"],
     "images": ["vantage-1.jpeg", "vantage-2.jpeg"],
     "link": "https://vantage.thometnanni.net/"
@@ -12,7 +12,7 @@
     "id": "xingu",
     "text": "told the entangled stories of the Kuikuro",
     "domain": ["culture"],
-    "media": ["interactive-experiences", "spatial-installations"],
+    "media": ["websites", "spatial-installations"],
     "authors": ["fidel"],
     "images": ["kristenstab_images_installation_4.jpeg", "xingu-3.jpeg"],
     "link": "https://amazoniafuturelab.fh-potsdam.de/"
@@ -30,7 +30,7 @@
     "id": "performance",
     "text": "visualised the 22,560 athletes who have competed in the Olympic Winter Games since 1924",
     "domain": ["technology", "culture"],
-    "media": ["interactive-experiences", "spatial-installations"],
+    "media": ["websites", "spatial-installations"],
     "authors": ["giacomo"],
     "images": ["performance.jpeg"],
     "link": "https://performance.mlml.io/movement/"
@@ -39,7 +39,7 @@
     "id": "dither",
     "text": "brought fast dithering to the web",
     "domain": ["technology"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["fidel"],
     "images": [],
     "link": "https://fidelthomet.github.io/dither-dither/"
@@ -57,7 +57,7 @@
     "id": "airwars",
     "text": "analysed IDF tweets during the Gaza conflict",
     "domain": ["journalism"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["giacomo"],
     "images": [],
     "link": "https://idf-tweets-gaza.airwars.org/"
@@ -66,7 +66,7 @@
     "id": "not-a-network",
     "text": "wrote dispersive poetry",
     "domain": ["culture"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["fidel", "giacomo"],
     "images": ["not-a-network-1.jpeg"],
     "link": "https://not-a-network.thometnanni.net/"
@@ -75,7 +75,7 @@
     "id": "tracing",
     "text": "explained the technology behind covid tracing",
     "domain": ["technology", "journalism"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["fidel"],
     "images": ["tracing-3.jpeg", "tracing-4.jpeg"],
     "link": "https://tracing.ft0.ch/#/"
@@ -84,7 +84,7 @@
     "id": "refa",
     "text": "juxtaposed essaying to graph-based representations",
     "domain": ["culture"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["giacomo"],
     "images": [],
     "link": "https://refareader.fh-potsdam.de/"
@@ -93,7 +93,7 @@
     "id": "bakema",
     "text": "retraced all the correspondence of Jaap Bakema",
     "domain": ["culture"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["giacomo"],
     "images": [],
     "link": "https://bake.nieuweinstituut.nl/"
@@ -111,7 +111,7 @@
     "id": "new-normal",
     "text": "invited people to speculate on local futures",
     "domain": ["culture"],
-    "media": ["interactive-experiences"],
+    "media": ["websites"],
     "authors": ["fidel"],
     "images": [],
     "link": "https://newnormalneighbourhood.org/"
