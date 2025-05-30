@@ -20,7 +20,7 @@
   const handleOut = (e) => dispatch("out", e);
 
   const categories = ["technology", "journalism", "culture"];
-  const mediaTypes = ["interactive-experiences", "spatial-installations"];
+  const mediaTypes = ["interactive-experiences", "spatial-installations", "printed-matters"]
 </script>
 
 <section class="intro" class:fading class:filter-active={activeFilter !== null}>

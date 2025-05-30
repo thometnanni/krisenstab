@@ -1,0 +1,22 @@
+:root {
+  --highlite: gainsboro;
+  --color-1: #e9ff00;
+  --faded-color: #ebebeb;
+  --col1: 120px;
+}
+
+body {
+  font-family: "Ronzino", Helvetica, Arial, sans-serif;
+  font-size: 23px;
+  line-height: 28px;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  text-rendering: geometricPrecision;
+  hyphens: auto;
+}
+
+:global(a):hover {
+  border-bottom: 2px dashed var(--color-1) !important;
+}

@@ -71,6 +71,7 @@
     object-fit: contain;
     display: block;
     filter: grayscale(100%);
+    image-rendering: pixelated;
   }
 
   .gallery-item.landscape {

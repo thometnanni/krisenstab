@@ -47,21 +47,17 @@
   {#if lastUpdated}
     <a href="/">
       <div class="meta">
-        {#if $page.url.pathname !== "/"}
-          <p style="font-weight: bold; font-size: 1em; margin: .25rem;">←</p>
-        {:else}
-          <div class="time" style="margin-bottom: 1rem;">
-            <p>Last Updated:</p>
-            <p>{lastUpdated}</p>
-          </div>
-        {/if}
+        <div class="time" style="margin-bottom: 1rem;">
+          <p>Last Updated:</p>
+          <p>{lastUpdated}</p>
+        </div>
         <div class="title">
           {#if isWeekendEvening()}
-            <img src="/krisenstab_leisure_drink.svg" alt="Leisure Drink" />
+            <img src="/tables/krisenstab_leisure_drink.svg" alt="Leisure Drink" />
           {:else if isWorkTime()}
-            <img src="/krisenstab_work.svg" alt="Work" />
+            <img src="/tables/krisenstab_work.svg" alt="Work" />
           {:else}
-            <img src="/krisenstab_leisure.svg" alt="Leisure" />
+            <img src="/tables/krisenstab_leisure.svg" alt="Leisure" />
           {/if}
         </div>
       </div>
@@ -73,29 +69,6 @@
 </article>
 
 <style>
-  :root {
-    --highlite: gainsboro;
-    --color-1: #e9ff00;
-    --faded-color: #ebebeb;
-    --col1: 120px;
-  }
-
-  :global(body) {
-    font-family: "Ronzino", Helvetica, Arial, sans-serif;
-    font-size: 23px;
-    line-height: 28px;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    background-color: white;
-    text-rendering: geometricPrecision;
-    hyphens: auto;
-  }
-
-  :global(a):hover {
-    border-bottom: 2px dashed var(--color-1) !important;
-  }
-
   article {
     display: flex;
     gap: 10px;

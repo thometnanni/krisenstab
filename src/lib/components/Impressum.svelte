@@ -1,8 +1,6 @@
 <p class="tiny">
   Krisenstab <br />
-  Thomet & Nanni GbR<br />
-  Emser Str. 68,<br />
-  12051 Berlin, Germany<br />
+  Thomet & Nanni GbR
 </p>
 
 <style>

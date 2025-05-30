@@ -57,7 +57,7 @@
   // $: console.log("activeFilter", activeFilter);
 
   onMount(async () => {
-    data = await (await fetch("projects.json")).json();
+    data = await (await fetch("../projects.json")).json();
     const handleGlobalClick = () => {
       if (activeFilter) clearFilter();
     };
