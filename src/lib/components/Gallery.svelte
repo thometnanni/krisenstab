@@ -43,10 +43,14 @@
   .gallery {
     width: 100vw;
     margin-left: calc((-1 * var(--col1) - 10px));
-    height: 400px;
+    height: 300px;
+    max-width: 1920px;
+
     overflow: hidden;
     position: relative;
     z-index: 1;
+    margin-bottom: 30px;
+    /* margin: 30px 0; */
   }
 
   .gallery-items {
@@ -89,7 +93,7 @@
     filter: grayscale(0%);
   } */
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .gallery {
       width: calc(100vw - 20px);
       margin-left: 0;

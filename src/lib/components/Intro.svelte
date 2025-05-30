@@ -20,13 +20,13 @@
   const handleOut = (e) => dispatch("out", e);
 
   const categories = ["technology", "journalism", "culture"];
-  const mediaTypes = ["interactive-experiences", "spatial-installations", "printed-matters"]
+  const mediaTypes = ["websites", "spatial-installations", "printed-matters"]
 </script>
 
 <section class="intro" class:fading class:filter-active={activeFilter !== null}>
   <p>{greetingMessage},</p>
   <p>
-    Since 2025, we are a design studio working at the intersection of
+    We are a design studio working at the intersection of
     {#each categories as category, i}
       <button
         class="interactive"
@@ -46,9 +46,10 @@
           : ", "
         : "."}
     {/each}
-
-    We write software, build tools and
-    design interfaces to create {#each mediaTypes as media, i}
+    
+    <br />
+    By writing software, building tools and
+    designing interfaces we create {#each mediaTypes as media, i}
       <button
         class="interactive"
         id={media}
@@ -84,7 +85,7 @@
   .project,
   .people {
     cursor: pointer;
-    color: var(--highlight, rgb(165, 165, 165));
+    color: var(--highlight, rgb(200, 200, 200));
   }
   .interactive {
     background: white;

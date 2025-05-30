@@ -46,7 +46,7 @@
 <style>
   .project {
     cursor: pointer;
-    color: var(--highlight, rgb(165, 165, 165));
+    color: var(--highlight, rgb(200, 200, 200));
   }
   .project:hover {
     color: black;
@@ -54,6 +54,8 @@
   .highlighted {
     color: black;
   }
+
+
   .project-list.fading .project {
     color: var(--faded-color);
     pointer-events: none;

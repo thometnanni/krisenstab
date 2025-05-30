@@ -16,7 +16,7 @@
   }
 
   article {
-    max-width: 1200px;
+    max-width: 800px;
   }
 
   :global(img),

@@ -1,7 +1,9 @@
-<p class="tiny">
-  Krisenstab <br />
-  Thomet & Nanni GbR
-</p>
+<footer>
+  <p class="tiny">
+    Krisenstab<br />
+    Thomet & Nanni GbR
+  </p>
+</footer>
 
 <style>
   .tiny {
@@ -13,7 +15,13 @@
     /* color: var(--faded-color); */
   }
 
-  @media only screen and (max-width: 600px) {
+  .tiny {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    line-height: 1.2;
+  }
+
+  @media only screen and (max-width: 800px) {
     .tiny {
       margin: 0;
       margin-top: 80px;

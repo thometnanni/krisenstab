@@ -50,7 +50,7 @@
   .people,
   .interactive {
     cursor: pointer;
-    color: var(--highlight, rgb(165, 165, 165));
+    color: var(--highlight, rgb(200, 200, 200));
   }
   a {
     border-bottom: 1px dashed;

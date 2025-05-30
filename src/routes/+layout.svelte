@@ -45,20 +45,20 @@
 
 <article>
   {#if lastUpdated}
-    <a href="/">
+    <a href="/" class="meta-link">
       <div class="meta">
         <div class="time" style="margin-bottom: 1rem;">
           <p>Last Updated:</p>
           <p>{lastUpdated}</p>
         </div>
         <div class="title">
-          {#if isWeekendEvening()}
+          <!-- {#if isWeekendEvening()}
             <img src="/tables/krisenstab_leisure_drink.svg" alt="Leisure Drink" />
           {:else if isWorkTime()}
             <img src="/tables/krisenstab_work.svg" alt="Work" />
           {:else}
             <img src="/tables/krisenstab_leisure.svg" alt="Leisure" />
-          {/if}
+          {/if} -->
         </div>
       </div>
     </a>
@@ -73,6 +73,7 @@
     display: flex;
     gap: 10px;
     min-height: 100%;
+    max-width: 1920px;
   }
 
   article > a {
@@ -101,7 +102,7 @@
     width: 100%;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .meta {
       flex-direction: row-reverse;
       text-align: right;
@@ -165,7 +166,7 @@
     font-weight: normal;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     article {
       flex-direction: column;
       padding: 10px;

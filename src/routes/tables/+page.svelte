@@ -2,21 +2,23 @@
   import { onMount, onDestroy } from "svelte";
 
   let tables = [
-    { src: "/tables/krisenstab_leisure_2.svg", alt: "Krisenstab" },
-    { src: "/tables/krisenstab_work.svg", alt: "Krisenstab" },
-    { src: "/tables/krisenstab_leisure_drink_2.svg", alt: "Krisenstab" },
+    // { src: "/tables/krisenstab_work.svg"},
+    { src: "/tables/met.jpg" },
+    { src: "/tables/skok.jpg" },
+    { src: "/tables/gabri.jpg" },
+    { src: "/tables/pesaris.jpg" },
+    
   ];
   let current = 0;
   let tablesrc = tables[current].src;
-  let logoAlt = tables[current].alt;
   let intervalId;
 
   onMount(() => {
     intervalId = setInterval(() => {
       current = (current + 1) % tables.length;
       tablesrc = tables[current].src;
-      logoAlt = tables[current].alt;
-    }, 500);
+      logoAlt = "Just another table";
+    }, 200);
   });
 
   onDestroy(() => {
@@ -24,9 +26,9 @@
   });
 </script>
 
-<a href="/work">
+<a href="/" data-sveltekit-reload>
   <main>
-    <img src={tablesrc} alt={logoAlt} class="logo" />
+    <img src={tablesrc} alt="Just another table" class="logo" />
     <footer>
       <p class="tiny">
         Krisenstab<br />
@@ -57,7 +59,7 @@
   }
 
   .logo {
-    max-width: 30vh;
+    max-width: 40vh;
     width: auto;
     height: auto;
     margin: auto;
@@ -73,5 +75,9 @@
     opacity: 0.6;
     margin: 0;
     line-height: 1.2;
+  }
+
+  :global(.meta-link) {
+    display: none !important;
   }
 </style>

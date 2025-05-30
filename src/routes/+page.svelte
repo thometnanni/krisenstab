@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { base } from "$app/paths";
+  import Tables from "$lib/components/Tables.svelte";
+
   import Intro from "$lib/components/Intro.svelte";
   import Gallery from "$lib/components/Gallery.svelte";
   import ProjectList from "$lib/components/ProjectList.svelte";
@@ -67,6 +69,7 @@
 </script>
 
 <article>
+  <Tables />
   {#if data.length > 0}
     <div class="container">
       <Intro
@@ -78,8 +81,6 @@
       />
     </div>
 
-    <Gallery {data} {activeFilter} />
-
     <div class="container">
       <ProjectList
         {data}
@@ -89,6 +90,11 @@
         on:filterClick={handleFilterClick}
         {base}
       />
+    </div>
+
+    <Gallery {data} {activeFilter} />
+
+    <div class="container">
       <Cheers
         {data}
         {activeFilter}
@@ -102,16 +108,17 @@
 
 <style>
   article {
-    margin-top: 50px;
+    /* margin-top: 50px; */
   }
 
   .container {
-    max-width: 840px;
-    padding-top: 30px;
+    max-width: 1200px;
+    /* padding-top: 30px; */
     overflow-y: auto;
+    background-color: white;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     article {
       margin-top: 0px;
     }
