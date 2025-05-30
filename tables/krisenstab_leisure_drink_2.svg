@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 283.5 212.6">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: #fff;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5 {
+        stroke: #1d1d1b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .st0, .st2 {
+        stroke-width: 2px;
+      }
+
+      .st1, .st4 {
+        stroke-width: 1.1px;
+      }
+
+      .st2 {
+        fill: #1d1d1b;
+      }
+
+      .st3, .st4 {
+        fill: none;
+      }
+
+      .st5 {
+        fill: #ff3100;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="st2" d="M56,191.6v4.4c0,5.5,13,9.9,29,9.9s29-4.4,29-9.9v-4.4"/>
+    <ellipse class="st0" cx="85" cy="191.6" rx="29" ry="9.9"/>
+    <path class="st0" d="M77.9,134.7v53.7c0,1.4,3.2,2.4,7.1,2.4s7.1-1.1,7.1-2.4v-53.6s-14.3-.1-14.3-.1Z"/>
+    <path class="st2" d="M8.6,100.7v11.6c0,14.5,34.2,26.2,76.5,26.2s76.5-11.7,76.5-26.2v-11.6"/>
+    <ellipse class="st0" cx="85" cy="100.7" rx="76.5" ry="26.2"/>
+    <line class="st4" x1="116.1" y1="92.6" x2="116.1" y2="111.4"/>
+    <polyline class="st1" points="137 99.1 137 111.4 137 92.6"/>
+    <path class="st5" d="M137,101.9c0-2-4.7-3.6-10.4-3.6s-10.4,1.6-10.4,3.6,0,.2,0,.3h0v9.2c0,2,4.7,3.6,10.4,3.6s10.4-1.6,10.4-3.6v-9.2h0c0-.1,0-.2,0-.3Z"/>
+    <ellipse class="st3" cx="126.5" cy="92.6" rx="10.4" ry="3.6"/>
+    <ellipse class="st3" cx="126.5" cy="101.9" rx="10.4" ry="3.6"/>
+  </g>
+  <g>
+    <path class="st2" d="M170.3,130.3v4.4c0,5.5,13,9.9,29,9.9s29-4.4,29-9.9v-4.4"/>
+    <ellipse class="st0" cx="199.3" cy="130.3" rx="29" ry="9.9"/>
+    <path class="st0" d="M192.1,73.4v53.7c0,1.4,3.2,2.4,7.1,2.4s7.1-1.1,7.1-2.4v-53.6h-14.3Z"/>
+    <path class="st2" d="M122.8,39.4v11.6c0,14.5,34.2,26.2,76.5,26.2s76.5-11.7,76.5-26.2v-11.6"/>
+    <ellipse class="st0" cx="199.3" cy="39.4" rx="76.5" ry="26.2"/>
+    <line class="st4" x1="209.5" y1="20.6" x2="209.5" y2="39.4"/>
+    <polyline class="st1" points="230.3 27.1 230.3 39.4 230.3 20.6"/>
+    <path class="st5" d="M230.3,29.9c0-2-4.7-3.6-10.4-3.6s-10.4,1.6-10.4,3.6,0,.2,0,.3h0v9.2c0,2,4.7,3.6,10.4,3.6s10.4-1.6,10.4-3.6v-9.2h0c0-.1,0-.2,0-.3Z"/>
+    <ellipse class="st3" cx="219.9" cy="20.6" rx="10.4" ry="3.6"/>
+    <ellipse class="st3" cx="219.9" cy="29.9" rx="10.4" ry="3.6"/>
+    <line class="st4" x1="179.7" y1="35.1" x2="179.7" y2="53.9"/>
+    <polyline class="st1" points="200.6 41.6 200.6 53.9 200.6 35.1"/>
+    <path class="st5" d="M200.6,44.4c0-2-4.7-3.6-10.4-3.6s-10.4,1.6-10.4,3.6,0,.2,0,.3h0v9.2c0,2,4.7,3.6,10.4,3.6s10.4-1.6,10.4-3.6v-9.2h0c0-.1,0-.2,0-.3Z"/>
+    <ellipse class="st3" cx="190.2" cy="35.1" rx="10.4" ry="3.6"/>
+    <ellipse class="st3" cx="190.2" cy="44.4" rx="10.4" ry="3.6"/>
+  </g>
+</svg>

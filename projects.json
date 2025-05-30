@@ -14,7 +14,7 @@
     "domain": ["culture"],
     "media": ["interactive-experiences", "spatial-installations"],
     "authors": ["fidel"],
-    "images": ["xingu-1.jpeg", "xingu-3.jpeg"],
+    "images": ["kristenstab_images_installation_4.jpeg", "xingu-3.jpeg"],
     "link": "https://amazoniafuturelab.fh-potsdam.de/"
   },
   {
@@ -44,7 +44,15 @@
     "images": [],
     "link": "https://fidelthomet.github.io/dither-dither/"
   },
-
+  {
+    "id": "moers-festival",
+    "text": "curated a publication of 50 years of jazz",
+    "domain": ["culture"],
+    "media": ["printed-matters"],
+    "authors": ["julian"],
+    "images": ["moers_1.png"],
+    "link": "https://archiv.moers-festival.de/ChronischMoers_Digitale_Publikation.pdf"
+  },
   {
     "id": "airwars",
     "text": "analysed IDF tweets during the Gaza conflict",
@@ -107,5 +115,15 @@
     "authors": ["fidel"],
     "images": [],
     "link": "https://newnormalneighbourhood.org/"
+  },
+
+  {
+    "id": "data-image",
+    "text": "questioned the common perception of satellite imagery",
+    "domain": ["culture"],
+    "media": ["printed-matters"],
+    "authors": ["julian"],
+    "images": ["data-image.jpg"],
+    "link": "https://julianpeschel.info/projects/data-image"
   }
 ]
