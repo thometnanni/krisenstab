@@ -1,3 +1,4 @@
+<!-- Intro.svelte -->
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
@@ -17,10 +18,10 @@
   const handleClick = (e) =>
     dispatch("filterClick", { filterId: e.currentTarget.id });
   const handleHover = (e) => dispatch("hover", e);
-  const handleOut = (e) => dispatch("out", e);
+  const handleOut = () => dispatch("out");
 
   const categories = ["technology", "journalism", "culture"];
-  const mediaTypes = ["websites", "spatial-installations", "printed-matters"]
+  const mediaTypes = ["websites", "spatial-installations", "printed-matters"];
 </script>
 
 <section class="intro" class:fading class:filter-active={activeFilter !== null}>
@@ -46,10 +47,9 @@
           : ", "
         : "."}
     {/each}
-    
     <br />
-    By writing software, building tools and
-    designing interfaces we create {#each mediaTypes as media, i}
+    By writing software, building tools and designing interfaces we create
+    {#each mediaTypes as media, i}
       <button
         class="interactive"
         id={media}
@@ -85,29 +85,32 @@
   .project,
   .people {
     cursor: pointer;
-    color: var(--highlight, rgb(200, 200, 200));
-  }
-  .interactive {
+    /* color: var(--highlight, rgb(200, 200, 200)); */
     background: white;
-    color: black;
     border: 1px solid black;
     padding: 0 4px;
     border-radius: 3px;
     vertical-align: middle;
     font-size: 1rem;
   }
+
+  .interactive:hover {
+    background: black;
+    color: white;
+  }
+
   .active {
     background: black;
     color: white !important;
   }
+
   .highlighted {
     color: black;
   }
-  .intro.fading .interactive {
-    /* pointer-events: none; */
-  }
+
   .intro.fading .interactive.highlighted {
-    color: black;
+    color: white;
+    background: black;
     pointer-events: auto;
     cursor: pointer;
   }

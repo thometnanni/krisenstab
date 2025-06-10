@@ -2,66 +2,62 @@
   import { onMount } from "svelte";
   import { base } from "$app/paths";
   import Tables from "$lib/components/Tables.svelte";
-
   import Intro from "$lib/components/Intro.svelte";
-  import Gallery from "$lib/components/Gallery.svelte";
   import ProjectList from "$lib/components/ProjectList.svelte";
   import Cheers from "$lib/components/Cheers.svelte";
   import Impressum from "$lib/components/Impressum.svelte";
 
   let data = [];
-  let activeFilter = null;
-  let hoveredItems = new Set();
+  let clickedFilter = null;
+  let hoveredFilter = null;
+  $: activeFilter = clickedFilter ?? hoveredFilter;
+
   let effectiveItems = new Set();
-  let fading = false;
+  $: {
+    if (activeFilter) {
+      const lockedElem = document.getElementById(activeFilter);
+      if (!lockedElem) {
+        effectiveItems = new Set();
+      } else {
+        const dataRelated = lockedElem.getAttribute("data-related") ?? "";
+        const related = dataRelated.trim() ? dataRelated.split(/\s+/) : [];
+        effectiveItems = new Set([lockedElem.id, ...related]);
+      }
+    } else {
+      effectiveItems = new Set();
+    }
+  }
+
+  $: fading = activeFilter !== null;
 
   function handleFilterClick({ detail }) {
     const filterId = detail.filterId;
     if (!filterId) return;
-    activeFilter = activeFilter === filterId ? null : filterId;
+    clickedFilter = clickedFilter === filterId ? null : filterId;
+    if (clickedFilter === null) hoveredFilter = null;
   }
 
   function handleHover(event) {
-    if (activeFilter) return;
-    const { id, related } = getElementData(event.currentTarget);
-    hoveredItems = new Set([...related, id]);
+    if (clickedFilter) return;
+    const originElem = event.detail.currentTarget;
+    if (!originElem) return;
+    hoveredFilter = originElem.id;
   }
 
   function handleOut() {
-    if (!activeFilter) hoveredItems = new Set();
+    if (clickedFilter) return;
+    hoveredFilter = null;
   }
-
-  function getElementData(elem) {
-    const dataRelated = elem?.getAttribute("data-related") ?? "";
-    const related = dataRelated.trim() ? dataRelated.split(/\s+/) : [];
-    return { id: elem.id, related };
-  }
-
-  $: {
-    if (activeFilter) {
-      const lockedElem = document.getElementById(activeFilter);
-      if (!lockedElem) effectiveItems = new Set();
-      else {
-        const { id, related } = getElementData(lockedElem);
-        effectiveItems = new Set([...related, id]);
-      }
-    } else {
-      effectiveItems = hoveredItems;
-    }
-  }
-
-  $: fading = activeFilter !== null || hoveredItems.size > 0;
 
   function clearFilter() {
-    activeFilter = null;
+    clickedFilter = null;
+    hoveredFilter = null;
   }
-
-  // $: console.log("activeFilter", activeFilter);
 
   onMount(async () => {
     data = await (await fetch("../projects.json")).json();
     const handleGlobalClick = () => {
-      if (activeFilter) clearFilter();
+      if (clickedFilter || hoveredFilter) clearFilter();
     };
     document.addEventListener("click", handleGlobalClick);
     return () => document.removeEventListener("click", handleGlobalClick);
@@ -69,7 +65,8 @@
 </script>
 
 <article>
-  <Tables />
+  <Tables {data} {activeFilter} />
+
   {#if data.length > 0}
     <div class="container">
       <Intro
@@ -78,6 +75,8 @@
         {fading}
         {effectiveItems}
         on:filterClick={handleFilterClick}
+        on:hover={handleHover}
+        on:out={handleOut}
       />
     </div>
 
@@ -88,11 +87,11 @@
         {fading}
         {effectiveItems}
         on:filterClick={handleFilterClick}
+        on:hover={handleHover}
+        on:out={handleOut}
         {base}
       />
     </div>
-
-    <Gallery {data} {activeFilter} />
 
     <div class="container">
       <Cheers
@@ -100,27 +99,26 @@
         {activeFilter}
         {effectiveItems}
         on:filterClick={handleFilterClick}
+        on:hover={handleHover}
+        on:out={handleOut}
       />
     </div>
+
     <Impressum />
   {/if}
 </article>
 
 <style>
   article {
-    /* margin-top: 50px; */
   }
-
   .container {
     max-width: 1200px;
-    /* padding-top: 30px; */
     overflow-y: auto;
     background-color: white;
   }
-
   @media only screen and (max-width: 800px) {
     article {
-      margin-top: 0px;
+      margin-top: 0;
     }
   }
 </style>

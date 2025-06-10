@@ -36,6 +36,15 @@
     "link": "https://performance.mlml.io/movement/"
   },
   {
+    "id": "indiecon-24",
+    "text": "tried to exhaust 10000 characters",
+    "domain": ["culture"],
+    "media": ["printed-matters", "websites"],
+    "authors": ["julian", "giacomo"],
+    "images": ["indiecon-24.jpg"],
+    "link": "https://froh.ngo/exhaust-characters/"
+  },
+  {
     "id": "dither",
     "text": "brought fast dithering to the web",
     "domain": ["technology"],
