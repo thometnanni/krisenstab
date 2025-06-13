@@ -15,4 +15,7 @@
 </section>
 
 <style>
+  section {
+    padding: 10px;
+  }
 </style>

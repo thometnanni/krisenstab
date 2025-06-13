@@ -19,49 +19,17 @@
       console.error("Error fetching lastUpdated.json:", error);
     }
   });
-
-  function isWeekend() {
-    const day = new Date().getDay();
-    return day === 0 || day === 6; // Sunday = 0, Saturday = 6
-  }
-
-  function isEvening() {
-    const hour = new Date().getHours();
-    return hour >= 18 || hour < 9;
-  }
-
-  function isWeekendEvening() {
-    return isWeekend() && isEvening();
-  }
-
-  function isWorkTime() {
-    const now = new Date();
-    const hour = now.getHours();
-    const day = now.getDay();
-    const isWeekday = day >= 1 && day <= 5;
-    return isWeekday && hour >= 9 && hour < 18;
-  }
 </script>
 
 <article>
   {#if lastUpdated}
-    <a href="/" class="meta-link">
-      <div class="meta">
-        <div class="time" style="margin-bottom: 1rem;">
-          <p>Last Updated:</p>
-          <p>{lastUpdated}</p>
-        </div>
-        <div class="title">
-          <!-- {#if isWeekendEvening()}
-            <img src="/tables/krisenstab_leisure_drink.svg" alt="Leisure Drink" />
-          {:else if isWorkTime()}
-            <img src="/tables/krisenstab_work.svg" alt="Work" />
-          {:else}
-            <img src="/tables/krisenstab_leisure.svg" alt="Leisure" />
-          {/if} -->
-        </div>
+    <div class="meta">
+      <div class="time" style="margin-bottom: 1rem;">
+        <p>Last Updated:</p>
+        <p>{lastUpdated}</p>
       </div>
-    </a>
+    </div>
+
     <section>
       <slot />
     </section>
@@ -76,7 +44,7 @@
     max-width: 1920px;
   }
 
-  article > a {
+  article > .meta {
     flex: 0 0 var(--col1);
     display: block;
   }
@@ -109,19 +77,15 @@
     }
   }
 
-  .title {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    width: 100%;
-  }
-
-  .title img {
-    width: 100%;
-  }
-
   .time {
     padding: 5px 10px;
+
+    font-size: 0.6em;
+    line-height: 0.9em;
+
+    font-size: 0.75rem;
+    opacity: 0.6;
+    line-height: 1.2;
   }
 
   .time p {
@@ -135,46 +99,17 @@
     max-height: none;
   }
 
-  :global(h1),
-  :global(p) {
+  p {
     margin: 0;
     margin-bottom: 1ex;
     font-weight: normal;
     color: black;
   }
 
-  :global(h1) {
-    font-size: 1.2em;
-    margin-bottom: 0.5ex;
-  }
-
-  :global(a) {
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    cursor: pointer;
-  }
-
-  :global(::selection) {
-    background-color: var(--color-1);
-    color: black;
-  }
-
-  @font-face {
-    font-family: Ronzino;
-    src: url("/fonts/Ronzino-Regular.woff2");
-    font-weight: normal;
-  }
-
   @media (max-width: 800px) {
     article {
       flex-direction: column;
       padding: 10px;
-    }
-
-    article > a {
-      flex: none;
-      max-width: 100%;
     }
 
     .meta {
@@ -185,11 +120,6 @@
       max-width: 100%;
       overflow: visible;
       max-height: none;
-    }
-
-    .title img {
-      width: 50%;
-      margin: 0 auto;
     }
   }
 </style>
