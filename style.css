@@ -37,3 +37,9 @@ a {
     line-height: 28px;
   }
 }
+
+@font-face {
+  font-family: Ronzino;
+  src: url("/fonts/Ronzino-Regular.woff2");
+  font-weight: normal;
+}
