@@ -7,22 +7,34 @@
 
 body {
   font-family: "Ronzino", Helvetica, Arial, sans-serif;
-  /* font-size: clamp(23px, 1.5vw, 30px);
-  line-height: clamp(24px, 1.2vh, 32px); */
-
   font-size: 24px;
-  line-height: 28px;
-
-  height: 100vh;
+  line-height: 32px;
   padding: 0;
   margin: 0;
-  background-color: white;
   text-rendering: geometricPrecision;
   hyphens: auto;
+  text-wrap: balance;
 }
 
-:global(a):hover {
-  border-bottom: 2px dashed var(--color-1) !important;
+a {
+  color: black;
+}
+
+.markdown p {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.date {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  line-height: 1.2;
+}
+
+::selection {
+  background-color: black;
+  color: white;
 }
 
 @media (max-width: 800px) {
