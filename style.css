@@ -26,12 +26,6 @@ a {
   margin-bottom: 1rem;
 }
 
-.date {
-  font-size: 0.75rem;
-  opacity: 0.6;
-  line-height: 1.2;
-}
-
 ::selection {
   background-color: black;
   color: white;

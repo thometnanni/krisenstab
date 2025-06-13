@@ -7,7 +7,3 @@ We always welcome [general inquiries and friendly hellos](mailto:hi@thometnanni.
 
 Cheers, <br>
 Fidel, Giacomo and Julian. <br>
-
-<div class="date">
-Berlin, June 2025
-</div>
