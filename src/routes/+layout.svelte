@@ -25,7 +25,7 @@
   {#if lastUpdated}
     <div class="meta">
       <div class="time" style="margin-bottom: 1rem;">
-        <p>Last Updated:</p>
+        <p>Last updated</p>
         <p>{lastUpdated}</p>
       </div>
     </div>
