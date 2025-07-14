@@ -4,6 +4,8 @@
   import { diffLines } from "diff";
   import { marked } from "marked";
 
+  const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+
   let commits = [];
   let currentIndex = 0;
   let diffHtml = "";
@@ -11,6 +13,10 @@
 
   const repo = "sinanatra/krisenstab";
   const filePath = "static/letter.md";
+
+  const headers = GITHUB_TOKEN
+    ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
+    : {};
 
   $: formattedDate =
     commits.length && commits[currentIndex]?.commit?.author?.date
@@ -23,7 +29,8 @@
 
   onMount(async () => {
     const res = await fetch(
-      `https://api.github.com/repos/${repo}/commits?path=${filePath}&per_page=100`
+      `https://api.github.com/repos/${repo}/commits?path=${filePath}&per_page=100`,
+      { headers }
     );
     commits = await res.json();
     if (commits.length > 1) {
@@ -34,7 +41,8 @@
 
   async function loadFileAt(sha) {
     const res = await fetch(
-      `https://api.github.com/repos/${repo}/contents/${filePath}?ref=${sha}`
+      `https://api.github.com/repos/${repo}/contents/${filePath}?ref=${sha}`,
+      { headers }
     );
     const data = await res.json();
     return atob(data.content.replace(/\n/g, ""));
@@ -80,11 +88,9 @@
 
 <main>
   <div class="intro-history">
-    <p>
-      We regularly update the way we present ourselves to reflect our practice,
-      our work, and our ambitions.<br />
-      Here, you can browse every change over time.<br />
-    </p>
+    We revise our letter as our studio grows and our interests shift.<br />
+    This page lets you explore how our self-description has changed through each
+    update.
   </div>
 
   <div style="margin-bottom:20px;">
@@ -103,7 +109,7 @@
     </button>
   </div>
   {#if loading}
-    <p>Loading history...</p>
+    <!-- <p>Loading history...</p> -->
   {:else if diffHtml}
     {#if formattedDate}
       <div class="commit-date">{formattedDate}</div>
@@ -126,9 +132,9 @@
   }
 
   main {
-    max-width: 900px;
+    max-width: 700px;
     padding: 10px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
   }
 
   .markdown {
@@ -148,13 +154,14 @@
   }
 
   .intro-history {
-    margin-bottom: 10px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 100px;
   }
 
   :global(.diff-added),
   :global(.diff-added a) {
     color: black;
-    display: block;
     border-radius: 3px;
     padding: 2px 0;
   }
@@ -165,7 +172,6 @@
     color: gainsboro;
     text-decoration: line-through;
     text-decoration-color: black;
-    display: block;
     border-radius: 3px;
     padding: 2px 0;
   }
