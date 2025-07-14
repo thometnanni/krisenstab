@@ -24,10 +24,14 @@
 <article>
   {#if lastUpdated}
     <div class="meta">
-      <div class="time" style="margin-bottom: 1rem;">
+      <div class="time">
         <p>Last updated</p>
         <p>{lastUpdated}</p>
       </div>
+
+      <!-- <div class="time">
+        <a href="/history">Changes</a>
+      </div> -->
     </div>
 
     <section>
@@ -45,8 +49,9 @@
   }
 
   article > .meta {
+    padding-bottom: 10px;
     flex: 0 0 var(--col1);
-    display: block;
+    /* display: block; */
   }
 
   section {
@@ -65,7 +70,7 @@
     align-content: space-between;
     position: sticky;
     top: 0;
-    height: 100%;
+    height: 100vh;
     max-height: 100vh;
     width: 100%;
   }
@@ -109,11 +114,7 @@
   @media (max-width: 800px) {
     article {
       flex-direction: column;
-      padding: 10px;
-    }
-
-    .meta {
-      margin-bottom: 1rem;
+      padding: 5px;
     }
 
     section {
