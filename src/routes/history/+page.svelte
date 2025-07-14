@@ -1,6 +1,5 @@
 <script>
   import Intro from "$lib/components/Intro.svelte";
-  import Impressum from "$lib/components/Impressum.svelte";
   import { onMount } from "svelte";
   import { diffLines } from "diff";
   import { marked } from "marked";
@@ -114,7 +113,6 @@
       {@html diffHtml}
     </article>
   {/if}
-  <Impressum />
 </main>
 
 <style>
@@ -126,8 +124,11 @@
     opacity: 0.4;
     cursor: not-allowed;
   }
+
   main {
     max-width: 900px;
+    padding: 10px;
+    margin: 0 auto;
   }
 
   .markdown {
