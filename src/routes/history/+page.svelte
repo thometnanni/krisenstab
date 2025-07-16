@@ -1,18 +1,19 @@
 <script>
   import Intro from "$lib/components/Intro.svelte";
-  import { onMount } from "svelte";
   import { diffLines } from "diff";
   import { marked } from "marked";
+  import { onMount } from "svelte";
 
-  const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+  export let data;
 
-  let commits = [];
+  let commits = data.commits;
+  let repo = data.repo;
+  let filePath = data.filePath;
+  let GITHUB_TOKEN = data.GITHUB_TOKEN;
+
   let currentIndex = 0;
   let diffHtml = "";
   let loading = false;
-
-  const repo = "sinanatra/krisenstab";
-  const filePath = "static/letter.md";
 
   const headers = GITHUB_TOKEN
     ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
@@ -27,17 +28,16 @@
         }).format(new Date(commits[currentIndex].commit.author.date))
       : "";
 
-  onMount(async () => {
-    const res = await fetch(
-      `https://api.github.com/repos/${repo}/commits?path=${filePath}&per_page=100`,
-      { headers }
-    );
-    commits = await res.json();
+  onMount(() => {
     if (commits.length > 1) {
       currentIndex = 0;
-      await loadDiff();
+      loadDiff();
     }
   });
+
+  $: if (commits.length > 1 && currentIndex !== undefined) {
+    loadDiff();
+  }
 
   async function loadFileAt(sha) {
     const res = await fetch(
@@ -49,14 +49,12 @@
   }
 
   async function loadDiff() {
+    if (!commits.length) return;
     loading = true;
-
     const currCommit = commits[currentIndex];
     const prevCommit = commits[currentIndex + 1];
-
     const currContent = await loadFileAt(currCommit.sha);
     const prevContent = prevCommit ? await loadFileAt(prevCommit.sha) : "";
-
     const diff = diffLines(prevContent, currContent);
 
     diffHtml = diff
@@ -74,14 +72,12 @@
   async function prev() {
     if (currentIndex < commits.length - 1) {
       currentIndex += 1;
-      await loadDiff();
     }
   }
 
   async function next() {
     if (currentIndex > 0) {
       currentIndex -= 1;
-      await loadDiff();
     }
   }
 </script>
@@ -128,7 +124,7 @@
     border: 1px solid #ccc;
     padding: 2px 5px;
   }
-  
+
   button:hover {
     background-color: #f0f0f0;
   }
@@ -141,7 +137,6 @@
   main {
     max-width: 700px;
     padding: 10px;
-    /* margin: 0 auto; */
   }
 
   .markdown {
@@ -175,7 +170,6 @@
 
   :global(.diff-removed),
   :global(.diff-removed a) {
-    /* color: #ff1314; */
     color: gainsboro;
     text-decoration: line-through;
     text-decoration-color: black;
