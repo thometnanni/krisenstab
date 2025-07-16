@@ -124,6 +124,13 @@
 <style>
   button {
     cursor: pointer;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+  }
+  
+  button:hover {
+    background-color: #f0f0f0;
   }
 
   button[disabled] {
