@@ -6,18 +6,10 @@
 
   export let data;
 
-  let commits = data.commits;
-  let repo = data.repo;
-  let filePath = data.filePath;
-  let GITHUB_TOKEN = data.GITHUB_TOKEN;
-
+  let { commits, repo, filePath } = data;
   let currentIndex = 0;
   let diffHtml = "";
   let loading = false;
-
-  const headers = GITHUB_TOKEN
-    ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
-    : {};
 
   $: formattedDate =
     commits.length && commits[currentIndex]?.commit?.author?.date
@@ -41,9 +33,9 @@
 
   async function loadFileAt(sha) {
     const res = await fetch(
-      `https://api.github.com/repos/${repo}/contents/${filePath}?ref=${sha}`,
-      { headers }
+      `/api/github/${sha}?repo=${repo}&filePath=${filePath}`
     );
+    if (!res.ok) return "";
     const data = await res.json();
     return atob(data.content.replace(/\n/g, ""));
   }
@@ -69,13 +61,13 @@
     loading = false;
   }
 
-  async function prev() {
+  function prev() {
     if (currentIndex < commits.length - 1) {
       currentIndex += 1;
     }
   }
 
-  async function next() {
+  function next() {
     if (currentIndex > 0) {
       currentIndex -= 1;
     }
@@ -124,28 +116,23 @@
     border: 1px solid #ccc;
     padding: 2px 5px;
   }
-
   button:hover {
     background-color: #f0f0f0;
   }
-
   button[disabled] {
     opacity: 0.4;
     cursor: not-allowed;
   }
-
   main {
     max-width: 700px;
     padding: 10px;
   }
-
   .markdown {
     max-width: 700px;
     font-family: inherit;
     font-size: 1.07em;
     color: #333;
   }
-
   .commit-date {
     font-size: 1.06em;
     color: #959595;
@@ -154,20 +141,17 @@
     letter-spacing: 0.02em;
     font-family: inherit;
   }
-
   .intro-history {
     padding: 0;
     margin: 0;
     margin-bottom: 100px;
   }
-
   :global(.diff-added),
   :global(.diff-added a) {
     color: black;
     border-radius: 3px;
     padding: 2px 0;
   }
-
   :global(.diff-removed),
   :global(.diff-removed a) {
     color: gainsboro;

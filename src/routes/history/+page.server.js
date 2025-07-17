@@ -1,10 +1,10 @@
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+import { PRIVATE_GITHUB_TOKEN } from "$env/static/private";
 
 export async function load({ fetch }) {
   const repo = "sinanatra/krisenstab";
   const filePath = "static/letter.md";
-  const headers = GITHUB_TOKEN
-    ? { Authorization: `Bearer ${GITHUB_TOKEN}` }
+  const headers = PRIVATE_GITHUB_TOKEN
+    ? { Authorization: `Bearer ${PRIVATE_GITHUB_TOKEN}` }
     : {};
 
   const res = await fetch(
@@ -13,10 +13,9 @@ export async function load({ fetch }) {
   );
 
   if (!res.ok) {
-    return { commits: [] };
+    return { commits: [], repo, filePath };
   }
 
   const commits = await res.json();
-
-  return { commits, repo, filePath, GITHUB_TOKEN };
+  return { commits, repo, filePath };
 }
