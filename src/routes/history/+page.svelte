@@ -166,6 +166,7 @@
     color: black;
     border-radius: 3px;
     padding: 2px 0;
+    background-color: rgb(0, 255, 0);
   }
 
   :global(.diff-removed),
