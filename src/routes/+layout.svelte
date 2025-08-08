@@ -29,9 +29,9 @@
         <p>{lastUpdated}</p>
       </div>
 
-      <!-- <div class="time">
-        <a href="/history">Changes</a>
-      </div> -->
+      <div class="time">
+        <a href="/history">History</a>
+      </div>
     </div>
 
     <section>
@@ -77,8 +77,10 @@
 
   @media only screen and (max-width: 800px) {
     .meta {
+      flex: 0 0 10px !important;
       flex-direction: row-reverse;
       text-align: right;
+      align-items: flex-start;
     }
   }
 

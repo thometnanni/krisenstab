@@ -42,9 +42,14 @@
 <style>
   .slideshow {
     display: block;
-    margin: 100px auto;
+    margin: 60px auto;
     width: auto;
-    height: 200px;
+    height: 120px;
     object-fit: contain;
+  }
+  @media (max-width: 800px) {
+    .slideshow {
+      margin: 20px auto;
+    }
   }
 </style>

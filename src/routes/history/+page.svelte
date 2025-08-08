@@ -144,7 +144,7 @@
   .intro-history {
     padding: 0;
     margin: 0;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
   }
   :global(.diff-added),
   :global(.diff-added a) {
