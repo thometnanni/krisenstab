@@ -2,9 +2,7 @@
   "name": "krisenstab",
   "version": "0.0.1",
   "private": true,
-  "engines": {
-    "node": "20.x"
-  },
+  
   "scripts": {
     "dev": "vite dev",
     "build": "node lastUpdated.js && vite build",
