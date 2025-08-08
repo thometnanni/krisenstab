@@ -2,7 +2,6 @@
   "name": "krisenstab",
   "version": "0.0.1",
   "private": true,
-  
   "scripts": {
     "dev": "vite dev",
     "build": "node lastUpdated.js && vite build",
@@ -11,6 +10,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/adapter-vercel": "^5.8.2",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "svelte": "^4.2.7",
