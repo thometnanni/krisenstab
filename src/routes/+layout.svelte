@@ -85,7 +85,7 @@
   }
 
   .time {
-    padding: 5px 10px;
+    padding: 10px 10px;
 
     font-size: 0.6em;
     line-height: 0.9em;
@@ -123,6 +123,10 @@
       max-width: 100%;
       overflow: visible;
       max-height: none;
+    }
+
+    .time {
+      padding: 5px 10px;
     }
   }
 </style>

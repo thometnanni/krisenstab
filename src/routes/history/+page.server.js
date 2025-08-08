@@ -1,10 +1,11 @@
-import { PRIVATE_GITHUB_TOKEN } from "$env/static/private";
+import { env } from "$env/dynamic/private";
 
 export async function load({ fetch }) {
   const repo = "sinanatra/krisenstab";
   const filePath = "static/letter.md";
-  const headers = PRIVATE_GITHUB_TOKEN
-    ? { Authorization: `Bearer ${PRIVATE_GITHUB_TOKEN}` }
+
+  const headers = env.PRIVATE_GITHUB_TOKEN
+    ? { Authorization: `Bearer ${env.PRIVATE_GITHUB_TOKEN}` }
     : {};
 
   const res = await fetch(
