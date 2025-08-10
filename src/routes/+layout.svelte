@@ -77,6 +77,7 @@
 
   @media only screen and (max-width: 800px) {
     .meta {
+      display: block;
       flex: 0 0 10px !important;
       flex-direction: row-reverse;
       text-align: right;
