@@ -130,7 +130,7 @@
 
   @media (max-width: 1024px) {
     .archive {
-      overflow-x: auto;
+      overflow-x: hidden;
     }
 
     .row,
@@ -143,7 +143,55 @@
       gap: 4px;
       font-size: 0.75rem;
       line-height: 1.1rem;
-      width: fit-content;
+      width: 100%;
+    }
+
+    .col {
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 864px) {
+    .row.header {
+      display: none;
+    }
+
+    .row.header ~ * {
+      border-top: 1px solid #eee;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      grid-template-areas:
+        "time project"
+        "link info";
+      gap: 5px;
+      align-items: start;
+      width: 100%;
+      padding: 5px;
+    }
+
+    .col {
+      min-width: 0;
+    }
+
+    .col.time {
+      grid-area: time;
+      white-space: nowrap;
+      color: #777;
+      font-variant-numeric: tabular-nums;
+    }
+    .col.project {
+      grid-area: project;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .col.link {
+      grid-area: link;
+    }
+    .col.info {
+      grid-area: info;
     }
   }
 </style>

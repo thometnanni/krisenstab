@@ -110,7 +110,7 @@
   {#if formattedDate}
     <div class="commit-date">{formattedDate}</div>
   {/if}
-  <article class="markdown">
+  <article class="letters markdown">
     <Intro />
     {@html diffHtml}
   </article>
@@ -134,8 +134,8 @@
     max-width: 700px;
     padding: 10px;
   }
-  .markdown,
-  :global(.markdown a) {
+  .letters,
+  :global(.letters a) {
     max-width: 700px;
     font-family: inherit;
     color: rgb(146, 146, 146);
