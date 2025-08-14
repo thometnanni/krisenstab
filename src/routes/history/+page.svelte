@@ -107,17 +107,13 @@
     >
   </div>
 
-  {#if loading}
-    <!-- <p>Loading...</p> -->
-  {:else if diffHtml}
-    {#if formattedDate}
-      <div class="commit-date">{formattedDate}</div>
-    {/if}
-    <article class="markdown">
-      <Intro />
-      {@html diffHtml}
-    </article>
+  {#if formattedDate}
+    <div class="commit-date">{formattedDate}</div>
   {/if}
+  <article class="markdown">
+    <Intro />
+    {@html diffHtml}
+  </article>
 </main>
 
 <style>
