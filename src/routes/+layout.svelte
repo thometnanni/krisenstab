@@ -1,43 +1,20 @@
-<script>
-  import { base } from "$app/paths";
-  import { onMount } from "svelte";
-  import { page } from "$app/stores";
-
-  let lastUpdated = "";
-
-  onMount(async () => {
-    try {
-      const response = await fetch(`${base}/lastUpdated.json`);
-      if (response.ok) {
-        const data = await response.json();
-        lastUpdated = data.lastUpdated;
-        console.log("Last Updated:", lastUpdated);
-      } else {
-        console.error("Failed to fetch lastUpdated.json:", response.status);
-      }
-    } catch (error) {
-      console.error("Error fetching lastUpdated.json:", error);
-    }
-  });
-</script>
-
 <article>
-  {#if lastUpdated}
-    <div class="meta">
-      <div class="time">
-        <p>Last updated</p>
-        <p>{lastUpdated}</p>
-      </div>
-
-      <div class="time">
-        <a href="/history">History</a>
-      </div>
+  <div class="meta">
+    <div class="time">
+      <a href="/">Krisenstab</a> <br /> <br />
     </div>
 
-    <section>
-      <slot />
-    </section>
-  {/if}
+    <div class="time">
+      <a href="/projects">Projects</a><br />
+      <a href="/writings" class="hidden-link">Writings</a>
+      <br /> <br />
+      <a href="/letters">Letters</a>
+    </div>
+  </div>
+
+  <section>
+    <slot />
+  </section>
 </article>
 
 <style>
@@ -51,6 +28,8 @@
   article > .meta {
     padding-bottom: 10px;
     flex: 0 0 var(--col1);
+    position: unset;
+
     /* display: block; */
   }
 
@@ -62,6 +41,7 @@
   }
 
   .meta {
+    background-color: white;
     display: flex;
     font-size: 14px;
     line-height: 14px;
@@ -88,8 +68,8 @@
   .time {
     padding: 10px 10px;
 
-    font-size: 0.6em;
-    line-height: 0.9em;
+    font-size: 0.6rem;
+    line-height: 1rem;
 
     font-size: 0.75rem;
     opacity: 0.6;

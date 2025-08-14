@@ -1,0 +1,20 @@
+export const projects = [
+  {
+    date: "2024 - ongoing",
+    title: "Vantage",
+    urls: ["https://vantage.thometnanni.net/"],
+    info: "",
+  },
+  {
+    date: "2025",
+    title: "Unfolding the Archive",
+    urls: ["https://unfolding-the-archive.thometnanni.net/"],
+    info: "",
+  },
+  {
+    date: "2025",
+    title: "China Unofficial Archive",
+    urls: [],
+    info: "In Progress",
+  },
+];
