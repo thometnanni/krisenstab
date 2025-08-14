@@ -17,7 +17,10 @@ body {
 }
 
 a {
+  /* color: blue; */
   color: black;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
 }
 
 .markdown p {

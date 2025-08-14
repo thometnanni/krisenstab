@@ -1,6 +1,6 @@
 <script>
   import Intro from "$lib/components/Intro.svelte";
-  import { diffLines } from "diff";
+  import { Diff } from "diff";
   import { marked } from "marked";
   import { onMount } from "svelte";
 
@@ -40,37 +40,51 @@
     return atob(data.content.replace(/\n/g, ""));
   }
 
-  async function loadDiff() {
-    if (!commits.length) return;
-    loading = true;
-    const currCommit = commits[currentIndex];
-    const prevCommit = commits[currentIndex + 1];
-    const currContent = await loadFileAt(currCommit.sha);
-    const prevContent = prevCommit ? await loadFileAt(prevCommit.sha) : "";
-    const diff = diffLines(prevContent, currContent);
+  function htmlAwareDiff(prevHtml, currHtml) {
+    const d = new Diff();
+    d.tokenize = (value) =>
+      value
+        .split(/(<[^>]+?>|&[a-zA-Z#0-9]+;|[\s\u00A0]+|[^\s<>&]+)/g)
+        .filter(Boolean);
 
-    diffHtml = diff
+    const parts = d.diff(prevHtml, currHtml);
+
+    return parts
       .map((part) => {
-        if (part.added)
-          return `<span class="diff-added">${marked.parse(part.value)}</span>`;
+        const isTag = /^<[^>]+>$/.test(part.value.trim());
+        if (isTag) return part.value;
+        if (part.added) return `<span class="diff-added">${part.value}</span>`;
         if (part.removed)
-          return `<span class="diff-removed">${marked.parse(part.value)}</span>`;
-        return marked.parse(part.value);
+          return `<span class="diff-removed">${part.value}</span>`;
+        return part.value;
       })
       .join("");
+  }
+
+  async function loadDiff() {
+    if (!commits.length || loading) return;
+    loading = true;
+
+    const currCommit = commits[currentIndex];
+    const prevCommit = commits[currentIndex + 1];
+
+    const currMd = await loadFileAt(currCommit.sha);
+    const prevMd = prevCommit ? await loadFileAt(prevCommit.sha) : "";
+
+    const prevHtml = marked.parse(prevMd);
+    const currHtml = marked.parse(currMd);
+
+    diffHtml = htmlAwareDiff(prevHtml, currHtml);
+
     loading = false;
   }
 
   function prev() {
-    if (currentIndex < commits.length - 1) {
-      currentIndex += 1;
-    }
+    if (currentIndex < commits.length - 1) currentIndex += 1;
   }
 
   function next() {
-    if (currentIndex > 0) {
-      currentIndex -= 1;
-    }
+    if (currentIndex > 0) currentIndex -= 1;
   }
 </script>
 
@@ -84,20 +98,17 @@
   <div style="margin-bottom:20px;">
     <button
       on:click={prev}
-      disabled={loading || currentIndex === commits.length - 1}
+      disabled={loading || currentIndex === commits.length - 1}>Previous</button
     >
-      Previous
-    </button>
     <button
       on:click={next}
       disabled={loading || currentIndex === 0}
-      style="margin-left:5px;"
+      style="margin-left:5px;">Next</button
     >
-      Next
-    </button>
   </div>
+
   {#if loading}
-    <!-- <p>Loading history...</p> -->
+    <!-- <p>Loading...</p> -->
   {:else if diffHtml}
     {#if formattedDate}
       <div class="commit-date">{formattedDate}</div>
@@ -127,25 +138,23 @@
     max-width: 700px;
     padding: 10px;
   }
-  .markdown {
+  .markdown,
+  :global(.markdown a) {
     max-width: 700px;
     font-family: inherit;
-    font-size: 1.07em;
-    color: #333;
+    color: rgb(146, 146, 146);
   }
   .commit-date {
-    font-size: 1.06em;
-    color: #959595;
-    margin-bottom: 4px;
+    color: #000000;
     margin-top: 16px;
-    letter-spacing: 0.02em;
-    font-family: inherit;
   }
+
   .intro-history {
     padding: 0;
     margin: 0;
     margin-bottom: 50px;
   }
+
   :global(.diff-added),
   :global(.diff-added a) {
     color: black;
@@ -157,7 +166,7 @@
     color: gainsboro;
     text-decoration: line-through;
     text-decoration-color: black;
-    border-radius: 3px;
+    text-decoration-thickness: 1px;
     padding: 2px 0;
   }
 </style>
