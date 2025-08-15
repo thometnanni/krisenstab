@@ -50,7 +50,7 @@
     align-content: space-between;
     position: sticky;
     top: 0;
-    height: 100vh;
+    /* height: 100vh; */
     max-height: 100vh;
     width: 100%;
   }
