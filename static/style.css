@@ -14,6 +14,7 @@ body {
   text-rendering: geometricPrecision;
   /* hyphens: auto; */
   text-wrap: balance;
+  /* height: 100dvh; */
 }
 
 a {
