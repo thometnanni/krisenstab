@@ -1,4 +1,5 @@
 <script>
+  import { browser } from "$app/environment";
   import Intro from "$lib/components/Intro.svelte";
   import { Diff } from "diff";
   import { marked } from "marked";
@@ -27,7 +28,7 @@
     }
   });
 
-  $: if (commits.length > 1 && currentIndex !== undefined) {
+  $: if (browser && commits.length > 1 && currentIndex !== undefined) {
     loadDiff();
   }
 
