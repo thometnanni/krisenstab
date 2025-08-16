@@ -35,16 +35,23 @@
   }
 </script>
 
-{#if currentImage}
-  <img src={currentImage} alt="Slideshow image" class="table slideshow" />
-{/if}
+<main>
+  {#if currentImage}
+    <img src={currentImage} alt="Slideshow image" class="table slideshow" />
+  {/if}
+</main>
 
 <style>
-  .slideshow {
-    display: block;
+  main {
     margin: 60px auto;
     width: auto;
     height: 120px;
+  }
+
+  .slideshow {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
   }
   @media (max-width: 800px) {
