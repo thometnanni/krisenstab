@@ -43,7 +43,7 @@
   .meta {
     background-color: white;
     display: flex;
-    font-size: 14px;
+    font-size: 1rem;
     line-height: 14px;
     align-items: flex-end;
     flex-wrap: wrap;
@@ -53,6 +53,7 @@
     /* height: 100vh; */
     max-height: 100dvh;
     width: 100%;
+    border-right: 1px dashed #ccc;
   }
 
   @media only screen and (max-width: 800px) {
@@ -62,16 +63,12 @@
       flex-direction: row-reverse;
       text-align: right;
       align-items: flex-start;
+      border-right: none;
     }
   }
 
   .time {
     padding: 10px 10px;
-
-    font-size: 0.6rem;
-    line-height: 1rem;
-
-    font-size: 0.75rem;
     opacity: 0.6;
     line-height: 1.2;
   }
