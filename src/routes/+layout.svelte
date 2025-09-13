@@ -6,7 +6,7 @@
 
     <div class="time">
       <a href="/projects">Projects</a><br />
-      <a href="/writings" class="hidden-link">Writings</a>
+      <a href="https://krisenstab.substack.com/" target="_blank">Writings</a>
       <br /> <br />
       <a href="/letters">Letters</a>
     </div>
