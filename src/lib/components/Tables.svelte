@@ -37,7 +37,7 @@
 
 <main>
   {#if currentImage}
-    <img src={currentImage} alt="Slideshow image" class="table slideshow" />
+    <img src={currentImage} class="table slideshow" />
   {/if}
 </main>
 
