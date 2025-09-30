@@ -133,7 +133,7 @@
   .row:not(.header) .col.link,
   .row:not(.header) .col.info,
   .small {
-    font-size: 0.7rem;
+    font-size: 1rem;
     align-items: center;
   }
 
