@@ -1,10 +1,13 @@
 <script>
+  const hour = new Date().getHours();
   let greetingMessage =
-    new Date().getHours() < 12
-      ? "Good morning"
-      : new Date().getHours() < 18
-        ? "Good afternoon"
-        : "Good evening";
+    hour < 6
+      ? "Good evening"
+      : hour < 12
+        ? "Good morning"
+        : hour < 18
+          ? "Good afternoon"
+          : "Good evening";
 </script>
 
 <section class="intro">
