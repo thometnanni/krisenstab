@@ -1,16 +1,17 @@
 <article>
-  <div class="meta">
+  <aside class="meta">
     <div class="time">
-      <a href="/">Krisenstab</a> <br /> <br />
+      <a href="/" class="krisenstab-logo">Krisenstab</a>
     </div>
 
-    <!-- <div class="time">
+    <!--
+    <div class="time">
       <a href="/projects">Projects</a><br />
-      <a href="https://krisenstab.substack.com/" target="_blank">Writings</a>
-      <br /> <br />
+      <a href="https://krisenstab.substack.com/" target="_blank">Writings</a><br /><br />
       <a href="/letters">Letters</a>
-    </div> -->
-  </div>
+    </div>
+    -->
+  </aside>
 
   <section>
     <slot />
@@ -21,75 +22,70 @@
   article {
     display: flex;
     gap: 10px;
-    min-height: 100%;
     max-width: 1920px;
-  }
-
-  article > .meta {
-    padding-bottom: 10px;
-    flex: 0 0 var(--col1);
-    position: unset;
-
-    /* display: block; */
-  }
-
-  section {
-    flex: 0 0 800px;
-    overflow-x: visible;
-    max-height: none;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .meta {
-    background-color: white;
-    display: flex;
-    font-size: 1rem;
-    line-height: 14px;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    align-content: space-between;
     position: sticky;
     top: 0;
-    /* height: 100vh; */
-    max-height: 100dvh;
-    width: 100%;
-    max-width: 100px;
+    align-self: flex-start;
+    width: 100px;
+    max-width: 80px;
+    min-height: 100svh;
     border-right: 1px dashed #ccc;
-  }
+    background: #fff;
 
-  @media only screen and (max-width: 800px) {
-    .meta {
-      display: block;
-      flex: 0 0 10px !important;
-      flex-direction: row-reverse;
-      text-align: right;
-      align-items: flex-start;
-      border-right: none;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-size: 1rem;
+    line-height: 14px;
+    flex-wrap: wrap;
+    align-content: center;
   }
 
   .time {
-    padding: 10px 10px;
+    padding: 5px;
     opacity: 0.6;
     line-height: 1.2;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    position: static;
   }
 
-  .time p {
-    padding: 0;
-    margin-bottom: 0;
+  .krisenstab-logo {
+    display: block;
+    transform: rotate(270deg);
+    color: gainsboro;
+    text-decoration: none;
+    font-size: 4rem;
+    margin: 10px 0;
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+  }
+
+  .krisenstab-logo:hover {
+    text-decoration: underline;
+    text-decoration-color: blue;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
   }
 
   section {
-    flex: 1;
+    flex: 1 1 auto;
     overflow: visible;
     max-height: none;
   }
 
   p {
-    margin: 0;
-    margin-bottom: 1ex;
+    margin: 0 0 1ex 0;
     font-weight: normal;
-    color: black;
+    color: #000;
   }
 
   @media (max-width: 800px) {
@@ -98,14 +94,27 @@
       padding: 5px;
     }
 
-    section {
-      max-width: 100%;
-      overflow: visible;
-      max-height: none;
+    .meta {
+      position: static;
+      width: 100%;
+      max-width: none;
+      min-height: auto;
+      border-right: none;
+      margin-bottom: 50px;
     }
 
+    .krisenstab-logo {
+      transform: rotate(0deg);
+      font-size: 2rem;
+      text-align: right;
+      margin: 0;
+      padding: 0;
+    }
     .time {
-      padding: 5px 10px;
+      padding: 0;
+    }
+    section {
+      max-width: 100%;
     }
   }
 </style>
