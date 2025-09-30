@@ -5,6 +5,11 @@
   --col1: 120px;
 }
 
+html,
+body {
+  overscroll-behavior: none;
+}
+
 body {
   font-family: "Ronzino", Helvetica, Arial, sans-serif;
   font-size: 24px;
