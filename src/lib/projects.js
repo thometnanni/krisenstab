@@ -24,13 +24,18 @@ export const projects = [
   },
   {
     date: "2025",
+    title: "Design Signals",
+    urls: [
+      "https://faber.ro/eveniment/design-signals-expozitia-legaturi-chimice/",
+    ],
+    media: ["/media/faber_1.jpg", "/media/faber_2.jpg", "/media/faber_3.jpg"],
+    info: "",
+  },
+  {
+    date: "2025",
     title: "China Unofficial Archive",
     urls: [],
-    media: [
-      "/media/cua_1.png",
-      "/media/cua_3.png",
-      "/media/cua_4.png",
-    ],
+    media: ["/media/cua_1.png", "/media/cua_3.png", "/media/cua_4.png"],
     info: "In Progress",
   },
 ];
