@@ -4,12 +4,12 @@
       <a href="/">Krisenstab</a> <br /> <br />
     </div>
 
-    <div class="time">
+    <!-- <div class="time">
       <a href="/projects">Projects</a><br />
       <a href="https://krisenstab.substack.com/" target="_blank">Writings</a>
       <br /> <br />
       <a href="/letters">Letters</a>
-    </div>
+    </div> -->
   </div>
 
   <section>
@@ -53,6 +53,7 @@
     /* height: 100vh; */
     max-height: 100dvh;
     width: 100%;
+    max-width: 100px;
     border-right: 1px dashed #ccc;
   }
 

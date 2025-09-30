@@ -59,6 +59,13 @@
           {/if}
         </div>
         <div class="col info">{p.info || "—"}</div>
+        {#if p.media?.length > 0}
+          <div class="media">
+            {#each p.media as m}
+              <img src={m} alt="" />
+            {/each}
+          </div>
+        {/if}
       </div>
     {/each}
   </div>
@@ -100,10 +107,12 @@
     gap: 5px;
   }
 
-  .rows .row:nth-child(odd) {
+  .rows > .row:nth-child(odd),
+  .rows > .media:nth-child(odd) {
     background: #fff;
   }
-  .rows .row:nth-child(even) {
+  .rows .row:nth-child(even),
+  .rows > .media:nth-child(even) {
     background: #f7f7f7;
   }
 
@@ -126,6 +135,26 @@
   .small {
     font-size: 0.7rem;
     align-items: center;
+  }
+
+  .media {
+    width: calc(100vw - 120px);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    padding: 5px 0;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+
+  img {
+    height: 240px;
+    object-fit: cover;
+    scroll-snap-align: start;
+    border-radius: 3px;
   }
 
   @media (max-width: 1024px) {
@@ -179,7 +208,7 @@
     /* .col {
       min-width: 0;
     } */
-/* 
+    /* 
     .col.time {
       grid-area: time;
       white-space: nowrap;
