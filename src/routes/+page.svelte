@@ -31,7 +31,7 @@
   }
 
   .markdown {
-    max-width: 750px;
+    /* max-width: 750px; */
     padding: 10px;
     margin: 0 auto;
   }
