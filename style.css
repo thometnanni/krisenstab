@@ -14,10 +14,24 @@ body {
   text-rendering: geometricPrecision;
   /* hyphens: auto; */
   text-wrap: balance;
+  height: 100dvh;
 }
 
 a {
+  /* color: blue; */
   color: black;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-color: blue;
+}
+
+.hidden-link {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .markdown p {
@@ -33,8 +47,8 @@ a {
 
 @media (max-width: 800px) {
   body {
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 24px;
   }
 }
 
