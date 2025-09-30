@@ -38,27 +38,25 @@
     <div class="col time">time <span class="small">↓</span></div>
     <div class="col project">project</div>
     <div class="col link">links</div>
-    <div class="col info">info</div>
   </div>
 
   <div class="rows">
     {#each sorted as p (p.title)}
-      <div class="row">
-        <time class="col time">{formatDate(p.date)}</time>
-        <div class="col project">{p.title}</div>
-        <div class="col link">
-          {#if Array.isArray(p.urls) && p.urls.length > 0}
-            {#each p.urls as url, i}
-              <a href={url} target="_blank" rel="noopener">Link {i + 1}</a>{i <
-              p.urls.length - 1
-                ? ", "
-                : ""}
-            {/each}
-          {:else}
-            —
-          {/if}
+      <div>
+        <div class="row">
+          <time class="col time">{formatDate(p.date)}</time>
+          <div class="col project">{p.title}</div>
+          <div class="col link">
+            {#if Array.isArray(p.urls) && p.urls.length > 0}
+              {#each p.urls as url, i}
+                <a href={url} target="_blank" rel="noopener">Link {i + 1}</a
+                >{i < p.urls.length - 1 ? ", " : ""}
+              {/each}
+            {:else}
+              —
+            {/if}
+          </div>
         </div>
-        <div class="col info">{p.info || "—"}</div>
         {#if p.media?.length > 0}
           <div class="media">
             {#each p.media as m}
@@ -66,6 +64,7 @@
             {/each}
           </div>
         {/if}
+        <div class="info-block">{p.info || "—"}</div>
       </div>
     {/each}
   </div>
@@ -73,11 +72,11 @@
 
 <style>
   .archive {
-    --time-col: 140px;
+    --time-col: 180px;
     --link-col: 120px;
     --info-col: 160px;
-    font-size: 1rem;
-    line-height: 1.2rem;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
   }
 
   .row {
@@ -86,18 +85,13 @@
     gap: 5px;
     align-items: start;
     text-align: left;
-    padding: 2px;
-    border-bottom: 1px solid #eee;
+    padding: 10px;
+    padding-bottom: 20px;
   }
 
   .row.header {
-    position: sticky;
-    top: 0;
     background: white;
-    z-index: 1;
-    padding: 2px;
-    border-bottom: 1px solid #ddd;
-    text-transform: lowercase;
+    font-size: 1rem;
   }
 
   .row.header > * {
@@ -107,12 +101,10 @@
     gap: 5px;
   }
 
-  .rows > .row:nth-child(odd),
-  .rows > .media:nth-child(odd) {
+  .rows > div:nth-child(odd) {
     background: #fff;
   }
-  .rows .row:nth-child(even),
-  .rows > .media:nth-child(even) {
+  .rows > div:nth-child(even) {
     background: #f7f7f7;
   }
 
@@ -120,18 +112,18 @@
     overflow-wrap: anywhere;
     word-break: break-word;
   }
+
   .row:not(.header) .col.time {
     color: #777;
     font-variant-numeric: tabular-nums;
   }
+
   .col.project,
-  .col.link,
-  .col.info {
+  .col.link {
     color: #000;
   }
 
   .row:not(.header) .col.link,
-  .row:not(.header) .col.info,
   .small {
     font-size: 1rem;
     align-items: center;
@@ -146,8 +138,16 @@
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
     padding: 5px 0;
-    margin-bottom: 20px;
     box-sizing: border-box;
+  }
+
+  .info-block {
+    width: 100%;
+    padding: 8px 0 20px 0;
+    color: #000;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    border-bottom: 1px solid #eee;
   }
 
   img {
@@ -170,20 +170,15 @@
         clamp(120px, 42vw, var(--link-col))
         clamp(90px, 32vw, var(--info-col));
       gap: 4px;
-      font-size: 0.75rem;
+      width: 100%;
+    }
+
+    .media,
+    .info-block {
+      width: 100%;
+      font-size: 1rem;
       line-height: 1.1rem;
-      width: 100%;
     }
-
-    .row .media {
-      grid-column: 1 / -1;
-      /* display: block; */
-      width: 100%;
-      margin-top: 8px;
-      margin-bottom: 20px;
-      overflow-x: auto;
-    }
-
     .col {
       min-width: 0;
     }
@@ -194,46 +189,8 @@
       display: none;
     } */
 
-    .col.info {
-      display: none;
-    }
-
     .row.header ~ * {
       border-top: 1px solid #eee;
     }
-
-    /* .row {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      grid-template-areas:
-        "time project"
-        "link info";
-      gap: 5px;
-      align-items: start;
-      width: 100%;
-      padding: 5px;
-    } */
-
-    /* .col {
-      min-width: 0;
-    } */
-    /* 
-    .col.time {
-      grid-area: time;
-      white-space: nowrap;
-      color: #777;
-      font-variant-numeric: tabular-nums;
-    }
-    .col.project {
-      grid-area: project;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .col.link {
-      grid-area: link;
-    }
-    .col.info {
-      grid-area: info;
-    } */
   }
 </style>

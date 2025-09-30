@@ -36,6 +36,6 @@ export const projects = [
     title: "China Unofficial Archive",
     urls: [],
     media: ["/media/cua_1.png", "/media/cua_3.png", "/media/cua_4.png"],
-    info: "In Progress",
+    info: "Lorem Impsum doletLorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget lacus vulputate, tincidunt urna id, convallis erat. Nullam at ipsum quam. Ut congue tortor sed augue molestie, a aliquam lacus rhoncus. Curabitur pretium tortor eu malesuada commodo. In semper, turpis id congue ultrices, erat enim hendrerit quam, sit amet gravida nibh mauris in neque. Etiam in massa ultrices, rhoncus magna ac, congue odio. Fusce auctor volutpat elit, non luctus massa. Aenean et elit ut lectus efficitur consectetur. Nam viverra arcu id ipsum euismod tempus.",
   },
 ];
