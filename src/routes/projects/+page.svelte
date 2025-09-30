@@ -175,6 +175,15 @@
       width: 100%;
     }
 
+    .row .media {
+      grid-column: 1 / -1;
+      /* display: block; */
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
     .col {
       min-width: 0;
     }
