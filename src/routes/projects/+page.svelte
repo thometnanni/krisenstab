@@ -44,7 +44,13 @@
         {#if p.media?.length > 0}
           <div class="media">
             {#each p.media as m}
-              <img src={m} alt="" />
+              <img
+                src={m}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
             {/each}
           </div>
         {/if}
@@ -73,6 +79,11 @@
     padding: 5px;
   }
 
+  .rows > div {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+  }
+
   .row {
     gap: 5px;
     align-items: start;
@@ -83,7 +94,6 @@
   .link {
     font-size: 1rem;
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
   }
 
   .col {
@@ -118,7 +128,7 @@
     width: 100%;
     max-width: 840px;
     padding: 8px 0 20px 0;
-    padding-bottom: 20px;
+
     color: #000;
     font-size: 1rem;
     line-height: 1.2rem;
