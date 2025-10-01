@@ -1,8 +1,9 @@
 we are a design studio [working](/projects) at the intersection of technology, journalism and culture.
 
-We finalised our exhibit for [Design Signals – Chemical Bonds](https://faber.ro/eveniment/design-signals-expozitia-legaturi-chimice/) which opened on September 26 in Timișoara. Right now, we’re experimenting with dithering techniques for images and exploring the alphabetical sorting of Chinese characters.
 
-You can follow some of our [studio updates](https://krisenstab.substack.com) on Substack, and we’re always glad to receive [general inquiries and friendly hellos](mailto:hi@thometnanni.net).
+Our latest project, [Design Signals – Chemical Bonds](https://faber.ro/eveniment/design-signals-expozitia-legaturi-chimice/) opened on September 26 in Timișoara. Right now, we’re exploring dithering effects on the web togheter with Chinese Samizdat layouts.
+
+If you’d like to keep up with our work, you can follow our [studio updates](https://krisenstab.substack.com) on Substack. We always welcome [general inquiries and friendly hellos](mailto:hi@thometnanni.net).
 <br><br>
 
 Ciao, <br>

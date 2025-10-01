@@ -30,8 +30,13 @@ export const projects = [
     urls: [
       "https://faber.ro/eveniment/design-signals-expozitia-legaturi-chimice/",
     ],
-    media: ["/media/faber_3.jpg", "/media/faber_2.jpg", "/media/faber_1.jpg"],
-    info: "Chemical Trajectories harnesses data to map the transformation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation. Using international trade data from 1960 onward, each sectoris represented on a scatter plot graph in terms of its product complexity and export-import balance. The resulting visualisations bring how industries shift across decades to life. While some advance toward greater complexity and strength, becoming a part of Romania’s export landscape, others regress orremain dependent on imports. A second layer of visualisation presents individual chemical products in a series of boxes. Each column traces a sector and maps the destinations of its exports, situating specific trajectories within broader industrial patterns.",
+    media: [
+      "/media/faber_4.webp",
+      "/media/faber_3.jpg",
+      "/media/faber_2.jpg",
+      "/media/faber_1.jpg",
+    ],
+    info: "This installation looks at the transformation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation. Using international trade data from 1960 onward, each sectoris represented on a scatter plot graph in terms of its product complexity and export-import balance. The resulting visualisations bring how industries shift across decades to life. While some advance toward greater complexity and strength, becoming a part of Romania’s export landscape, others regress orremain dependent on imports. A second layer of visualisation presents individual chemical products in a series of boxes. Each column traces a sector and maps the destinations of its exports, situating specific trajectories within broader industrial patterns.",
   },
   {
     date: "2025",
