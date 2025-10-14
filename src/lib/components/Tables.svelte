@@ -8,64 +8,38 @@
   let currentSlide = null;
   let intervalId;
 
-  async function fetchArena(slug, per = 100) {
-    async function fetchPage(page) {
-      const url = `https://api.are.na/v2/channels/${slug}?per=${per}&page=${page}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Are.na request failed: ${res.status}`);
-      return res.json();
-    }
-
-    const first = await fetchPage(1);
-    const totalBlocks = first.length ?? first.contents?.length ?? 0;
-    const totalPages = Math.max(1, Math.ceil(totalBlocks / per));
-
-    const pages = [first];
-    for (let p = 2; p <= totalPages; p++) pages.push(await fetchPage(p));
-
-    const allBlocks = pages.flatMap((p) => p.contents || []);
-
-    console.log(allBlocks);
-
-    const items = allBlocks
+  async function fetchArena(slug) {
+    const res = await fetch(`https://api.are.na/v2/channels/${slug}?per=100`);
+    const data = await res.json();
+    return (data.contents || [])
       .filter((b) => b.class === "Image" && b.image)
-      .map((b) => {
-        const src =
+      .map((b) => ({
+        src:
           b.image?.thumb?.url ||
           b.image?.display?.url ||
-          b.image?.original?.url ||
-          null;
-
-        const href =
-          b.permalink || (b.id ? `https://www.are.na/block/${b.id}` : null);
-
-        const alt = b.title || b.image?.filename || "Are.na image";
-
-        return src && href ? { src, href, alt } : null;
-      })
+          b.image?.original?.url,
+        href: b.permalink || `https://www.are.na/block/${b.id}`,
+        alt: b.title || b.image?.filename || "Are.na image",
+      }))
       .filter(Boolean);
-
-    return items;
   }
 
-  function setupSlideshow() {
+  const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
+  function startSlideshow() {
     clearInterval(intervalId);
     current = 0;
-
-    if (slides.length > 0) {
-      currentSlide = slides[0];
-      intervalId = setInterval(() => {
-        current = (current + 1) % slides.length;
-        currentSlide = slides[current];
-      }, 200);
-    } else {
-      currentSlide = null;
-    }
+    if (!slides.length) return;
+    currentSlide = slides[0];
+    intervalId = setInterval(() => {
+      current = (current + 1) % slides.length;
+      currentSlide = slides[current];
+    }, 200);
   }
 
   onMount(async () => {
-    slides = await fetchArena(arenaChannelSlug);
-    setupSlideshow();
+    slides = shuffle(await fetchArena(arenaChannelSlug));
+    startSlideshow();
   });
 
   onDestroy(() => clearInterval(intervalId));
@@ -74,11 +48,7 @@
 <main>
   {#if currentSlide}
     <a href={currentSlide.href} target="_blank" rel="noopener">
-      <img
-        src={currentSlide.src}
-        alt={currentSlide.alt}
-        class="table slideshow"
-      />
+      <img src={currentSlide.src} alt={currentSlide.alt} class="slideshow" />
     </a>
   {/if}
 </main>
@@ -90,10 +60,10 @@
     height: 120px;
   }
   .slideshow {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
   }
   @media (max-width: 800px) {
     .slideshow {
