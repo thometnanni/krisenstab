@@ -31,7 +31,8 @@ a {
 }
 
 a:hover {
-  text-decoration-color: blue;
+  text-decoration-color: var(--color-1);
+  text-decoration-thickness: 5px;
 }
 
 .hidden-link {
