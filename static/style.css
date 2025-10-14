@@ -47,8 +47,8 @@ a:hover {
 }
 
 ::selection {
-  background-color: black;
-  color: white;
+  background-color: var(--color-1);
+  color: black;
 }
 
 @media (max-width: 800px) {

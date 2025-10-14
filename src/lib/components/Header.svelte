@@ -18,7 +18,7 @@
     position: sticky;
     top: 0;
     background-color: white;
-    box-shadow: 0 3px 6px 0 #e7e7e7;
+    box-shadow: 0 1px 2px 0 #e7e7e7;
     width: 100%;
     text-align: right;
   }
