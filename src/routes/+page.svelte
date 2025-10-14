@@ -27,7 +27,8 @@
 
 <style>
   main {
-    max-width: 900px;
+    max-width: 960px;
+    margin: 0 auto;
   }
 
   .markdown {

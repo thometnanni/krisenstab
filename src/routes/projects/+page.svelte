@@ -61,8 +61,9 @@
           <div class="col link">
             {#if Array.isArray(p.urls) && p.urls.length > 0}
               {#each p.urls as url, i}
-                <a href={url} target="_blank" rel="noopener">Link {i + 1}</a
-                >{i < p.urls.length - 1 ? ", " : ""}
+                <a href={url} target="_blank" rel="noopener">
+                  Link{p.urls.length > 1 ? ` ${i + 1}` : ""}
+                </a>{i < p.urls.length - 1 ? ", " : ""}
               {/each}
             {/if}
           </div>
@@ -113,7 +114,7 @@
   }
 
   .media {
-    width: calc(100vw - 120px);
+    /* width: calc(100vw - 120px); */
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;

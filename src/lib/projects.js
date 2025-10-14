@@ -28,7 +28,8 @@ export const projects = [
     date: "2025",
     title: "Design Signals",
     urls: [
-      "https://faber.ro/eveniment/design-signals-expozitia-legaturi-chimice/",
+      "https://faber.ro/en/eveniment/design-signals-chemical-bonds-exhibition/",
+      "https://thometnanni.github.io/design-signals-interactive/",
     ],
     media: [
       "/media/faber_4.webp",

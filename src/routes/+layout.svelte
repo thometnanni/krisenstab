@@ -1,17 +1,13 @@
 <article>
-  <aside class="meta">
+  <!-- <aside class="meta">
     <div class="time">
       <a href="/" class="krisenstab-logo">Krisenstab</a>
     </div>
 
-    <!--
     <div class="time">
       <a href="/projects">Projects</a><br />
-      <a href="https://krisenstab.substack.com/" target="_blank">Writings</a><br /><br />
-      <a href="/letters">Letters</a>
     </div>
-    -->
-  </aside>
+  </aside> -->
 
   <section>
     <slot />
@@ -20,25 +16,27 @@
 
 <style>
   article {
-    display: flex;
-    gap: 10px;
+    /* display: flex;
+    gap: 10px; */
     max-width: 1920px;
     overflow: visible;
   }
 
   .meta {
-    position: sticky;
-    top: 0;
+    position: static;
+    width: 100%;
+    max-width: none;
+    min-height: auto;
+    border-right: none;
+    margin-bottom: 50px;
+
     align-self: flex-start;
-    width: 100px;
-    max-width: 80px;
-    min-height: 100svh;
-    border-right: 1px dashed #ccc;
+    width: 100%;
     background: #fff;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     align-items: center;
 
     font-size: 1rem;
@@ -53,20 +51,18 @@
     line-height: 1.2;
     display: flex;
     align-items: flex-end;
+    justify-content: flex-end;
     width: 100%;
     position: static;
   }
 
   .krisenstab-logo {
     display: block;
-    transform: rotate(270deg);
     color: gainsboro;
-    text-decoration: none;
-    font-size: 4rem;
-    margin: 10px 0;
-    white-space: nowrap;
-    width: 100%;
-    text-align: left;
+    font-size: 2rem;
+    text-align: right;
+    margin: 0;
+    padding: 0;
   }
 
   .krisenstab-logo:hover {
@@ -77,7 +73,9 @@
   }
 
   section {
-    flex: 1 1 auto;
+    /* max-width: 960px; */
+    padding: 10px;
+    margin: 0 auto;
     overflow: visible;
     max-height: none;
   }
@@ -103,13 +101,6 @@
       margin-bottom: 50px;
     }
 
-    .krisenstab-logo {
-      transform: rotate(0deg);
-      font-size: 2rem;
-      text-align: right;
-      margin: 0;
-      padding: 0;
-    }
     .time {
       padding: 0;
     }
