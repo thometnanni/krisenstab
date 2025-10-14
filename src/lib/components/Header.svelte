@@ -6,6 +6,8 @@
 </script>
 
 <header>
+  <a href="mailto:hi@thometnanni.net">contact</a>
+
   <a href="/projects" class:active={isActive("/projects", $page.url.pathname)}
     >projects</a
   >
