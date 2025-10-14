@@ -1,14 +1,29 @@
 <script>
   import { projects } from "$lib/projects.js";
 
-  function timeKey(dateStr) {
-    if (!dateStr) return -Infinity;
-    if (/^\d{4}$/.test(dateStr)) return Number(dateStr);
-    const m = dateStr.match(/^(\d{4})-(\d{4})$/);
-    if (m) return Number(m[2]);
-    const d = new Date(dateStr);
-    return isNaN(d) ? -Infinity : d.getTime();
+  const norm = (s = "") => s.trim().toLowerCase().replace(/[–—−]/g, "-");
+
+  function parseDate(str = "") {
+    const m = norm(str).match(/^(\d{4})(?:\s*-\s*(\d{4}|ongoing))?$/i);
+    if (!m) return { start: -Infinity, end: -Infinity, ongoing: false };
+    const start = +m[1];
+    const ongoing = m[2]?.includes("ongoing") || false;
+    const end = /^\d{4}$/.test(m[2]) ? +m[2] : ongoing ? Infinity : start;
+    return { start, end, ongoing };
   }
+
+  const sorted = [...projects].sort((a, b) => {
+    const A = parseDate(a.date);
+    const B = parseDate(b.date);
+    if (B.start !== A.start) return B.start - A.start;
+    if (A.ongoing !== B.ongoing) return A.ongoing ? -1 : 1;
+    return (
+      b.end - a.end ||
+      (a.title || "").localeCompare(b.title || "", "en", {
+        sensitivity: "base",
+      })
+    );
+  });
 
   function formatDate(dateStr) {
     if (!dateStr) return "—";
@@ -22,15 +37,6 @@
           day: "numeric",
         }).format(d);
   }
-
-  const sorted = [...projects].sort((a, b) => {
-    const ta = timeKey(a.date);
-    const tb = timeKey(b.date);
-    if (tb !== ta) return tb - ta;
-    return (a.title || "").localeCompare(b.title || "", "en", {
-      sensitivity: "base",
-    });
-  });
 </script>
 
 <main class="archive">
