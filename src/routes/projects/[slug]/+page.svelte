@@ -54,8 +54,8 @@
 
   .row .col.time {
     color: #777;
-    font-size: 1em;
-    line-height: 1.2em;
+    font-size: .875em;
+    line-height: 1em;
 
     font-variant-numeric: tabular-nums;
   }
@@ -63,7 +63,7 @@
   .col.project {
     color: #000;
     font-size: 1.4em;
-    line-height: 1.4em;
+    line-height: 1em;
   }
 
   .info {
