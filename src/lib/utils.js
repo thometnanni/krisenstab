@@ -5,11 +5,11 @@ export const fetchMarkdownData = async () => {
   const allPosts = await Promise.all(
     iterablePostFiles.map(async ([path, resolver]) => {
       const resolvedPost = await resolver();
-      const { html } = resolvedPost.default.render();
+      const { html } = resolvedPost?.default?.render();
       const postPath = path.slice(11, -3);
 
       return {
-        meta: resolvedPost.metadata,
+        meta: resolvedPost?.metadata,
         path: postPath,
         text: html,
       };

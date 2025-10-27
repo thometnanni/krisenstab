@@ -35,6 +35,13 @@ a:hover {
   text-decoration-thickness: 5px;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+}
+
 .hidden-link {
   pointer-events: none;
   cursor: not-allowed;

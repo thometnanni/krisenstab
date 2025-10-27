@@ -6,8 +6,10 @@
 </script>
 
 <header>
-  <a href="/projects" class:active={isActive("/projects", $page.url.pathname)}
-    >projects</a
+  <a
+    href="/projects"
+    data-sveltekit-reload
+    class:active={isActive("/projects", $page.url.pathname)}>projects</a
   >
   <a href="/" class:active={isActive("/", $page.url.pathname)}>krisenstab</a>
   <a href="mailto:hi@thometnanni.net">contact</a>
