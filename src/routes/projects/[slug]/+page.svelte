@@ -69,7 +69,6 @@
   .info {
     width: 100%;
     max-width: 840px;
-    padding: 8px 0 20px 0;
     color: #000;
     font-size: 1em;
     line-height: 1.2em;
@@ -81,5 +80,13 @@
     height: auto;
     border-radius: 3px;
     margin: 8px 0;
+  }
+
+  @media (max-width: 800px) {
+    .archive {
+      font-size: 1rem;
+      line-height: 1.1rem;
+      padding: 5px;
+    }
   }
 </style>
