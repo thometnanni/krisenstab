@@ -1,34 +1,6 @@
 <script>
   export let data;
   const projects = data.projects || [];
-
-  const norm = (s) =>
-    String(s || "")
-      .trim()
-      .toLowerCase()
-      .replace(/[–—−]/g, "-");
-  function parseDate(str = "") {
-    const m = norm(str).match(/^(\d{4})(?:\s*-\s*(\d{4}|ongoing))?$/i);
-    if (!m) return { start: -Infinity, end: -Infinity, ongoing: false };
-    const start = +m[1];
-    const ongoing = m[2]?.includes("ongoing") || false;
-    const end = /^\d{4}$/.test(m[2]) ? +m[2] : ongoing ? Infinity : start;
-    return { start, end, ongoing };
-  }
-
-  const sorted = [...projects].sort((a, b) => {
-    const A = parseDate(a.date);
-    const B = parseDate(b.date);
-    if (B.start !== A.start) return B.start - A.start;
-    if (A.ongoing !== B.ongoing) return A.ongoing ? -1 : 1;
-    return (
-      (B.end || 0) - (A.end || 0) ||
-      (a.title || "").localeCompare(b.title || "", "en", {
-        sensitivity: "base",
-      })
-    );
-  });
-
   const formatDate = (s) => {
     if (!s) return "—";
     if (/^\d{4}(-\d{4})?$/.test(s)) return s;
@@ -45,7 +17,7 @@
 
 <main class="archive">
   <div class="rows">
-    {#each sorted as p (p.slug)}
+    {#each projects as p (p.slug)}
       <div>
         <div class="row">
           <time class="col time">{formatDate(p.date)}</time>
@@ -132,7 +104,7 @@
     font-size: 1rem;
     line-height: 1.2rem;
   }
-  
+
   :global(.content hr) {
     display: none;
   }

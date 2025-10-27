@@ -42,16 +42,15 @@ export async function load() {
     };
   });
   const projects = items.sort((a, b) => {
-    const A = parseDate(a.date),
-      B = parseDate(b.date);
+    const A = parseDate(a.date);
+    const B = parseDate(b.date);
+    if (A.ongoing && !B.ongoing) return -1;
+    if (B.ongoing && !A.ongoing) return 1;
     if (B.start !== A.start) return B.start - A.start;
-    if (A.ongoing !== B.ongoing) return A.ongoing ? -1 : 1;
-    return (
-      (B.end || 0) - (A.end || 0) ||
-      (a.title || "").localeCompare(b.title || "", "en", {
-        sensitivity: "base",
-      })
-    );
+    if (B.end !== A.end) return B.end - A.end;
+    return (a.title || "").localeCompare(b.title || "", "en", {
+      sensitivity: "base",
+    });
   });
   return { projects };
 }
