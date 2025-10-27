@@ -22,6 +22,8 @@ Unfolding the Archive: New Dimensions of Access to Born-digital Architecture Col
 
 Unfolding the Archive: New Dimensions of Access to Born-digital Architecture Collections is a research project conducted by Ania Molenda at Nieuwe Instituut between 2024-2025. It explored how affordances of born-digital design records could improve access to contemporary architecture collections in ways that are dynamic and networked, multimodal, and multivocal. Born-digital architecture archives present unique opportunities to study and interpret the intertwined relationship between built environment, digital cultures, and social change. However, due to technical limitations of the proprietary software, most of their contents remain inaccessible to the public at large, posing limits to both research and discovery. In the Dutch National Collection for Architecture and Urban Planning, where this research was conducted, currently as much as 60% of the collection is inaccessible.
 
+[unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/)
+
 ![Preview 1](/media/unfolding_4.png)
 
 
@@ -36,4 +38,3 @@ Drawing from the concept of generous interfaces, the three prototypes developed 
 
 The project has been supported by NWO Museum Grant in 2023. It was conducted by the Dutch National Collection for Architecture and Urban Planning held by at Nieuwe Instituut by Ania Molenda as the primary investigator and Costas Papadopulos of Maastricht University as academic supervisor.
 
-[unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/)
