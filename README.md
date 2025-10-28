@@ -1,11 +1,11 @@
-### krisenstab
+## krisenstab
 
 Our static site in Sveltekit, powered by Markdown content and Tailwind CSS.  
 Each project lives as a `.md` file inside `/src/routes/texts`, automatically loaded and rendered as pages.
 
 ---
 
-## Structure
+### Structure
 
 ```
 src/
@@ -50,7 +50,7 @@ Full text and images for the project page.
 
 ---
 
-## Development
+### Development
 
 ```bash
 npm install
@@ -61,7 +61,7 @@ Start the dev server at **http://localhost:5173**
 
 ---
 
-## Build (static)
+### Build (static)
 
 ```bash
 npm run build
