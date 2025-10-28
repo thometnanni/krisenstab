@@ -135,7 +135,7 @@
     .info {
       width: 100%;
       font-size: 1rem;
-      line-height: 1.1rem;
+      line-height: 1.2rem;
     }
     .col {
       min-width: 0;

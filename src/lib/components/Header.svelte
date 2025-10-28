@@ -34,4 +34,11 @@
     color: var(--color-1, var(--faded-color, #5a5a5a));
     font-weight: 600;
   }
+
+  @media (max-width: 800px) {
+    header {
+      font-size: 1.2em;
+      line-height: 1.2em;
+    }
+  }
 </style>

@@ -85,7 +85,7 @@
   @media (max-width: 800px) {
     .archive {
       font-size: 1rem;
-      line-height: 1.1rem;
+      /* line-height: 1.1rem; */
       padding: 5px;
     }
   }
