@@ -25,14 +25,14 @@ body {
   /* height: 100dvh; */
 }
 
-a {
+article a {
   /* color: blue; */
-  color: black;
+  text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
 }
 
-a:hover {
+article a:hover {
   text-decoration-color: var(--color-1);
   text-decoration-thickness: 5px;
 }

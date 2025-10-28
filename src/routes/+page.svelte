@@ -15,25 +15,12 @@
 </script>
 
 {#if html}
-  <main>
+  <main class="max-w-[960px] m-auto">
     <Tables />
-    <article class="markdown">
+    <article class="markdown p-10 m-auto">
       <Intro />
       {@html html}
     </article>
     <Impressum />
   </main>
 {/if}
-
-<style>
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .markdown {
-    /* max-width: 750px; */
-    padding: 10px;
-    margin: 0 auto;
-  }
-</style>
