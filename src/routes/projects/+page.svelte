@@ -15,19 +15,26 @@
   };
 </script>
 
-<main class="archive">
-  <div class="rows">
+<main
+  class="mx-auto max-w-screen-2xl px-2 text-black text-[1.4rem] leading-[1.4rem]"
+>
+  <div class="space-y-2">
     {#each projects as p (p.slug)}
-      <div>
-        <div class="row">
-          <time class="col time">{formatDate(p.date)}</time>
-          <div class="col project">
-            <a href={`/projects/${p.slug}`}>{p.title}</a>
+      <div class="border-b border-gray-200 mb-2">
+        <div class="grid grid-cols-[auto,1fr] gap-1 text-left pb-5">
+          <time
+            class="text-gray-500 text-sm [font-variant-numeric:tabular-nums]"
+            >{formatDate(p.date)}</time
+          >
+          <div class="text-black overflow-hidden">
+            <a href={`/projects/${p.slug}`} class="break-words hover:underline"
+              >{p.title}</a
+            >
           </div>
         </div>
 
         {#if p.media?.length > 0}
-          <div class="media">
+          <div class="flex overflow-x-auto snap-x snap-mandatory gap-1 py-1">
             {#each p.media as m}
               <img
                 src={m}
@@ -35,12 +42,13 @@
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
+                class="h-60 object-cover rounded"
               />
             {/each}
           </div>
         {/if}
 
-        <div class="info">
+        <div class="w-full max-w-[840px] py-2 pb-5 text-base leading-[1.2rem]">
           <div class="content">{@html p.summaryHtml}</div>
         </div>
       </div>
@@ -49,96 +57,5 @@
 </main>
 
 <style>
-  .archive {
-    font-size: 1.4rem;
-    line-height: 1.4rem;
-    padding: 5px;
-  }
-
-  .rows > div {
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-  }
-
-  .row {
-    text-align: left;
-    padding-bottom: 20px;
-  }
-
-  .col {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  .row .col.time {
-    color: #777;
-    font-size: 1rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .col.project {
-    color: #000;
-  }
-
-  .media {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 5px;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
-    padding: 5px 0;
-    box-sizing: border-box;
-  }
-  .media img {
-    height: 240px;
-    object-fit: cover;
-    scroll-snap-align: start;
-    border-radius: 3px;
-  }
-
-  .info {
-    width: 100%;
-    max-width: 840px;
-    padding: 8px 0 20px 0;
-    color: #000;
-    font-size: 1rem;
-    line-height: 1.2rem;
-  }
-
-  :global(.content hr) {
-    display: none;
-  }
-  :global(.content h1),
-  :global(.content h2),
-  :global(.content h3) {
-    line-height: 1.1;
-    margin: 0.2rem 0;
-  }
-  :global(.content p) {
-    margin: 0 0 0.6rem 0;
-  }
-  :global(.content a) {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 1024px) {
-    .archive {
-      overflow-x: hidden;
-    }
-
-    .row {
-      gap: 4px;
-      width: 100%;
-    }
-
-    .media,
-    .info {
-      width: 100%;
-      font-size: 1rem;
-      line-height: 1.2rem;
-    }
-    .col {
-      min-width: 0;
-    }
-  }
+  @reference "tailwindcss";
 </style>

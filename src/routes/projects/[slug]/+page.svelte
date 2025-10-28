@@ -16,77 +16,41 @@
 </script>
 
 {#if post}
-  <main class="archive">
-    <div class="rows">
-      <div>
-        <div class="row">
-          <time class="col time">{formatDate(post.date)}</time>
-          <div class="col project">{post.title}</div>
+  <main class="mx-auto max-w-[1920px] px-[5px] text-black">
+    <div>
+      <div class="grid grid-cols-[auto,1fr] gap-[5px] text-left pb-5">
+        <time
+          class="text-[#777] text-base leading-[1em] [font-variant-numeric:tabular-nums]"
+          >{formatDate(post.date)}</time
+        >
+        <div class="text-black text-3xl leading-[1em]">
+          {post.title}
         </div>
-        <div class="info">
-          <article class="content">{@html post.detailHtml}</article>
-        </div>
+      </div>
+      <div class="w-full max-w-[840px] text-xl leading-[1.2em]">
+        <article class="content">{@html post.detailHtml}</article>
       </div>
     </div>
   </main>
 {:else}
-  <main class="archive"><p>Not found</p></main>
+  <main class="mx-auto max-w-[1920px] px-[5px]"><p>Not found</p></main>
 {/if}
 
 <style>
-  .archive {
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-    padding: 5px;
-  }
-
-  .row {
-    gap: 5px;
-    align-items: start;
-    text-align: left;
-    padding-bottom: 20px;
-  }
-
-  .col {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  .row .col.time {
-    color: #777;
-    font-size: .875em;
-    line-height: 1em;
-
-    font-variant-numeric: tabular-nums;
-  }
-
-  .col.project {
-    color: #000;
-    font-size: 1.4em;
-    line-height: 1em;
-  }
-
-  .info {
-    width: 100%;
-    max-width: 840px;
-    color: #000;
-    font-size: 1em;
-    line-height: 1.2em;
-  }
-
+  @reference "tailwindcss";
   :global(.content img) {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    border-radius: 3px;
-    margin: 8px 0;
+    @apply block w-full h-auto rounded my-2;
+    @apply mt-20 mb-10;
   }
-
-  @media (max-width: 800px) {
-    .archive {
-      font-size: 1rem;
-      /* line-height: 1.1rem; */
-      padding: 5px;
-    }
+  :global(.content h1),
+  :global(.content h2),
+  :global(.content h3) {
+    @apply leading-[1.1] my-1;
+  }
+  :global(.content p) {
+    @apply my-2;
+  }
+  :global(.content a) {
+    @apply underline;
   }
 </style>

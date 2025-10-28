@@ -1,14 +1,12 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-
   export let arenaChannelSlug = "tables-gdt5rzhdcii";
-
   let slides = [];
   let current = 0;
   let currentSlide = null;
   let intervalId;
 
-  async function fetchArena(slug) {
+  const fetchArena = async (slug) => {
     const res = await fetch(`https://api.are.na/v2/channels/${slug}?per=100`);
     const data = await res.json();
     return (data.contents || [])
@@ -22,11 +20,9 @@
         alt: b.title || b.image?.filename || "Are.na image",
       }))
       .filter(Boolean);
-  }
-
+  };
   const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
-
-  function startSlideshow() {
+  const startSlideshow = () => {
     clearInterval(intervalId);
     current = 0;
     if (!slides.length) return;
@@ -35,39 +31,22 @@
       current = (current + 1) % slides.length;
       currentSlide = slides[current];
     }, 200);
-  }
-
+  };
   onMount(async () => {
     slides = shuffle(await fetchArena(arenaChannelSlug));
     startSlideshow();
   });
-
   onDestroy(() => clearInterval(intervalId));
 </script>
 
-<main>
+<main class="my-16 mx-auto w-auto h-[120px] px-2">
   {#if currentSlide}
     <a href={currentSlide.href} target="_blank" rel="noopener">
-      <img src={currentSlide.src} alt={currentSlide.alt} class="slideshow" />
+      <img
+        src={currentSlide.src}
+        alt={currentSlide.alt}
+        class="w-full h-full object-contain block"
+      />
     </a>
   {/if}
 </main>
-
-<style>
-  main {
-    margin: 60px auto;
-    width: auto;
-    height: 120px;
-  }
-  .slideshow {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-  @media (max-width: 800px) {
-    .slideshow {
-      margin: 20px auto;
-    }
-  }
-</style>

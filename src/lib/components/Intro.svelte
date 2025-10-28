@@ -10,9 +10,6 @@
           : "Good evening";
 </script>
 
-<section class="intro">
+<section>
   <p>{greetingMessage},</p>
 </section>
-
-<style>
-</style>

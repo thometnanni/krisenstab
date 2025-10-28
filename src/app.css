@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --highlite: gainsboro;
   --color-1: #e9ff00;
