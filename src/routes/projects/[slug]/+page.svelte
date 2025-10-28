@@ -27,7 +27,7 @@
           {post.title}
         </div>
       </div>
-      <div class="w-full max-w-[840px] text-xl leading-[1.2em]">
+      <div class="w-full max-w-[840px] text-base sm:text-xl leading-[1.2em]">
         <article class="content">{@html post.detailHtml}</article>
       </div>
     </div>
@@ -40,7 +40,7 @@
   @reference "tailwindcss";
   :global(.content img) {
     @apply block w-full h-auto rounded my-2;
-    @apply mt-20 mb-10;
+    @apply mt-5 mb-4;
   }
   :global(.content h1),
   :global(.content h2),

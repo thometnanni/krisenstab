@@ -1,5 +1,5 @@
 export const prerender = true;
-export const csr = false;
+// export const csr = false;
 
 const norm = (s) =>
   String(s || "")

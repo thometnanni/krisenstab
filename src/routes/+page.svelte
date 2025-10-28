@@ -17,7 +17,7 @@
 {#if html}
   <main class="max-w-[960px] m-auto">
     <Tables />
-    <article class="markdown p-10 m-auto">
+    <article class="markdown p-1 m-auto">
       <Intro />
       {@html html}
     </article>
