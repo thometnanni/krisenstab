@@ -1,38 +1,77 @@
-# create-svelte
+### krisenstab
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Our static site in Sveltekit, powered by Markdown content and Tailwind CSS.  
+Each project lives as a `.md` file inside `/src/routes/texts`, automatically loaded and rendered as pages.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Structure
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```
+src/
+ ├─ lib/
+ │   └─ components/
+ │        └─ Header.svelte
+ ├─ routes/
+ │   ├─ +layout.svelte
+ │   ├─ +layout.js
+ │   ├─ projects/
+ │   │   ├─ +page.svelte       → lists all projects
+ │   │   ├─ +page.js           → loads markdown summaries
+ │   │   └─ [slug]/
+ │   │        ├─ +page.svelte  → renders full markdown
+ │   │        └─ +page.js
+ │   └─ texts/                 → markdown sources
+ │        ├─ vantage.md
+ │        ├─ design-signals.md
+ │        └─ unfolding-the-archive.md
+ ├─ app.css / postcss.config.js / tailwind.config.js
+ └─ static/lastUpdated.json
 ```
 
-## Developing
+Each markdown file drives one project page.  
+The section **before the first `---`** appears in `/projects`,  
+everything **after `---`** appears in `/projects/[slug]`.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Example:
+
+```md
+---
+title: Vantage
+date: 2024 - ongoing
+---
+
+Short description and images.
+
+---
+
+Full text and images for the project page.
+```
+
+---
+
+## Development
 
 ```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Start the dev server at **http://localhost:5173**
 
-To create a production version of your app:
+---
+
+## Build (static)
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+This builds a **fully static site** using `@sveltejs/adapter-static`.  
+Each project markdown file is prerendered into HTML.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Deploy to github with:
+
+```bash
+npm run deploy
+```
