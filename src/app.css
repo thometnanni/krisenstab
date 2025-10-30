@@ -21,7 +21,7 @@ body {
   margin: 0;
   text-rendering: geometricPrecision;
   /* hyphens: auto; */
-  text-wrap: balance;
+  /* text-wrap: balance; */
   /* height: 100dvh; */
 }
 
