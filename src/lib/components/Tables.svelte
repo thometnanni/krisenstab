@@ -42,11 +42,7 @@
 <main class="my-16 mx-auto w-auto h-[120px] px-2">
   {#if currentSlide}
     <a href={currentSlide.href} target="_blank" rel="noopener">
-      <img
-        src={currentSlide.src}
-        alt={currentSlide.alt}
-        class="w-full h-full object-contain block"
-      />
+      <img src={currentSlide.src} class="w-full h-full object-contain block" />
     </a>
   {/if}
 </main>
