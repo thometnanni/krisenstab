@@ -5,7 +5,7 @@
 </script>
 
 <header
-  class="sticky top-0 w-full bg-white shadow-sm text-right text-[1.2em] md:text-[1em] md:leading-[1em] leading-[1.2em]"
+  class="sticky top-0 w-full bg-white shadow-sm text-right text-[1.2em] sm:text-[1.1em] sm:leading-[1.2em] leading-[1.2em]"
 >
   <a
     href="/projects"
