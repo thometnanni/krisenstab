@@ -22,6 +22,6 @@ The resulting visualisations bring how industries shift across decades to life. 
 
 Each column traces a sector and maps the destinations of its exports, situating specific trajectories within broader industrial patterns.
 
-More at the [exhibition page](https://faber.ro/en/eveniment/design-signals-chemical-bonds-exhibition/) and the [interactive demo](https://thometnanni.github.io/design-signals-interactive/).
+More at the [exhibition page](https://faber.ro/en/eveniment/design-signals-chemical-bonds-exhibition/).
 
 <img src="/media/faber_4.webp" style="max-width:200px"/>
