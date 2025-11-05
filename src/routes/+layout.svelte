@@ -1,69 +1,47 @@
 <script>
   import "../app.css";
-
   import Header from "$lib/components/Header.svelte";
+  import { onMount } from "svelte";
+
+  function pickTitle() {
+    const h = document.querySelector("h1");
+    if (!h) return "krisenstab";
+    const t = h.textContent.trim();
+    const short =
+      t.length > 80 ? t.slice(0, 80).replace(/\s+\S*$/, "") + "…" : t;
+    return short;
+  }
+
+  function pickImage() {
+    const img = document.querySelector("img");
+    if (!img) return "https://krisenstab.net/og-image.png";
+    return img.currentSrc || img.src;
+  }
+
+  function setMeta(selector, value) {
+    const el = document.querySelector(selector);
+    if (el) el.setAttribute("content", value);
+  }
+
+  onMount(() => {
+    const titleText = pickTitle();
+    const imgSrc = pickImage();
+    const fullUrl = `https://krisenstab.net${window.location.pathname}`;
+
+    document.title = titleText;
+    setMeta('meta[property="og:title"]', titleText);
+    setMeta('meta[name="twitter:title"]', titleText);
+    setMeta('meta[property="og:image"]', imgSrc);
+    setMeta('meta[name="twitter:image"]', imgSrc);
+    setMeta('meta[property="og:url"]', fullUrl);
+    setMeta('meta[name="twitter:url"]', fullUrl);
+  });
 </script>
 
 <Header />
 
 <article>
-  <!-- <aside class="meta">
-    <div class="time">
-      <a href="/" class="krisenstab-logo">Krisenstab</a>
-    </div>
-
-    <div class="time">
-      <a href="/projects">Projects</a><br />
-    </div>
-  </aside> -->
-
   <section>
     <slot />
   </section>
 </article>
-
-<style>
-  article {
-    /* display: flex;
-    gap: 10px; */
-    max-width: 1920px;
-    overflow: visible;
-  }
-
-  section {
-    /* max-width: 960px; */
-    padding: 10px;
-    margin: 0 auto;
-    overflow: visible;
-    max-height: none;
-  }
-
-  p {
-    margin: 0 0 1ex 0;
-    font-weight: normal;
-    color: #000;
-  }
-
-  @media (max-width: 800px) {
-    article {
-      flex-direction: column;
-      padding: 5px;
-    }
-
-    .meta {
-      position: static;
-      width: 100%;
-      max-width: none;
-      min-height: auto;
-      border-right: none;
-      margin-bottom: 50px;
-    }
-
-    .time {
-      padding: 0;
-    }
-    section {
-      max-width: 100%;
-    }
-  }
-</style>

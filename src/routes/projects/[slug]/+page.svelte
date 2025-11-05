@@ -23,9 +23,9 @@
           class="text-[#777] text-base leading-[1em] [font-variant-numeric:tabular-nums]"
           >{formatDate(post.date)}</time
         >
-        <div class="text-black text-3xl leading-[1em]">
+        <h1 class="text-black text-3xl leading-[1em]">
           {post.title}
-        </div>
+        </h1>
       </div>
       <div class="w-full max-w-[840px] text-base sm:text-xl leading-[1.2em]">
         <article class="content">{@html post.detailHtml}</article>
