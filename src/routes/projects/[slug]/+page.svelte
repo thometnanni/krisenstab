@@ -15,6 +15,19 @@
   };
 </script>
 
+<svelte:head>
+  <title>{data.seo.title}</title>
+  <meta name="description" content={data.seo.description} />
+  <meta property="og:title" content={data.seo.title} />
+  <meta property="og:description" content={data.seo.description} />
+  <meta property="og:image" content={data.seo.image} />
+  <meta property="og:url" content={data.seo.url} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={data.seo.title} />
+  <meta name="twitter:description" content={data.seo.description} />
+  <meta name="twitter:image" content={data.seo.image} />
+</svelte:head>
+
 {#if post}
   <main class="mx-auto max-w-[1920px] px-[5px] text-black">
     <div>
