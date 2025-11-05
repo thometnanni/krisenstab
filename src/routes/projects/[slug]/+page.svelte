@@ -29,7 +29,7 @@
 </svelte:head>
 
 {#if post}
-  <main class="mx-auto max-w-[1920px] px-[5px] text-black">
+  <main class="mx-auto max-w-[1920px] p-3 text-black">
     <div>
       <div class="grid grid-cols-[auto,1fr] mt-3 gap-[5px] text-left pb-5">
         <time

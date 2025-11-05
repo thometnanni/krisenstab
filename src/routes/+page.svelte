@@ -15,9 +15,9 @@
 </script>
 
 {#if html}
-  <main class="max-w-[860px] m-auto">
+  <main class="max-w-[860px] p-3 m-auto">
     <Tables />
-    <article class="markdown p-1 m-auto text-2xl text-balance">
+    <article class="markdown m-auto text-2xl text-balance">
       <Intro />
       {@html html}
     </article>
