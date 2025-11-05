@@ -31,7 +31,7 @@
 {#if post}
   <main class="mx-auto max-w-[1920px] px-[5px] text-black">
     <div>
-      <div class="grid grid-cols-[auto,1fr] gap-[5px] text-left pb-5">
+      <div class="grid grid-cols-[auto,1fr] mt-3 gap-[5px] text-left pb-5">
         <time
           class="text-[#777] text-base leading-[1em] [font-variant-numeric:tabular-nums]"
           >{formatDate(post.date)}</time
