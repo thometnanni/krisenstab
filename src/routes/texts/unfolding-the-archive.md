@@ -43,10 +43,8 @@ Drawing from the concept of generous interfaces, the three prototypes developed 
 
 Through a multimodal approach, each prototype focuses on a distinct digital property: the creation date, the file layer structure, and the geometry information. These different modes were selected to test if they can enable different readings supported by different forms of data visualisation. 
 
-This first collection of prototypes, which undeniably excludes many aspects due to time and scope of the research, allows to make the complexity, interconnectedness, non-linearity, and collaboration of the design process more visible and open for interpretation.
+This first collection of prototypes allows to make the complexity, interconnectedness, non-linearity, and collaboration of the design process more visible and open for interpretation.
 
 ![Preview 4](/media/unfolding_5.png)
 
-
-The project has been supported by NWO Museum Grant in 2023. It was conducted by the Dutch National Collection for Architecture and Urban Planning held by at Nieuwe Instituut by Ania Molenda as the primary investigator and Costas Papadopulos of Maastricht University as academic supervisor.
 
