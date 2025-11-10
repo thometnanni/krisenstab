@@ -68,7 +68,8 @@ export async function load({ params }) {
       post: null,
       seo: {
         title: "krisenstab",
-        description: "Krisenstab studio",
+        description:
+          "Design studio active in interaction design, data visualisation, software development and media design",
         image: `${siteOrigin}/og-image.png`,
         url: `${siteOrigin}/texts/${params.slug}`,
       },
@@ -87,7 +88,8 @@ export async function load({ params }) {
   const pRaw = firstMatch(html, /<p[^>]*>([\s\S]*?)<\/p>/i) || "";
   const title = truncateChars(stripTags(h1Raw) || "krisenstab", 80);
   const description = truncateChars(
-    stripTags(pRaw) || "Krisenstab studio",
+    stripTags(pRaw) ||
+      "Design studio active in interaction design, data visualisation, software development and media design",
     160
   );
   const picked = mod?.metadata?.image || pickOgImageSrc(html);

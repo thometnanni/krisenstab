@@ -15,6 +15,29 @@
   };
 </script>
 
+<svelte:head>
+  <title>krisenstab</title>
+  <meta
+    name="description"
+    content="Design studio active in interaction
+    design, data visualisation, software development and media design"
+  />
+  <meta property="og:title" content="krisenstab" />
+  <meta
+    property="og:description"
+    content="Design studio active in interaction design, data visualisation, software development and media design"
+  />
+  <meta property="og:image" content="https://krisenstab.net/og-image.png" />
+  <meta property="og:url" content="https://krisenstab.net/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="krisenstab" />
+  <meta
+    name="twitter:description"
+    content="Design studio active in interaction design, data visualisation, software development and media design"
+  />
+  <meta name="twitter:image" content="https://krisenstab.net/og-image.png" />
+</svelte:head>
+
 <main
   class="mx-auto max-w-screen-2xl px-3 text-black text-[1.4rem] leading-[1.4rem] text-balance"
 >
