@@ -18,6 +18,8 @@
   >
     projects
   </a>
+  
+  <img src="/favicon.png" alt="" class="inline max-w-8" />
 
   <a
     href="/"
