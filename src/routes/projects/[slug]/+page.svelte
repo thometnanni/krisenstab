@@ -29,7 +29,7 @@
 </svelte:head>
 
 {#if post}
-  <main class="mx-auto max-w-[1920px] p-3 text-black">
+  <main class="project mx-auto max-w-[1920px] p-3 text-black">
     <div>
       <div class="grid grid-cols-[auto,1fr] mt-3 gap-[5px] text-left pb-5">
         <time
@@ -51,19 +51,19 @@
 
 <style>
   @reference "tailwindcss";
-  :global(.content img) {
+  :global(.project .content img) {
     @apply block w-full h-auto rounded my-2;
     @apply mt-5 mb-4;
   }
-  :global(.content h1),
-  :global(.content h2),
-  :global(.content h3) {
+  :global(.project .content h1),
+  :global(.project .content h2),
+  :global(.project .content h3) {
     @apply leading-[1.1] my-1;
   }
-  :global(.content p) {
+  :global(.project .content p) {
     @apply my-2;
   }
-  :global(.content a) {
+  :global(.project .content a) {
     @apply underline;
   }
 </style>

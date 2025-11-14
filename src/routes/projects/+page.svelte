@@ -39,7 +39,7 @@
 </svelte:head>
 
 <main
-  class="mx-auto max-w-screen-2xl px-3 text-black text-[1.4rem] leading-[1.4rem] text-balance"
+  class="mx-auto max-w-screen-2xl mt-2 px-3 text-black text-[1.4rem] leading-[1.4rem] text-balance"
 >
   <div class="space-y-2">
     {#each projects as p (p.slug)}
