@@ -38,47 +38,66 @@
   <meta name="twitter:image" content="https://krisenstab.net/og-image.png" />
 </svelte:head>
 
-<main
-  class="mx-auto max-w-screen-2xl mt-2 px-3 text-black text-[1.4rem] leading-[1.4rem] text-balance"
->
-  <div class="space-y-2">
+<main class="mx-auto max-w-screen-2xl mt-2 px-3 text-black text-balance">
+  <div class="p-container space-y-2">
     {#each projects as p (p.slug)}
       <div class="border-b border-gray-200 mb-2">
-        <div class="grid grid-cols-[auto,1fr] gap-1 text-left pb-5">
-          <time
-            class="text-gray-500 text-sm [font-variant-numeric:tabular-nums]"
-            >{formatDate(p.date)}</time
-          >
-          <div class="text-black overflow-hidden">
-            <a href={`/projects/${p.slug}`} class="break-words hover:underline"
-              >{p.title}</a
+        {#if p.media?.length > 0 || p.summaryHtml}
+          <div class="flex overflow-x-auto gap-2 py-3 no-scrollbar">
+            <div
+              class="sticky left-0 top-0 z-0 flex-shrink-0 min-w-[220px] max-w-[260px] h-auto text-sm md:min-w-[300px] md:max-w-[350px] md:text-base"
             >
-          </div>
-        </div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-[auto,1fr] text-left">
+                  <time
+                    class="text-gray-500 text-sm [font-variant-numeric:tabular-nums]"
+                    >{formatDate(p.date)}</time
+                  >
+                  <div class="text-black overflow-hidden">
+                    <a
+                      href={`/projects/${p.slug}`}
+                      class="text-2xl leading-[0em]  break-words hover:underline">{p.title}</a
+                    >
+                  </div>
+                </div>
+                <div
+                  class:opacity-0={!p.summaryHtml}
+                  class="content text-[0.9rem] leading-[1.2rem] md:text-[1.1rem] md:leading-[1.5rem] text-wrap"
+                >
+                  {@html p.summaryHtml || ""}
+                </div>
+              </div>
+            </div>
 
-        {#if p.media?.length > 0}
-          <div class="flex overflow-x-auto snap-x snap-mandatory gap-1 py-1">
-            {#each p.media as m}
-              <img
-                src={m}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                class="h-60 object-cover rounded"
-              />
-            {/each}
+            {#if p.media?.length > 0}
+              {#each p.media as m}
+                <img
+                  src={m}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  class="relative z-10 h-[25rem] min-w-[320px] object-cover rounded flex-shrink-0"
+                />
+              {/each}
+            {/if}
           </div>
         {/if}
-
-        <div class="w-full max-w-[840px] py-2 pb-5 text-base leading-[1.2rem]">
-          <div class="content">{@html p.summaryHtml}</div>
-        </div>
       </div>
     {/each}
   </div>
 </main>
 
 <style>
+  :global(.p-container p) {
+    margin-bottom: 1em;
+  }
+
   @reference "tailwindcss";
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 </style>
