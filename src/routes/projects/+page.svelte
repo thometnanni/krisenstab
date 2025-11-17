@@ -38,14 +38,14 @@
   <meta name="twitter:image" content="https://krisenstab.net/og-image.png" />
 </svelte:head>
 
-<main class="mx-auto max-w-screen-2xl mt-2 px-3 text-black text-balance">
+<main class="mx-auto max-w-screen-3xl mt-2 px-3 text-black text-balance">
   <div class="p-container space-y-2">
     {#each projects as p (p.slug)}
       <div class="border-b border-gray-200 mb-2">
         {#if p.media?.length > 0 || p.summaryHtml}
           <div class="flex overflow-x-auto gap-2 py-3 no-scrollbar">
             <div
-              class="sticky left-0 top-0 z-0 flex-shrink-0 min-w-[220px] max-w-[260px] h-auto text-sm md:min-w-[300px] md:max-w-[350px] md:text-base"
+              class="sticky left-0 top-0 z-0 flex-shrink-0 max-w-[300px] h-auto text-sm md:max-w-[350px] md:text-base"
             >
               <div class="space-y-3">
                 <div class="grid grid-cols-[auto,1fr] text-left">
@@ -56,7 +56,7 @@
                   <div class="text-black overflow-hidden">
                     <a
                       href={`/projects/${p.slug}`}
-                      class="text-2xl leading-[0em]  break-words hover:underline">{p.title}</a
+                      class="text-2xl leading-.50em]  break-words hover:underline">{p.title}</a
                     >
                   </div>
                 </div>
@@ -77,7 +77,7 @@
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low"
-                  class="relative z-10 h-[25rem] min-w-[320px] object-cover rounded flex-shrink-0"
+                  class="relative z-10 h-[340px] object-cover rounded flex-shrink-0"
                 />
               {/each}
             {/if}
