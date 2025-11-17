@@ -1,4 +1,6 @@
 <script>
+  import LazyImage from "$lib/components/LazyImage.svelte";
+
   export let data;
   const projects = data.projects || [];
   const formatDate = (s) => {
@@ -71,13 +73,12 @@
 
             {#if p.media?.length > 0}
               {#each p.media as m}
-                <img
+                <LazyImage
                   src={m}
                   alt=""
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                  class="relative z-10 h-[340px] object-cover rounded flex-shrink-0"
+                  fallbackColor="#f3f3f3"
+                  wrapperClass="h-[340px] flex-shrink-0 rounded"
+                  imgClass="h-full w-full object-cover"
                 />
               {/each}
             {/if}
