@@ -78,7 +78,7 @@
                   alt=""
                   fallbackColor="#f3f3f3"
                   wrapperClass="h-[340px] flex-shrink-0 rounded"
-                  imgClass="h-full w-full object-cover"
+                  imgClass="h-full object-cover"
                 />
               {/each}
             {/if}
