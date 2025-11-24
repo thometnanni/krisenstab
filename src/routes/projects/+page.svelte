@@ -1,6 +1,5 @@
 <script>
   import LazyImage from "$lib/components/LazyImage.svelte";
-
   export let data;
   const projects = data.projects || [];
   const formatDate = (s) => {
@@ -58,13 +57,14 @@
                   <div class="text-black overflow-hidden">
                     <a
                       href={`/projects/${p.slug}`}
-                      class="text-2xl leading-.50em]  break-words hover:underline">{p.title}</a
+                      class="text-2xl leading-.50em] break-words hover:underline"
+                      >{p.title}</a
                     >
                   </div>
                 </div>
                 <div
                   class:opacity-0={!p.summaryHtml}
-                  class="content text-[0.9rem] leading-[1.2rem] md:text-[1.1rem] md:leading-[1.5rem] text-wrap"
+                  class="content text-[0.9rem] leading-[1.2rem] text-wrap"
                 >
                   {@html p.summaryHtml || ""}
                 </div>
@@ -78,7 +78,7 @@
                   alt=""
                   fallbackColor="#f3f3f3"
                   wrapperClass="h-[340px] flex-shrink-0 rounded"
-                  imgClass="h-full object-cover"
+                  imgClass="h-full w-full object-cover"
                 />
               {/each}
             {/if}

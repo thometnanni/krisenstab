@@ -3,7 +3,7 @@ title: China Unofficial Archives
 date: 2025 - ongoing
 ---
 
-We are currently developing a new version of the China Unofficial Archives, a digital repository dedicated to preserving and making accessible key documents, films, blogs, and publications created by independent thinkers, writers, and activists in China. The project traces the efforts of individuals and communities who have worked to document and reinterpret the country’s recent history outside official channels, often at significant personal risk.
+We are currently developing a new version of the China Unofficial Archives, a digital repository dedicated to preserving and making accessible key documents, films, blogs, and publications created by independent thinkers, writers, and activists in China.
 
 ![CUA 1](/media/cua_1.png)
 ![CUA 3](/media/cua_2.png)
