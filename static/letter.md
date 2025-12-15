@@ -1,10 +1,9 @@
 we are a design studio working at the intersection of technology, journalism and culture.
 
 
-Last week our project [Vantage](/projects/vantage), has been featured on [Creative Applications](https://www.creativeapplications.net/news/vantage-reconstructs-the-spatial-context-of-video-recordings/).
+We just published a new website for [China Unofficial Archives](https://minjian-danganguan.org/en), the non-profit digital archive for censored and suppressed Chinese history.
 
-Over the past month, we've been dealing with increased malicious bot activity, while [Design Signals – Chemical Bonds](/projects/design-signals) remains on view in Timișoara. 
-
+Last week we decided to document [more in progress work on are.na](https://www.are.na/krisenstab/krisenstab-tq2jbe7qrkk), then we went for [Mohnnudeln](https://www.are.na/block/41811512).
 
 <!-- If you’d like to keep up with our work, you can follow our [studio updates](https://krisenstab.substack.com) on Substack.  -->
 
