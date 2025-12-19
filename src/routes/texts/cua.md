@@ -8,6 +8,7 @@ We are currently developing a new version of the China Unofficial Archives, a di
 ![CUA 1](/media/cua_1.png)
 ![CUA 3](/media/cua_2.png)
 ![CUA 4](/media/cua_3.png)
+![CUA 4](/media/cua_4.png)
 
 ---
 
@@ -16,3 +17,7 @@ We are currently developing a new version of the China Unofficial Archives, a di
 ![CUA 1](/media/cua_1.png)
 
 By gathering and organizing these materials, the China Unofficial Archives seeks to create an open and enduring resource for researchers, educators, and the public. Its goal is to ensure that these independent voices and records remain available for future generations and continue to inform a more nuanced understanding of contemporary Chinese history.
+
+<br><br>
+
+![CUA 4](/media/cua_4.png)
