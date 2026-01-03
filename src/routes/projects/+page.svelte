@@ -56,14 +56,14 @@
                       >{formatDate(p.date)}</time
                     >
                     <div class="text-black overflow-hidden">
-                      <div class="text-2xl leading-[1.2] break-words">
+                      <div class="text-xl leading-[1.1]  break-words">
                         {p.title}
                       </div>
                     </div>
                   </div>
                   <div
                     class:opacity-0={!p.summaryHtml}
-                    class="content text-[0.9rem] leading-[1.2rem] text-wrap"
+                    class="content text-2xl leading-[1.2] text-wrap"
                   >
                     {@html p.summaryHtml || ""}
                   </div>

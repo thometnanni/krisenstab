@@ -67,4 +67,8 @@
   :global(.p-container  a) {
     text-decoration: none;
   }
+
+   :global(.p-container  a a) {
+    text-decoration: underline;
+  }
 </style>
