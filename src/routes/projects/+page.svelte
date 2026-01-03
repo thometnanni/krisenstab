@@ -63,7 +63,7 @@
                   </div>
                   <div
                     class:opacity-0={!p.summaryHtml}
-                    class="content text-2xl leading-[1.2] text-wrap"
+                    class="content text-xl leading-[1.2] text-wrap"
                   >
                     {@html p.summaryHtml || ""}
                   </div>
