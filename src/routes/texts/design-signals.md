@@ -8,13 +8,13 @@ This installation looks at the transformation of Romania’s chemical industry f
 More at the [exhibition page](https://faber.ro/en/eveniment/design-signals-chemical-bonds-exhibition/).
 
 ![Install 1](/media/faber_4.webp)
-![Install 2](/media/faber_3.jpg)
-![Install 3](/media/faber_2.jpg)
-![Install 4](/media/faber_1.jpg)
+![Install 2](/media/faber_3.webp)
+![Install 3](/media/faber_2.webp)
+![Install 4](/media/faber_1.webp)
 
 ---
 
-![Install 2](/media/faber_3.jpg)
+![Install 2](/media/faber_3.webp)
 
 This installation looks at the transformation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation. Using international trade data from 1960 onward, each sector is represented on a scatter plot graph in terms of its product complexity and export-import balance. 
 
