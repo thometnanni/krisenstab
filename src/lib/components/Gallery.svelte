@@ -3,7 +3,7 @@
   let mousemoveEnabled = true;
   let programmaticScroll = false;
 
-  let margin = 20;
+  let margin = 100;
 
   function onMousemove(e) {
     // console.log('mousemove event fired');
@@ -53,7 +53,7 @@
 >
   <div
     bind:this={inner}
-    class="inner sc m-auto mt-0 mb-0 flex w-max flex-nowrap items-start justify-start gap-4 px-4"
+    class="inner sc m-auto mt-0 mb-0 flex w-max flex-nowrap items-start justify-start gap-4 "
   >
     <slot />
   </div>
