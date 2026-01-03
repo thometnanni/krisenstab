@@ -3,8 +3,7 @@ title: Design Signals
 date: 2025
 ---
 
-This installation looks at the transformation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation. Using international trade data from 1960 onward, each sector is represented on a scatter plot graph in terms of its product complexity and export-import balance.
-
+This installation looks at the transformation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation. 
 More at the [exhibition page](https://faber.ro/ro/proiecte/design-signals/).
 
 ![Install 1](/media/faber_4.webp)
