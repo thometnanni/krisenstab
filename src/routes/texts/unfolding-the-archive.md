@@ -7,6 +7,7 @@ slug: unfolding-the-archive
 ---
 
 
+![Preview 1](/media/unfolding_0.gif)
 ![Preview 1](/media/unfolding_1.png)
 ![Preview 2](/media/unfolding_4.png)
 ![Preview 3](/media/unfolding_2.png)
@@ -28,7 +29,8 @@ In the Dutch National Collection for Architecture and Urban Planning, where this
 
 [unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/)
 
-![Preview 1](/media/unfolding_4.png)
+![Preview 0](/media/unfolding_0.gif)
+<!-- ![Preview 1](/media/unfolding_4.png) -->
 
 
 Unfolding the Archive uses select properties of Computer Aided Design (CAD) Drawing (DWG) and Drawing Interchange Format (DXF) as a dominant CAD file formats found in architecture practice from their introduction in the early 1980s throughout the 2000s.
