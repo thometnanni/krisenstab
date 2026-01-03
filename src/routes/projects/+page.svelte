@@ -21,13 +21,12 @@
   <title>krisenstab</title>
   <meta
     name="description"
-    content="Design studio active in interaction
-    design, data visualisation, software development and media design"
+    content="We are a design studio working at the intersection of technology, journalism and culture."
   />
   <meta property="og:title" content="krisenstab" />
   <meta
     property="og:description"
-    content="Design studio active in interaction design, data visualisation, software development and media design"
+    content="We are a design studio working at the intersection of technology, journalism and culture."
   />
   <meta property="og:image" content="https://krisenstab.net/og-image.png" />
   <meta property="og:url" content="https://krisenstab.net/" />
@@ -35,7 +34,7 @@
   <meta name="twitter:title" content="krisenstab" />
   <meta
     name="twitter:description"
-    content="Design studio active in interaction design, data visualisation, software development and media design"
+    content="We are a design studio working at the intersection of technology, journalism and culture."
   />
   <meta name="twitter:image" content="https://krisenstab.net/og-image.png" />
 </svelte:head>
