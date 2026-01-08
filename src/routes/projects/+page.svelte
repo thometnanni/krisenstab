@@ -1,5 +1,4 @@
 <script>
-  import LazyImage from "$lib/components/LazyImage.svelte";
   import Gallery from "$lib/components/Gallery.svelte";
   export let data;
   const projects = data.projects || [];
@@ -47,16 +46,16 @@
           <a href={`/projects/${p.slug}`} class="block">
             <Gallery>
               <div
-                class="flex-shrink-0 max-w-[300px] h-auto text-sm md:max-w-[350px] md:text-base"
+                class="sticky left-0 flex-shrink-0 max-w-[300px] h-full text-sm md:max-w-[350px] md:text-base bg-white"
               >
-                <div class="space-y-3">
+                <div class="space-y-3 h-[350px] p-2">
                   <div class="grid grid-cols-[auto,1fr] text-left">
                     <time
                       class="text-gray-500 text-sm [font-variant-numeric:tabular-nums]"
                       >{formatDate(p.date)}</time
                     >
                     <div class="text-black overflow-hidden">
-                      <div class="text-xl leading-[1.1]  break-words">
+                      <div class="text-xl leading-[1.1] break-words">
                         {p.title}
                       </div>
                     </div>
@@ -72,12 +71,10 @@
 
               {#if p.media?.length > 0}
                 {#each p.media as m}
-                  <LazyImage
+                  <img
                     src={m}
                     alt=""
-                    fallbackColor="#f3f3f3"
-                    wrapperClass="h-[340px] flex-shrink-0 rounded"
-                    imgClass="h-full w-full object-cover"
+                    class="h-[350px] flex-shrink-0 rounded object-cover"
                   />
                 {/each}
               {/if}

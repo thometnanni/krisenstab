@@ -3,7 +3,7 @@
   let mousemoveEnabled = true;
   let programmaticScroll = false;
 
-  let margin = 100;
+  let margin = 30;
 
   function onMousemove(e) {
     // console.log('mousemove event fired');
