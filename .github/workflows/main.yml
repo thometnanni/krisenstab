@@ -26,13 +26,13 @@ jobs:
         npm install
 
     - name: Build 
-      run: |
-        npm run build
+      run: npm run build
 
-    - name: Deploy
+    - name: Deploy to GitHub Pages
       run: |
-        git config user.name "github-actions-bot"
-        git config user.email "support+actions@github.com"
-        npx gh-pages -d build -t true
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        npm run deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        force_orphan: true
