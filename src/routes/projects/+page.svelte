@@ -46,7 +46,7 @@
           <a href={`/projects/${p.slug}`} class="block">
             <Gallery>
               <div
-                class="sticky left-0 flex-shrink-0 max-w-[280px] h-full text-base bg-white shadow-[0_0_10px_3px_white]"
+                class="md:sticky left-0 flex-shrink-0 max-w-[280px] h-full text-base bg-white shadow-[0_0_10px_3px_white]"
               >
                 <div class="space-y-3 h-[350px] px-2">
                   <div class="grid grid-cols-[auto,1fr] text-left">
