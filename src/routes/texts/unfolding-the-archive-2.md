@@ -11,7 +11,7 @@ slug: unfolding-the-archive
 ![Preview 4](/media/unfolding_12.png)
 ![Preview 4](/media/unfolding_13.png)
 
-Continuation of the Unfolding the Archive project by The Nieuwe Instituut. The Calendar View displays temporal metadata that reveals work patterns and project dynamics within born-digital design archives.
+Continuation of the Unfolding the Archive project by The Nieuwe Instituut. The Calendar View displays temporal metadata that reveals work patterns and project dynamics within born-digital archives.
 
 
 <!-- [unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/) -->
