@@ -1,6 +1,11 @@
 <script>
+  import { onMount } from 'svelte';
+  
   export let data;
   const post = data.post;
+  
+  let contentDiv;
+  
   const formatDate = (s) => {
     if (!s) return "—";
     if (/^\d{4}(-\d{4})?$/.test(s)) return s;
@@ -13,6 +18,49 @@
           day: "numeric",
         }).format(d);
   };
+  
+  onMount(() => {
+    if (!contentDiv) return;
+    
+    // Find all gallery divs and add mouse movement
+    const galleryDivs = contentDiv.querySelectorAll('[data-gallery="start"]');
+    
+    galleryDivs.forEach((outer) => {
+      let mousemoveEnabled = true;
+      let programmaticScroll = false;
+      const margin = 30;
+      
+      function onMousemove(e) {
+        if (!mousemoveEnabled) return;
+        
+        const outerElWidth = outer.getBoundingClientRect().width;
+        const innerElWidth = outer.scrollWidth;
+        
+        if (innerElWidth <= outerElWidth) return;
+        
+        const outerRect = outer.getBoundingClientRect();
+        const x = e.clientX - outerRect.left;
+        const fraction = (x - margin) / (outerElWidth - margin * 2);
+        const diff = innerElWidth - outerElWidth;
+        
+        programmaticScroll = true;
+        outer.scrollTo({ left: diff * fraction, behavior: "instant" });
+        requestAnimationFrame(() => (programmaticScroll = false));
+      }
+      
+      function onMouseover() {
+        mousemoveEnabled = true;
+      }
+      
+      function onScroll() {
+        if (!programmaticScroll) mousemoveEnabled = false;
+      }
+      
+      outer.addEventListener('mousemove', onMousemove);
+      outer.addEventListener('mouseenter', onMouseover);
+      outer.addEventListener('scroll', onScroll);
+    });
+  });
 </script>
 
 <svelte:head>
@@ -40,8 +88,10 @@
           {post.title}
         </h1>
       </div>
-      <div class="w-full max-w-[840px] text-base sm:text-xl leading-[1.2em]">
-        <article class="content">{@html post.detailHtml}</article>
+      <div class="w-full  text-base sm:text-xl leading-[1.2em]">
+        <article class="content" bind:this={contentDiv}>
+          {@html post.detailHtml}
+        </article>
       </div>
     </div>
   </main>
@@ -51,18 +101,37 @@
 
 <style>
   @reference "tailwindcss";
+  
+  :global(.project .content [data-gallery="start"]) {
+    @apply overflow-x-auto scroll-smooth flex gap-4 py-4 my-4;
+    scrollbar-width: none;
+  }
+  
+  :global(.project .content [data-gallery="start"]::-webkit-scrollbar) {
+    display: none;
+  }
+  
+  :global(.project .content [data-gallery="start"] img) {
+    @apply rounded flex-shrink-0;
+    height: 400px;
+    width: auto;
+  }
+  
   :global(.project .content img) {
-    @apply block w-full h-auto rounded my-2;
+    @apply block w-full h-auto rounded;
     @apply mt-5 mb-4;
   }
+  
   :global(.project .content h1),
   :global(.project .content h2),
   :global(.project .content h3) {
-    @apply leading-[1.1] my-1;
+    @apply leading-[1.1] my-1 max-w-[840px];
   }
+  
   :global(.project .content p) {
-    @apply my-2;
+    @apply my-2 max-w-[840px];
   }
+  
   :global(.project .content a) {
     @apply underline;
   }

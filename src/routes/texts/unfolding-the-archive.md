@@ -8,10 +8,10 @@ slug: unfolding-the-archive
 
 
 ![Preview 1](/media/unfolding_0.gif)
-![Preview 1](/media/unfolding_1.webp)
 ![Preview 2](/media/unfolding_4.webp)
+![Preview 1](/media/unfolding_1.png)
+<!-- ![Preview 4](/media/unfolding_5.webp) -->
 ![Preview 3](/media/unfolding_2.webp)
-![Preview 4](/media/unfolding_5.webp)
 
 
 Exploring how affordances of born-digital design records could improve access to contemporary architecture collections in ways that are dynamic and networked, multimodal, and multivocal.
@@ -44,7 +44,7 @@ It proposes new conceptual approaches to access archives including CAD archival 
 
 On the most direct level it aims to stimulate users to engage with born digital collections on the level of relations and help them to identify research questions prior to requesting files. It also hopes for creating new insights that would otherwise only be available to researchers with highly technical knowledge or significant funding and through that contribute to democratisation of research with born digital architecture collections, making them more multivocal.
 
-![Preview 2](/media/unfolding_2.webp)
+![Preview 2](/media/unfolding_3.png)
 > A timeline displaying all the layer names within one CAD project.
 
 Drawing from the concept of generous interfaces, the three prototypes developed within this project aim to open ways for researchers to study the history of contemporary design practices and their social implications in ways that go beyond the structure of the catalogue. 
@@ -53,7 +53,8 @@ Through a multimodal approach, each prototype focuses on a distinct digital prop
 
 This first collection of prototypes allows to make the complexity, interconnectedness, non-linearity, and collaboration of the design process more visible and open for interpretation.
 
-![Preview 4](/media/unfolding_5.webp)
+![Preview 4](/media/unfolding_1.png)
+
 > An initial version of the calendar view, displaying project by their creation time of day (horizontal) and date.
 
 

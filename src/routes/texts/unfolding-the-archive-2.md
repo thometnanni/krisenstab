@@ -14,11 +14,13 @@ slug: unfolding-the-archive
 Continuation of the Unfolding the Archive project by The Nieuwe Instituut. The Calendar View displays temporal metadata that reveals work patterns and project dynamics within born-digital design archives.
 
 
-[unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/)
+<!-- [unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/) -->
 
 --- 
 
 This phase continues from the [three prototypes](https://krisenstab.net/projects/unfolding-the-archive/) previously developed as part of Unfolding the Archive project by The Nieuwe Instituut. Following a workshop held at the Nieuwe Instituut focussed on user testing and evaluation, the Calendar View was selected for deeper refinement and was further developed.
+
+[code](https://github.com/thometnanni/unfolding-the-archive-calendar)
 
 ![Preview 1](/media/unfolding_6.png)
 ![Preview 2](/media/unfolding_7.png)

@@ -52,6 +52,21 @@ const pickOgImageSrc = (html) => {
   return "";
 };
 
+const processGalleryBlocks = (html) => {
+  // Find <p> tags containing multiple <img> tags and wrap them in gallery divs
+  return html.replace(
+    /<p>(<img[^>]*>\s*)+<\/p>/gi,
+    (match) => {
+      const imgCount = (match.match(/<img/gi) || []).length;
+      // If there are 3 or more images, wrap in gallery div
+      if (imgCount >= 3) {
+        return `<div data-gallery="start">${match.slice(3, -4)}</div>`;
+      }
+      return match;
+    }
+  );
+};
+
 export async function entries() {
   const modules = import.meta.glob("/src/routes/texts/*.md", { eager: true });
   return Object.keys(modules).map((p) => ({
@@ -80,7 +95,8 @@ export async function load({ params }) {
       ? mod.default.render()
       : { html: "" };
   const html = rendered.html || "";
-  const { detailHtml } = splitHtml(html);
+  const { detailHtml: rawHtml } = splitHtml(html);
+  const detailHtml = processGalleryBlocks(rawHtml);
   const h1Raw =
     firstMatch(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
     mod?.metadata?.title ||
