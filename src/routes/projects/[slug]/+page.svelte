@@ -4,8 +4,6 @@
   export let data;
   const post = data.post;
   
-  let contentDiv;
-  
   const formatDate = (s) => {
     if (!s) return "—";
     if (/^\d{4}(-\d{4})?$/.test(s)) return s;
@@ -20,10 +18,8 @@
   };
   
   onMount(() => {
-    if (!contentDiv) return;
-    
     // Find all gallery divs and add mouse movement
-    const galleryDivs = contentDiv.querySelectorAll('[data-gallery="start"]');
+    const galleryDivs = document.querySelectorAll('[data-gallery="start"]');
     
     galleryDivs.forEach((outer) => {
       let mousemoveEnabled = true;
@@ -89,7 +85,7 @@
         </h1>
       </div>
       <div class="w-full  text-base sm:text-xl leading-[1.2em]">
-        <article class="content" bind:this={contentDiv}>
+        <article class="content">
           {@html post.detailHtml}
         </article>
       </div>

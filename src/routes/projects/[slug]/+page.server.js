@@ -55,12 +55,14 @@ const pickOgImageSrc = (html) => {
 const processGalleryBlocks = (html) => {
   // Find <p> tags containing multiple <img> tags and wrap them in gallery divs
   return html.replace(
-    /<p>(<img[^>]*>\s*)+<\/p>/gi,
+    /<p[^>]*>(<img[^>]*>\s*)+<\/p>/gi,
     (match) => {
       const imgCount = (match.match(/<img/gi) || []).length;
       // If there are 3 or more images, wrap in gallery div
       if (imgCount >= 3) {
-        return `<div data-gallery="start">${match.slice(3, -4)}</div>`;
+        const imagesMatch = match.match(/<img[^>]*>/gi);
+        const imagesHtml = imagesMatch ? imagesMatch.join(' ') : '';
+        return `<div data-gallery="start">${imagesHtml}</div>`;
       }
       return match;
     }
