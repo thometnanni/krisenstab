@@ -1,7 +1,9 @@
 we are a design studio working at the intersection of technology, journalism and culture.
 
-We're back in the office and up for new adventures!  
-[Let us know if you want to do project or have any other inquiries.](mailto:hi@thometnanni.net)
+We're currently exploring [sparse reconstructions](https://www.are.na/block/42704533) of videos in space.
 
-Happy new year,  
+[Feel free to contact us for any inquiries.](mailto:hi@thometnanni.net)
+
+
+Best,  
 Giacomo & Fidel
