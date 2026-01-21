@@ -17,7 +17,7 @@
   };
   
   onMount(() => {
-    setupProjectImageLoading();
+    c();
   });
   
   function setupProjectImageLoading() {
