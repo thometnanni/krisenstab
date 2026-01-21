@@ -111,7 +111,9 @@
     @apply rounded flex-shrink-0;
     height: 400px;
     width: auto;
+    object-fit: contain;
   }
+  
   
   :global(.project .content img) {
     @apply block w-full h-auto rounded;
