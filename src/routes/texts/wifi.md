@@ -15,7 +15,7 @@ A series of experiments investigates the naming of WiFi networks from two perspe
 
 ## A series of experiments investigates the naming of WiFi networks from two perspectives.
 
-In «[Public WiFi](https://public-wifi.thometnanni.net/)», network names are scanned and juxtaposed with video recordings from the same locations. While predominantly encountering commercial and factory-setting network names, some appear to broadcast subliminal messages. 
+In «[Public WiFi](https://public-wifi.thometnanni.net/)», network names are scanned with a custom built wifi recorder and juxtaposed with video recordings from the same locations. While predominantly encountering commercial and factory-setting network names, some appear to broadcast subliminal messages. 
 
 ![wifi](/media/wifi1.png)
 ![wifi](/media/wifi2.png)
