@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import Gallery from "$lib/components/Gallery.svelte";
   export let data;
   const projects = data.projects || [];
@@ -14,6 +15,33 @@
           day: "numeric",
         }).format(d);
   };
+  
+  onMount(() => {
+    setupProjectImageLoading();
+  });
+  
+  function setupProjectImageLoading() {
+    const projectImages = document.querySelectorAll('[data-project-img]');
+    
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.add('img-loaded');
+          imageObserver.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px'
+    });
+    
+    projectImages.forEach((img) => {
+      img.dataset.src = img.src;
+      img.src = '';
+      imageObserver.observe(img);
+    });
+  }
 </script>
 
 <svelte:head>
@@ -74,6 +102,8 @@
                   <img
                     src={m}
                     alt=""
+                    data-project-img
+                    loading="lazy"
                     class="h-[350px] flex-shrink-0 rounded object-cover"
                   />
                 {/each}
@@ -89,6 +119,15 @@
 <style>
   :global(.p-container p) {
     margin-bottom: 1em;
+  }
+  
+  :global([data-project-img]) {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  :global([data-project-img].img-loaded) {
+    opacity: 1;
   }
 
   @reference "tailwindcss";
