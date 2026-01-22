@@ -5,7 +5,7 @@ date: 2024 - ongoing
 
 A tool for fact-checkers, investigative journalists, and OSINT practitioners to verify content, reconstruct events, and situate evidence.
 
-[vantage.thometnanni.net](https://vantage.thometnanni.net/)
+[vantage.krisenstab.net](https://vantage.krisenstab.net/)
 
 ![Vantage demo](/media/vantage.webp)
 ![Vantage demo](/media/vantage1.webp)

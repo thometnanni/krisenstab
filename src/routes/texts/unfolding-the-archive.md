@@ -16,7 +16,7 @@ slug: unfolding-the-archive
 
 Exploring how affordances of born-digital design records could improve access to contemporary architecture collections in ways that are dynamic and networked, multimodal, and multivocal.
 
-[unfolding-the-archive](https://unfolding-the-archive.thometnanni.net/)
+[unfolding-the-archive](https://unfolding-the-archive-prototypes.krisenstab.net)
 
 
 ---

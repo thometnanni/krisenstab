@@ -1,10 +1,12 @@
 ---
-title: Design Signals
+title: Design Signals, Chemichal Bonds
 date: 2025
 ---
 
 This installation looks at the transformation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation. 
-More at the [exhibition page](https://faber.ro/ro/proiecte/design-signals/).
+<!-- More at the [exhibition page](https://faber.ro/ro/proiecte/design-signals/). -->
+
+[design-signals](https://chemical-bonds.krisenstab.net/)
 
 ![Install 1](/media/faber_4.webp)
 ![Install 2](/media/faber_3.webp)
@@ -21,6 +23,8 @@ The resulting visualisations bring how industries shift across decades to life. 
 
 Each column traces a sector and maps the destinations of its exports, situating specific trajectories within broader industrial patterns.
 
-More at the [exhibition page](https://faber.ro/ro/proiecte/design-signals/).
+[design-signals](https://chemical-bonds.krisenstab.net/)
+
+<!-- More at the [exhibition page](https://faber.ro/ro/proiecte/design-signals/). -->
 
 <img src="/media/faber_4.webp" style="max-width:200px"/>
