@@ -1,5 +1,5 @@
 ---
-title: Design Signals, Chemichal Bonds
+title: Design Signals, Chemical Bonds
 date: 2025
 ---
 

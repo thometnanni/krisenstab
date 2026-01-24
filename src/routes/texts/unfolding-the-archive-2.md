@@ -1,8 +1,6 @@
 ---
 title: Unfolding the Archive – Calendar
 date: 2026
-urls:
-  - https://unfolding-the-archive.thometnanni.net/
 slug: unfolding-the-archive
 ---
 
