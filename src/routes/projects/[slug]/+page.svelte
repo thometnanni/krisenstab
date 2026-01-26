@@ -80,7 +80,7 @@
           class="text-[#777] text-base leading-[1em] [font-variant-numeric:tabular-nums]"
           >{formatDate(post.date)}</time
         >
-        <h1 class="text-black text-6xl leading-[.8em] max-w-[640px]">
+        <h1 class="text-black text-6xl leading-[1em] max-w-[640px]">
           {post.title}
         </h1>
       </div>
