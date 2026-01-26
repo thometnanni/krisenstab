@@ -29,7 +29,7 @@ For investigative journalists and fact-checkers, images and videos sourced from 
 
 Yet this persuasive visual material demands rigorous verification: do the time and place of the footage correspond to the claimed event? What is actually visible in the images? How do clips from different angles relate to each other?
 
-Only a few investigations go beyond geolocation (the precise determination of where the footage was recorded). However, projects such as _The Seizure of the Iuventa (Forensic Architecture, 2018)_ have demonstrated the journalistic potential of spatial reconstruction.  
+Vantage enables perspectival reconstruction by projecting images and videos onto 3D models of terrain and buildings, supporting the production of visual evidence.
 
 Until now, though, creating such reconstructions has been highly demanding, requiring advanced skills in specialist software (GIS, 3D modeling, video editing) and offering little opportunity for collaboration.
 
