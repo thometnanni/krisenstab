@@ -119,6 +119,10 @@
     @apply mt-5 mb-4;
   }
 
+  :global(.project .content p:has(> img:only-child):has(+ blockquote) > img) {
+    @apply mb-1;
+  }
+
   :global(.project .content h1),
   :global(.project .content h2),
   :global(.project .content h3) {
@@ -129,7 +133,24 @@
     @apply my-2 max-w-[840px];
   }
 
+  :global(.project .content p:has(> img:only-child)) {
+    @apply my-0 max-w-[840px];
+  }
+
   :global(.project .content a) {
     @apply underline;
+  }
+
+  :global(.project .content blockquote) {
+    @apply text-sm text-gray-500 max-w-[840px];
+    @apply my-3;
+  }
+
+  :global(.project .content blockquote p) {
+    @apply my-0 max-w-none;
+  }
+
+  :global(.project .content p:has(> img:only-child) + blockquote) {
+    @apply mt-0;
   }
 </style>
