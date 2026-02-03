@@ -1,1 +1,53 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@font-face {
+	font-family: 'Redaction';
+	src: url('/fonts/redaction/Redaction-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Redaction';
+	src: url('/fonts/redaction/Redaction-Italic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Redaction-50';
+	src: url('/fonts/redaction/Redaction_50-Italic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Redaction-50';
+	src: url('/fonts/redaction/Redaction_50-Italic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Martian-Mono';
+	src: url('/fonts/martian/MartianMono-Light.woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@theme {
+	--font-serif: 'Redaction', serif;
+	--font-mono: 'Martian-Mono', monospace;
+}
+
+:root {
+	--pp-min: calc(var(--spacing) * 2);
+	--pp-max: calc(var(--spacing) * 10);
+	--pp-val: calc(
+		var(--pp-min) + (var(--pp-max) - var(--pp-min)) * ((100vw - 320px) / (1200px - 320px))
+	);
+	--passepartout: clamp(var(--pp-min), var(--pp-val), var(--pp-max));
+
+	text-rendering: geometricPrecision;
+}
