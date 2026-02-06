@@ -30,9 +30,13 @@
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
-<div class="letter-wrapper" style:width="{wrapper.width}px" style:height="{wrapper.height}px">
+<div
+	class="letter-wrapper my-20"
+	style:width="{wrapper.width}px"
+	style:height="{wrapper.height}px"
+>
 	<article
-		class="letter prose prose-2xl p-8 font-mono"
+		class="letter prose prose-2xl p-4 font-mono shadow-sm"
 		style:transform="translate({(wrapper.width - width) / 2}px, {(wrapper.height - height) / 2}px)
 		scale({scale}) rotate({degrees}deg)"
 		style:width="{width}px"
@@ -70,7 +74,7 @@
 		}
 
 		&:global(.prose a) {
-			@apply font-normal;
+			@apply font-normal not-italic;
 		}
 
 		&:global(.prose blockquote p:first-of-type::before) {

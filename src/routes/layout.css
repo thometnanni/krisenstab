@@ -4,7 +4,7 @@
 @font-face {
 	font-family: 'Libre Baskerville';
 	src: url('/fonts/libre-baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
-	font-weight: 300 800;
+	font-weight: 400 700;
 	font-style: normal;
 }
 
@@ -12,7 +12,7 @@
 	font-family: 'Libre Baskerville';
 	src: url('/fonts/libre-baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf')
 		format('truetype');
-	font-weight: 300 800;
+	font-weight: 400 700;
 	font-style: italic;
 }
 
@@ -37,7 +37,24 @@
 	--passepartout: clamp(var(--pp-min), var(--pp-val), var(--pp-max));
 
 	text-rendering: geometricPrecision;
+	/* text-rendering: optimizeSpeed; */
+	-webkit-font-smoothing: antialiased;
 }
+
+a {
+	@apply italic;
+	text-decoration: underline dotted;
+	text-underline-offset: 0.2rem;
+	text-decoration-color: #ccc;
+}
+
+/* .prose a::before {
+	content: '«';
+}
+
+.prose a::after {
+	content: '»';
+} */
 
 ::selection {
 	@apply bg-black text-white;
