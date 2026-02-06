@@ -4,7 +4,7 @@
 	let { html, id, title, date, left, right, offset } = $props();
 </script>
 
-<article class="my-12 flex flex-col items-center gap-12">
+<article class="my-12 flex flex-col items-center gap-6">
 	<Cover {left} {right} {offset} />
 	<section class="mx-4 prose prose-xl mt-4 font-serif">
 		<h2>{title}</h2>
@@ -14,8 +14,8 @@
 
 <style>
 	@reference '../../routes/layout.css';
+
 	.prose h2 {
-		@apply text-5xl font-normal italic -ml-12;
-		/* font-family: 'Redaction-50', var(--font-serif); */
+		@apply m-auto text-center max-w-[640px] text-5xl leading-tight font-normal text-balance italic;
 	}
 </style>
