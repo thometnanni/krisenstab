@@ -1,8 +1,8 @@
 <script>
-	let { html, index = 0 } = $props();
+	let { html, isFirst = false, sticky = false } = $props();
 	import contact from '../assets/contact.js';
 
-	let degrees = $derived(index === 0 ? 5 : Math.random() * 160 - 80);
+	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
 
 	let width = 210 * 4;
 	let height = 297 * 4;
@@ -30,7 +30,13 @@
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
-<div class="letter-wrapper" style:width="{wrapper.width}px" style:height="{wrapper.height}px">
+<div
+	class="letter-wrapper"
+	class:sticky
+	style:top={sticky && '0%'}
+	style:width="{wrapper.width}px"
+	style:height="{wrapper.height}px"
+>
 	<article
 		class="letter prose prose-2xl p-8 font-mono"
 		style:transform="translate({(wrapper.width - width) / 2}px, {(wrapper.height - height) / 2}px)
