@@ -4,7 +4,7 @@
 @font-face {
 	font-family: 'Libre Baskerville';
 	src: url('/fonts/libre-baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
-	font-weight: 300 800;
+	font-weight: 400 700;
 	font-style: normal;
 }
 
@@ -12,7 +12,7 @@
 	font-family: 'Libre Baskerville';
 	src: url('/fonts/libre-baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf')
 		format('truetype');
-	font-weight: 300 800;
+	font-weight: 400 700;
 	font-style: italic;
 }
 
@@ -42,7 +42,10 @@
 }
 
 a {
+	@apply italic;
 	text-decoration: underline dotted;
+	text-underline-offset: 0.3rem;
+	text-decoration-color: var(--highlight);
 }
 
 ::selection {
