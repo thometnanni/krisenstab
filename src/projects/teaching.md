@@ -1,5 +1,5 @@
 ---
-title: Teaching at Weißensee Kunsthochschule
+title: Basic Web Design & Creative Coding
 date: 2023-2024
 offset: -70
 left:
@@ -10,14 +10,12 @@ left:
     padding: [1],
     bg: '#657fd4'
   }
-right: { src: 'media/teaching_2.png', alt: 'screenshot of a students page', srcset: '2.5x' }
+right:
+  {
+    src: 'media/teaching_image_effect.webp',
+    alt: 'image distortion effect applied to a photo',
+    srcset: '2x'
+  }
 ---
 
-We've been teaching at the summer and winter semester introducing [creative coding](https://observablehq.com/collection/@thometnanni/teaching-weissensee) and contemporary [web design](https://ornaments.thometnanni.net/) to students of the Weißensee Kunsthochschule in Berlin. Across weekly sessions we covered p5.js, web fundamentals, publishing workflows, and the cultural history of the web through examples, timelines and references. Students developed small interactive prototypes and personal web pages which were published online at the end of the semester.
-
-<!-- ![teaching](/media/teaching_1.png)
-![teaching](/media/teaching_2.png)
-![teaching](/media/teaching_3.png)
-![teaching](/media/teaching_4.png)
-![teaching](/media/teaching_5.png)
- -->
+We've been invited by Weißensee Kunsthochschule Berlin to take over the [basic web design](https://ornaments.thometnanni.net/) and [creative coding](https://observablehq.com/collection/@thometnanni/teaching-weissensee) courses for one semester each. We introduced our students to HTML and CSS foundations and explored interactivity and image effects with p5.js.
