@@ -13,24 +13,6 @@ right:
   }
 ---
 
-Vantage is a web-based software for spatial reconstruction of photos and videos.  
-It enables the production of visual evidence through perspectival reconstruction of images and their projection onto 3D models of terrain and buildings.  
-Reconstructions can be exported as videos or interactive visualizations, supporting visual storytelling in investigative journalism.
+Footage sourced from social networks can become crucial working material for investigative journalists, OSINT investigators and human rights activists. Yet the high persuasive power videos have, demands rigorous verification: Do place and time of a recording actually match the described incident? What is actually shown in the imagery? And how do recordings from different angles relate to each other?
 
-[https://vantage.thometnanni.net/](https://vantage.thometnanni.net/)
-
-<!-- ![Vantage demo](/media/vantage.webp) -->
-
-For investigative journalists and fact-checkers, images and videos sourced from social media often represent a crucial working material — and, in conflict areas, sometimes the only available source.
-
-Yet this persuasive visual material demands rigorous verification: do the time and place of the footage correspond to the claimed event? What is actually visible in the images? How do clips from different angles relate to each other?
-
-Vantage enables perspectival reconstruction by projecting images and videos onto 3D models of terrain and buildings, supporting the production of visual evidence.
-
-Until now, though, creating such reconstructions has been highly demanding, requiring advanced skills in specialist software (GIS, 3D modeling, video editing) and offering little opportunity for collaboration.
-
-<!-- ![Vantage demo](https://images.are.na/eyJidWNrZXQiOiJhcmVuYV9pbWFnZXMiLCJrZXkiOiI0MjY0MzM4Ny9vcmlnaW5hbF9iYTI3NTk2NDA5NTE3MDA3YTVlNDI3YTMyNTc5MjIyNi5wbmciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDAsImhlaWdodCI6MTIwMCwiZml0IjoiaW5zaWRlIiwid2l0aG91dEVubGFyZ2VtZW50Ijp0cnVlfSwid2VicCI6eyJxdWFsaXR5Ijo3NX0sImpwZWciOnsicXVhbGl0eSI6NzV9LCJyb3RhdGUiOm51bGx9fQ==?bc=0) -->
-
-Vantage supports this laborious but essential process by bringing all operational phases together in a unified, accessible web interface.
-
-The tool is designed for small investigative teams who previously lacked the resources or technical expertise to carry out complex spatial reconstructions.
+In [Vantage](https://vantage.thometnanni.net/) we pursue video and still image based spatial reconstruction to aid in answering these questions. Supported by the Prototype Fund we created a [platform](https://github.com/thometnanni/vantage) to reproject footage into 3D-environments and are currently [exploring a wider set of reconstruction techniques](https://github.com/search?q=topic%3Avantage+org%3Athometnanni&type=Repositories&s=updated&o=desc).
