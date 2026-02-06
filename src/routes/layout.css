@@ -46,3 +46,21 @@
 .prose {
 	@apply leading-tight text-black;
 }
+
+a {
+	@apply italic;
+	text-decoration: underline dotted;
+	text-underline-offset: 0.2rem;
+	text-decoration-color: #ccc;
+	cursor: pointer;
+}
+
+.letter {
+	a {
+		@apply not-italic;
+	}
+
+	.info a {
+		text-decoration: none;
+	}
+}
