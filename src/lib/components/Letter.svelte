@@ -32,7 +32,7 @@
 <svelte:window bind:innerWidth bind:innerHeight />
 <div class="letter-wrapper" style:width="{wrapper.width}px" style:height="{wrapper.height}px">
 	<article
-		class="letter prose prose-xl p-8 font-mono"
+		class="letter prose prose-2xl p-8 font-mono"
 		style:transform="translate({(wrapper.width - width) / 2}px, {(wrapper.height - height) / 2}px)
 		scale({scale}) rotate({degrees}deg)"
 		style:width="{width}px"
@@ -64,5 +64,17 @@
 		@apply bg-slate-50;
 		width: calc(210px * 4);
 		height: calc(297px * 4);
+
+		&:global(.prose blockquote) {
+			@apply prose-base border-0 pb-8 text-right text-base leading-tight font-normal not-italic;
+		}
+
+		&:global(.prose a) {
+			@apply font-normal;
+		}
+
+		&:global(.prose blockquote p:first-of-type::before) {
+			content: none;
+		}
 	}
 </style>
