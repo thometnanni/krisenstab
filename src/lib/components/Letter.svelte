@@ -1,5 +1,6 @@
 <script>
 	let { html, index = 0 } = $props();
+	import contact from '../assets/contact.js';
 
 	let degrees = $derived(index === 0 ? 5 : Math.random() * 160 - 80);
 
@@ -37,6 +38,22 @@
 		style:width="{width}px"
 		style:height="{height}px"
 	>
+		<section class="prose-base border-0 pb-8 text-right leading-6">
+			<p>
+				Krisenstab
+				<br />
+				Thomet & Nanni GbR
+				<br />
+				{atob(contact.street)}
+				<br />
+				{atob(contact.town)}
+			</p>
+			<p>
+				<a class="no-underline" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
+				<br />
+				{atob(contact.vat)}
+			</p>
+		</section>
 		{@html html}
 	</article>
 </div>
@@ -45,9 +62,6 @@
 	@reference '../../routes/layout.css';
 	.letter {
 		@apply bg-slate-50;
-
-		/* transform: scale(0.75) rotate(5deg); */
-
 		width: calc(210px * 4);
 		height: calc(297px * 4);
 
