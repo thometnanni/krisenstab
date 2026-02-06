@@ -30,7 +30,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper my-50"
+	class="letter-wrapper my-20"
 	style:width="{wrapper.width}px"
 	style:height="{wrapper.height}px"
 >
