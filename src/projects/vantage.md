@@ -1,6 +1,7 @@
 ---
 title: Vantage
 date: 2024 - ongoing
+sticky: true
 offset: 80
 left:
   { src: 'media/vantage-gall.webp', alt: 'vantage reconstruction of a photography by Petra Gall' }
