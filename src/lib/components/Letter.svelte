@@ -29,9 +29,13 @@
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
-<div class="letter-wrapper" style:width="{wrapper.width}px" style:height="{wrapper.height}px">
+<div
+	class="letter-wrapper my-50"
+	style:width="{wrapper.width}px"
+	style:height="{wrapper.height}px"
+>
 	<article
-		class="letter prose prose-2xl p-8 font-mono shadow-sm"
+		class="letter prose prose-2xl p-4 font-mono shadow-sm"
 		style:transform="translate({(wrapper.width - width) / 2}px, {(wrapper.height - height) / 2}px)
 		scale({scale}) rotate({degrees}deg)"
 		style:width="{width}px"

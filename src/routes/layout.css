@@ -37,6 +37,12 @@
 	--passepartout: clamp(var(--pp-min), var(--pp-val), var(--pp-max));
 
 	text-rendering: geometricPrecision;
+	/* text-rendering: optimizeSpeed; */
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	text-decoration: underline dotted;
 }
 
 ::selection {
