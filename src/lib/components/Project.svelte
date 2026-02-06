@@ -15,7 +15,7 @@
 <style>
 	@reference '../../routes/layout.css';
 	.prose h2 {
-		@apply text-5xl font-normal italic;
+		@apply text-5xl font-normal italic -ml-12;
 		/* font-family: 'Redaction-50', var(--font-serif); */
 	}
 </style>

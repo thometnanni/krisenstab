@@ -2,30 +2,17 @@
 @plugin '@tailwindcss/typography';
 
 @font-face {
-	font-family: 'Redaction';
-	src: url('/fonts/redaction/Redaction-Regular.woff2') format('woff2');
-	font-weight: normal;
+	font-family: 'Libre Baskerville';
+	src: url('/fonts/libre-baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+	font-weight: 300 800;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'Redaction';
-	src: url('/fonts/redaction/Redaction-Italic.woff2') format('woff2');
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Redaction-50';
-	src: url('/fonts/redaction/Redaction_50-Italic.woff2') format('woff2');
-	font-weight: normal;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Redaction-50';
-	src: url('/fonts/redaction/Redaction_50-Italic.woff2') format('woff2');
-	font-weight: normal;
+	font-family: 'Libre Baskerville';
+	src: url('/fonts/libre-baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf')
+		format('truetype');
+	font-weight: 300 800;
 	font-style: italic;
 }
 
@@ -37,7 +24,7 @@
 }
 
 @theme {
-	--font-serif: 'Redaction', serif;
+	--font-serif: 'Libre Baskerville', serif;
 	--font-mono: 'Martian-Mono', monospace;
 }
 
@@ -50,4 +37,12 @@
 	--passepartout: clamp(var(--pp-min), var(--pp-val), var(--pp-max));
 
 	text-rendering: geometricPrecision;
+}
+
+::selection {
+	@apply bg-black text-white;
+}
+
+.prose {
+	@apply leading-tight text-black;
 }
