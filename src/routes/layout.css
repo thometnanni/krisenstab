@@ -44,9 +44,17 @@
 a {
 	@apply italic;
 	text-decoration: underline dotted;
-	text-underline-offset: 0.3rem;
-	text-decoration-color: var(--highlight);
+	text-underline-offset: 0.2rem;
+	text-decoration-color: #ccc;
 }
+
+/* .prose a::before {
+	content: '«';
+}
+
+.prose a::after {
+	content: '»';
+} */
 
 ::selection {
 	@apply bg-black text-white;

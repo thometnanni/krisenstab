@@ -60,7 +60,7 @@
 		}
 
 		&:global(.prose a) {
-			@apply font-normal;
+			@apply font-normal not-italic;
 		}
 
 		&:global(.prose blockquote p:first-of-type::before) {
