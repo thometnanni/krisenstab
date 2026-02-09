@@ -4,7 +4,7 @@
 	let { html, id, title, date, left, right, offset } = $props();
 </script>
 
-<article class="flex flex-col items-center gap-8">
+<article class="project my-12 flex flex-col items-center gap-12">
 	<Cover {left} {right} {offset} />
 	<section class="description mt-4b mx-4 prose prose-2xl font-serif">
 		<h2>{title}</h2>
@@ -16,14 +16,10 @@
 	@reference '../../routes/layout.css';
 
 	.prose h2 {
-		@apply m-auto mb-5 max-w-[640px] text-center text-5xl leading-tight font-normal text-balance italic;
+		@apply -ml-12 text-5xl font-normal italic;
 	}
 
-	:global(.description p) {
-		@apply m-0 p-0;
-	}
-
-	:global(.description p:not(:first-child)) {
-		@apply indent-8;
+	:global(.project a) {
+		@apply link;
 	}
 </style>
