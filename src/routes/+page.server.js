@@ -23,10 +23,12 @@ async function parseModules(modules) {
 		Object.entries(modules).map(async ([path, resolver]) => {
 			const mod = await resolver();
 			const { html } = await render(mod.default);
+			const name = path.match(/([^/]+)\.md/)[1];
 			return {
 				html,
-				name: path.match(/([^/]+)\.md/)[1],
-				...mod.metadata
+				name,
+				...mod.metadata,
+				slug: mod.metadata?.slug ?? name
 			};
 		})
 	);
