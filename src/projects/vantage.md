@@ -15,7 +15,7 @@ right:
     src: 'media/vantage-gall.webp',
     alt: 'vantage reconstruction of a photography by Petra Gall',
     bg: '#8C8376',
-    padding: [.5, .5, 2, .5]
+    # padding: [.5, .5, 2, .5]
   }
 ---
 

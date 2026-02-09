@@ -8,7 +8,7 @@ left:
     src: 'media/cua-hero.webp',
     alt: 'china unofficial archive hero image',
     bg: '#721D77',
-    padding: [5, .5, .5, .5],
+    padding: [1, 3, 4, 1],
     srcset: '2x'
   }
 right: { src: 'media/cua-items.webp', alt: 'photo of collection items' }

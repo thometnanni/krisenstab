@@ -7,7 +7,7 @@ left:
   {
     src: '/media/faber.webp',
     alt: 'screen recording of the animated data visualisation',
-    bg: '#a589d3',
+    bg: '#fff9da',
     padding: [.5, .5, 3]
   }
 right: { src: '/media/chemical-bonds-exhibition-view.jpg', alt: 'exhibition view' }
