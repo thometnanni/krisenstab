@@ -38,7 +38,7 @@
 		style:width="{width}px"
 		style:height="{height}px"
 	>
-		<section class="prose-base border-0 pb-8 text-right leading-6">
+		<section class="info prose-base border-0 pb-8 text-right leading-6">
 			<p>
 				Krisenstab
 				<br />
@@ -49,7 +49,7 @@
 				{atob(contact.town)}
 			</p>
 			<p>
-				<a class="no-underline" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
+				<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
 				<br />
 				{atob(contact.vat)}
 			</p>
@@ -64,17 +64,9 @@
 		@apply bg-slate-50;
 		width: calc(210px * 4);
 		height: calc(297px * 4);
+	}
 
-		&:global(.prose blockquote) {
-			@apply prose-base border-0 pb-8 text-right text-base leading-tight font-normal not-italic;
-		}
-
-		&:global(.prose a) {
-			@apply font-normal;
-		}
-
-		&:global(.prose blockquote p:first-of-type::before) {
-			content: none;
-		}
+	:global(.letter a) {
+		@apply link not-italic;
 	}
 </style>
