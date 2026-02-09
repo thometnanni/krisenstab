@@ -103,4 +103,8 @@
 			content: none;
 		}
 	}
+
+	.letter-wrapper {
+		overflow: hidden;
+	}
 </style>

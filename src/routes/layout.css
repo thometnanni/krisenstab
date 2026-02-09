@@ -39,9 +39,6 @@
 	text-rendering: geometricPrecision;
 }
 
-body {
-	overflow-x: hidden;
-}
 
 ::selection {
 	@apply bg-black text-white;
