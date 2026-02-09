@@ -39,7 +39,7 @@
 		const rect = container.getBoundingClientRect();
 		const vh = window.innerHeight;
 
-		const travelled = (vh - rect.top) / (vh + rect.height);
+		const travelled = 1 - (vh - rect.top) / (vh + rect.height);
 
 		parallax = offsets.left + leftHeight > offsets.right + rightHeight ? travelled : -travelled;
 		if (travelled > 0 && travelled < 1) {
