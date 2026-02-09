@@ -4,9 +4,9 @@
 	let { html, id, title, date, left, right, offset } = $props();
 </script>
 
-<article class="project my-12 flex flex-col items-center gap-12">
+<article class="project my-12 flex flex-col items-center gap-4">
 	<Cover {left} {right} {offset} />
-	<section class="mx-4 prose prose-xl mt-4 font-serif">
+	<section class="mx-4 prose prose-xl font-serif">
 		<h2>{title}</h2>
 		<section>{@html html}</section>
 	</section>
