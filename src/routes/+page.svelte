@@ -11,6 +11,7 @@
 		<Project {...project} />
 	{/each}
 	{#each page.data.letters.filter((_, i) => i >= page.data.projects.length) as letter, i}
-		<Letter {...letter} sticky></Letter>
+		{@const bgColors = ['bg-emerald-50', 'bg-yellow-50', 'bg-fuchsia-50', 'bg-slate-50']}
+		<Letter {...letter} sticky class={bgColors[i % 4]}></Letter>
 	{/each}
 </main>

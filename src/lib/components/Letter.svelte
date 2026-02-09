@@ -1,5 +1,5 @@
 <script>
-	let { html, isFirst = false, sticky = false } = $props();
+	let { html, isFirst = false, sticky = false, class: className = 'bg-slate-50' } = $props();
 	import contact from '../assets/contact.js';
 
 	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
@@ -38,7 +38,7 @@
 	style:height="{wrapper.height}px"
 >
 	<article
-		class="letter prose prose-2xl p-8 font-mono"
+		class="letter prose prose-2xl p-8 font-mono {className}"
 		style:transform="translate({(wrapper.width - width) / 2}px, {(wrapper.height - height) / 2}px)
 		scale({scale}) rotate({degrees}deg)"
 		style:width="{width}px"
@@ -67,7 +67,6 @@
 <style>
 	@reference '../../routes/layout.css';
 	.letter {
-		@apply bg-slate-50;
 		width: calc(210px * 4);
 		height: calc(297px * 4);
 
