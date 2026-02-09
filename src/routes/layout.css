@@ -28,6 +28,14 @@
 	--font-mono: 'Martian-Mono', monospace;
 }
 
+@utility link {
+	@apply font-normal italic;
+	text-decoration: underline dotted;
+	text-underline-offset: 0.2rem;
+	text-decoration-color: #ccc;
+	cursor: pointer;
+}
+
 :root {
 	--pp-min: calc(var(--spacing) * 2);
 	--pp-max: calc(var(--spacing) * 10);
@@ -41,24 +49,6 @@
 
 ::selection {
 	@apply bg-black text-white;
-}
-
-a {
-	@apply font-normal italic;
-	text-decoration: underline dotted;
-	text-underline-offset: 0.2rem;
-	text-decoration-color: #ccc;
-	cursor: pointer;
-}
-
-.letter {
-	a {
-		@apply not-italic;
-	}
-
-	.info a {
-		text-decoration: none;
-	}
 }
 
 .prose {

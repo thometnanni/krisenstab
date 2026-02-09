@@ -49,7 +49,7 @@
 				{atob(contact.town)}
 			</p>
 			<p>
-				<a class="no-underline" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
+				<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
 				<br />
 				{atob(contact.vat)}
 			</p>
@@ -66,5 +66,7 @@
 		height: calc(297px * 4);
 	}
 
-	
+	:global(.letter a) {
+		@apply link not-italic;
+	}
 </style>
