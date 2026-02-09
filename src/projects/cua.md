@@ -14,4 +14,4 @@ left:
 right: { src: 'media/cua-items.webp', alt: 'photo of collection items' }
 ---
 
-The non-profit [digital archive for censored and suppressed Chinese history](https://minjian-danganguan.org/) is dedicated to making accessible the key documents, films, blogs, and publications of a movement of Chinese people seeking to reclaim their country's history. Krisenstab overhauled the websites technical infrastructure and visual identity to highlight the archives diversity and interconnectedness.
+The non-profit [digital archive for censored and suppressed Chinese history](https://minjian-danganguan.org/) is dedicated to making accessible the key documents, films, blogs, and publications of a movement of Chinese people seeking to reclaim their country's history. We overhauled the websites technical infrastructure and visual identity to highlight the archives diversity and interconnectedness.
