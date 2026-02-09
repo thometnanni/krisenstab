@@ -1,5 +1,12 @@
 <script>
-	let { html, isFirst = false, sticky = false, class: className = 'bg-slate-50', offsetX = '', offsetY = '' } = $props();
+	let {
+		html,
+		isFirst = false,
+		sticky = false,
+		class: className = 'bg-slate-50',
+		offsetX = '',
+		offsetY = ''
+	} = $props();
 	import contact from '../assets/contact.js';
 
 	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
@@ -39,13 +46,16 @@
 >
 	<article
 		class="letter prose prose-2xl p-8 font-mono {className}"
-		style:transform="{offsetX || offsetY
+		style:transform={offsetX || offsetY
 			? `translate(calc(${(wrapper.width - width) / 2}px + ${offsetX}), calc(${(wrapper.height - height) / 2}px + ${offsetY})) scale(${scale}) rotate(${degrees}deg)`
-			: `translate(${(wrapper.width - width) / 2}px, ${(wrapper.height - height) / 2}px) scale(${scale}) rotate(${degrees}deg)`}"
+			: `translate(${(wrapper.width - width) / 2}px, ${(wrapper.height - height) / 2}px) scale(${scale}) rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
 	>
 		<section class="prose-base border-0 pb-8 text-right leading-6">
+			<div class="flex justify-end">
+				<img src="/table.png" class="m-0! max-w-8 p-0! grayscale" alt="" />
+			</div>
 			<p>
 				Krisenstab
 				<br />
@@ -55,6 +65,7 @@
 				<br />
 				{atob(contact.town)}
 			</p>
+
 			<p>
 				<a class="no-underline" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
 				<br />
