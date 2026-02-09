@@ -6,7 +6,7 @@
 
 <article class="project my-12 flex flex-col items-center gap-12">
 	<Cover {left} {right} {offset} />
-	<section class="mx-4 prose prose-xl mt-4 font-serif">
+	<section class="description mt-4b mx-4 prose prose-2xl font-serif">
 		<h2>{title}</h2>
 		<section>{@html html}</section>
 	</section>
@@ -14,6 +14,7 @@
 
 <style>
 	@reference '../../routes/layout.css';
+
 	.prose h2 {
 		@apply -ml-12 text-5xl font-normal italic;
 	}
