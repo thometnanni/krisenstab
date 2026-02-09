@@ -1,13 +1,18 @@
 <script>
+	import { resolve } from '$app/paths';
 	import Cover from './Cover.svelte';
 
-	let { html, id, title, date, left, right, offset } = $props();
+	let { html, title, left, right, offset, href } = $props();
 </script>
 
 <article class="project my-12 flex flex-col items-center gap-5">
 	<Cover {left} {right} {offset} />
 	<section class="description mt-4b mx-4 prose prose-2xl font-serif">
-		<h2>{title}</h2>
+		{#if href}
+			<h2 class="flex items-center">{title}<a class="ml-1 text-xs" href={resolve(href)}>↗</a></h2>
+		{:else}
+			<h2>{title}</h2>
+		{/if}
 		<section>{@html html}</section>
 	</section>
 </article>
