@@ -3,14 +3,14 @@
 
 @font-face {
 	font-family: 'Libre Baskerville';
-	src: url('/fonts/libre-baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+	src: url('/fonts/baskervvol/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
 	font-weight: 300 800;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Libre Baskerville';
-	src: url('/fonts/libre-baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf')
+	src: url('/fonts/baskervvol/LibreBaskerville-Italic-VariableFont_wght.ttf')
 		format('truetype');
 	font-weight: 300 800;
 	font-style: italic;
