@@ -12,8 +12,6 @@
 	{/each}
 	{#each page.data.letters.filter((_, i) => i >= page.data.projects.length) as letter, i}
 		{@const bgColors = ['bg-emerald-50', 'bg-yellow-50', 'bg-fuchsia-50', 'bg-slate-50']}
-		{@const offsetX = `${Math.random() * 50 - 25}vw`}
-		{@const offsetY = `${Math.random() * 60 - 20}vh`}
-		<Letter {...letter} sticky class={bgColors[i % 4]} {offsetX} {offsetY}></Letter>
+		<Letter {...letter} sticky class={bgColors[i % 4]}></Letter>
 	{/each}
 </main>
