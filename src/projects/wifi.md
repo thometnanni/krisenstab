@@ -1,15 +1,15 @@
 ---
 title: Public WiFi / Not a Network
 date: 2022-2023
-offset: 50
+offset: 90
 left: { src: 'media/wifi1.png', alt: 'Still from Public WiFi', srcset: '3x' }
 right:
   {
     src: 'media/wifi4.png',
     alt: 'Photo of Not a Network',
-    bg: '#AA963E',
+    bg: 'rgb(251 240 144)',
     srcset: '3x',
-    padding: [1, 2, 2]
+    padding: [.5, .5, 1]
   }
 ---
 

@@ -2,13 +2,13 @@
 title: China Unofficial Archives
 date: 2025 - ongoing
 description: The non-profit digital archive for censored and suppressed Chinese history.
-offset: 40
+offset: 80
 left:
   {
     src: 'media/cua-hero.webp',
     alt: 'china unofficial archive hero image',
-    bg: '#bea588',
-    padding: [1, 3, 3, 1],
+    bg: '#721D77',
+    padding: [5, .5, .5, .5],
     srcset: '2x'
   }
 right: { src: 'media/cua-items.webp', alt: 'photo of collection items' }

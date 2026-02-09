@@ -4,13 +4,18 @@ date: 2024 - ongoing
 sticky: true
 offset: 80
 left:
-  { src: 'media/vantage-gall.webp', alt: 'vantage reconstruction of a photography by Petra Gall' }
+  {
+    src: 'media/vantage-loop.webp',
+    alt: 'vantage reconstruction of the 2001 Genova protests',
+    bg: '#000',
+    padding: [5, .5, .5, .5]
+  }
 right:
   {
-    src: 'media/vantage-genoa.webp',
-    alt: 'vantage reconstruction of a photography of the 2001 Genova protests',
-    bg: '#4d1a40',
-    padding: [1, 1.5]
+    src: 'media/vantage-gall.webp',
+    alt: 'vantage reconstruction of a photography by Petra Gall',
+    bg: '#8C8376',
+    padding: [.5, .5, 2, .5]
   }
 ---
 

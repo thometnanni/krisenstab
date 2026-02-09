@@ -5,12 +5,12 @@ description: Visualisation of Romania’s chemical industry from socialist-era s
 offset: -100
 left:
   {
-    src: '/media/faber_4.webp',
+    src: '/media/faber.webp',
     alt: 'screen recording of the animated data visualisation',
-    bg: '#5c4a75',
-    padding: [2, 2, 5]
+    bg: '#a589d3',
+    padding: [.5, .5, 3]
   }
 right: { src: '/media/chemical-bonds-exhibition-view.jpg', alt: 'exhibition view' }
 ---
 
-The third edition of the [Design Signals exhibition](https://linktr.ee/designsignals.faber) sets it focus on Romania’s chemical industry. We collaborated with Norbert Petrovici to create an [exhibit](https://chemical-bonds.krisenstab.net/) that visualises the sectors transformation from socialist-era specialization to post-2000 fragmentation.
+The third edition of the [Design Signals exhibition](https://linktr.ee/designsignals.faber) sets it focus on Romania’s chemical industry. We collaborated with Norbert Petrovici to create an [exhibit](https://chemical-bonds.krisenstab.net/) that visualises the sectors transformation from socialist-era specialization to post-1000 fragmentation.
