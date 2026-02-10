@@ -8,8 +8,12 @@ export async function load({ depends }) {
 	const projects = await parseModules(import.meta.glob('/src/projects/*.md', { eager: false }));
 	const letters = await parseModules(import.meta.glob('/src/letters/*.md', { eager: false }));
 
-	const sortedProjects = projects.toSorted((a, b) => (`${a.date}` < `${b.date}` ? 1 : -1));
-	const sortedLetters = letters.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1));
+	const sortedProjects = projects
+		.toSorted((a, b) => (`${a.date}` < `${b.date}` ? 1 : -1))
+		.toSorted(stickySort);
+	const sortedLetters = letters
+		.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1))
+		.toSorted(stickySort);
 
 	return { projects: sortedProjects, letters: sortedLetters };
 }
@@ -26,4 +30,9 @@ async function parseModules(modules) {
 			};
 		})
 	);
+}
+
+function stickySort(a, b) {
+	if (a.sticky === b.sticky) return 0;
+	return a.sticky ? -1 : 1;
 }

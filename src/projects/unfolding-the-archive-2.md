@@ -1,6 +1,7 @@
 ---
 title: Unfolding the Archive
-date: 2025-2026
+date: 2026
+sticky: true
 slug: unfolding-the-archive
 offset: -70
 left:
@@ -20,4 +21,4 @@ right:
   }
 ---
 
-Born-digital architecture archives present unique opportunities to study and interpret the intertwined relationship between built environment, digital cultures, and social change. In [Unfolding the Archive](https://unfolding-the-archive.thometnanni.net) Ania Molenda (Nieuwe Instituut) and Krisenstab teamed up to identify new ways to read and make accessible the project folders by architecture firm MVRDV. The visualisation is the continuation of one of [three prototypes](https://unfolding-the-archive-prototypes.krisenstab.net) we initially created to investigate file metadata, layers and geometries of architectural drawings.
+Born-digital architecture archives present unique opportunities to study and interpret the intertwined relationship between built environment, digital cultures, and social change. In [Unfolding the Archive](https://unfolding-the-archive.thometnanni.net), we teamed up with Ania Molenda (Nieuwe Instituut) to identify new ways to read and make accessible the project folders by architecture firm MVRDV. The visualisation is the continuation of one of [three prototypes](https://unfolding-the-archive-prototypes.krisenstab.net) we initially created to investigate file metadata, layers and geometries of architectural drawings.

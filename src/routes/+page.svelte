@@ -5,7 +5,7 @@
 	import Project from '$lib/components/Project.svelte';
 </script>
 
-<main class="flex flex-col items-center">
+<main class="flex flex-col items-center gap-20">
 	{#each page.data.projects as project, i}
 		<Letter {...page.data.letters[i]} isFirst={i === 0}></Letter>
 		<Project {...project} />

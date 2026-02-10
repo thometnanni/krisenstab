@@ -76,7 +76,7 @@
 			</p>
 
 			<p>
-				<a class="no-underline" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
+				<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
 				<br />
 				{atob(contact.vat)}
 			</p>
@@ -90,18 +90,10 @@
 	.letter {
 		width: calc(210px * 4);
 		height: calc(297px * 4);
+	}
 
-		&:global(.prose blockquote) {
-			@apply prose-base border-0 pb-8 text-right text-base leading-tight font-normal not-italic;
-		}
-
-		&:global(.prose a) {
-			@apply font-normal;
-		}
-
-		&:global(.prose blockquote p:first-of-type::before) {
-			content: none;
-		}
+	:global(.letter a) {
+		@apply link not-italic;
 	}
 
 	.letter-wrapper {
