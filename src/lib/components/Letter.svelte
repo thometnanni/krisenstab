@@ -10,7 +10,10 @@
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
 
-	let basicBBox = rotatedBBox(width, height, 5);
+	let basicBBox = {
+		width: rotatedBBox(width, height, 5).width,
+		height: Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
+	};
 	let scale = $derived(Math.min(1, innerWidth / basicBBox.width, innerHeight / basicBBox.height));
 
 	const bbox = $derived(rotatedBBox(width, height, degrees, scale));
