@@ -1,4 +1,5 @@
 <script>
+	import IntersectionRouter from '$lib/assets/IntersectionRouter.js';
 	let { html, isFirst = false, sticky = false, class: className = 'bg-slate-50' } = $props();
 	import contact from '../assets/contact.js';
 
@@ -54,6 +55,7 @@
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
 	style:height="{wrapper.height}px"
+	{@attach IntersectionRouter()}
 >
 	<article
 		class="letter prose prose-2xl p-8 font-mono {className}"
