@@ -1,10 +1,11 @@
 <script>
+	import IntersectionRouter from '$lib/assets/IntersectionRouter';
 	import Cover from './Cover.svelte';
 
-	let { html, id, title, date, left, right, offset } = $props();
+	let { html, id, title, date, left, right, offset, name } = $props();
 </script>
 
-<article class="project my-12 flex flex-col items-center gap-5">
+<article {@attach IntersectionRouter(name)} class="project my-12 flex flex-col items-center gap-5">
 	<Cover {left} {right} {offset} />
 	<section class="description mt-4b mx-4 prose prose-2xl font-serif">
 		<h2>{title}</h2>
