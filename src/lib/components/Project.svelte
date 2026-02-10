@@ -16,7 +16,7 @@
 	@reference '../../routes/layout.css';
 
 	.prose h2 {
-		@apply -ml-12 text-5xl font-normal italic;
+		@apply text-center text-5xl font-normal italic;
 	}
 
 	:global(.project a) {
