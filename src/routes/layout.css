@@ -47,6 +47,7 @@
 	text-rendering: geometricPrecision;
 }
 
+
 ::selection {
 	@apply bg-black text-white;
 }
