@@ -10,10 +10,10 @@ export async function load({ depends }) {
 
 	const sortedProjects = projects
 		.toSorted((a, b) => (`${a.date}` < `${b.date}` ? 1 : -1))
-		.toSorted(stickySort);
+		.toSorted(featuredSort);
 	const sortedLetters = letters
 		.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1))
-		.toSorted(stickySort);
+		.toSorted(featuredSort);
 
 	return { projects: sortedProjects, letters: sortedLetters };
 }
@@ -32,7 +32,7 @@ async function parseModules(modules) {
 	);
 }
 
-function stickySort(a, b) {
-	if (a.sticky === b.sticky) return 0;
-	return a.sticky ? -1 : 1;
+function featuredSort(a, b) {
+	if (a.featured === b.featured) return 0;
+	return a.featured ? -1 : 1;
 }

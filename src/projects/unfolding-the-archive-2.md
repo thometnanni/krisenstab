@@ -1,7 +1,7 @@
 ---
 title: Unfolding the Archive
 date: 2026
-sticky: true
+featured: true
 slug: unfolding-the-archive
 offset: -70
 left:
