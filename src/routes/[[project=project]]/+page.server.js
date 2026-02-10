@@ -3,8 +3,7 @@ import { render } from 'svelte/server';
 export const prerender = true;
 // export const csr = false;
 
-export async function load({ depends }) {
-	depends('src:projects');
+export async function load() {
 	const projects = await parseModules(import.meta.glob('/src/projects/*.md', { eager: false }));
 	const letters = await parseModules(import.meta.glob('/src/letters/*.md', { eager: false }));
 
