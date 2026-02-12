@@ -1,6 +1,8 @@
 ---
 title: Public WiFi / Not a Network
 date: 2022-2023
+description: Exploring wifi network names and poetic interventions.
+og: left
 offset: 70
 left: { src: 'media/wifi1.png', alt: 'Still from Public WiFi', srcset: '2x' }
 right:

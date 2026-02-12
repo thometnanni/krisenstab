@@ -1,9 +1,10 @@
 import { render } from 'svelte/server';
+import { getSeo } from '$lib/seo';
 
 export const prerender = true;
 // export const csr = false;
 
-export async function load() {
+export async function load({ params }) {
 	const projects = await parseModules(import.meta.glob('/src/projects/*.md', { eager: false }));
 	const letters = await parseModules(import.meta.glob('/src/letters/*.md', { eager: false }));
 
@@ -13,8 +14,9 @@ export async function load() {
 	const sortedLetters = letters
 		.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1))
 		.toSorted(featuredSort);
+	const project = sortedProjects.find(({ name }) => name === params.project);
 
-	return { projects: sortedProjects, letters: sortedLetters };
+	return { projects: sortedProjects, letters: sortedLetters, seo: getSeo(project) };
 }
 
 async function parseModules(modules) {
