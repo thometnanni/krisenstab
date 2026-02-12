@@ -5,7 +5,7 @@ description: The non-profit digital archive for censored and suppressed Chinese 
 offset: 40
 left:
   {
-    src: 'media/cua-hero.webp',
+    src: 'media/cua-hero.jpg',
     alt: 'china unofficial archive hero image',
     bg: '#bea588',
     padding: [1, 3, 3, 1],
