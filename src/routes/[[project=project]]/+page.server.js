@@ -1,7 +1,7 @@
 import { render } from 'svelte/server';
 import { getSeo } from '$lib/seo';
 
-export const prerender = true;
+// export const prerender = true;
 // export const csr = false;
 
 export async function load({ params }) {
