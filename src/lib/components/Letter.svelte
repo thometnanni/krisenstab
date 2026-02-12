@@ -1,15 +1,28 @@
 <script>
 	import IntersectionRouter from '$lib/assets/IntersectionRouter.js';
-	let { html, isFirst = false, sticky = false, class: className = 'bg-slate-50' } = $props();
+	let { html, index, sticky = false } = $props();
 	import contact from '../assets/contact.js';
 
-	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
+	let degrees = $derived(index === 0 ? 5 : Math.random() * 160 - 80);
 
 	let width = 210 * 4;
 	let height = 297 * 4;
 
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
+
+	const colors = [
+		'bg-[#EBF4F0]',
+		'bg-[#F5F6F7]',
+		'bg-[#EEF2F6]',
+		'bg-[#F8F1F9]',
+		'bg-[#F9F1F1]',
+		'bg-[#F1F7F9]',
+		'bg-[#F1F9F4]',
+		'bg-[#FBF9E4]'
+	];
+
+	let color = $derived(colors[index % colors.length]);
 
 	let basicBBox = {
 		width: rotatedBBox(width, height, 5).width,
@@ -53,7 +66,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper"
+	class="letter-wrapper -z-10 -mb-20"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -61,7 +74,7 @@
 	{@attach IntersectionRouter()}
 >
 	<article
-		class="letter prose prose-2xl p-8 font-mono {className}"
+		class="letter prose prose-2xl p-8 font-mono {color}"
 		style:transform={`translate(${offsetX}px, ${offsetY}px) scale(${scale})  rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
