@@ -2,6 +2,7 @@
 	import IntersectionRouter from '$lib/assets/IntersectionRouter.js';
 	let { html, index, sticky = false } = $props();
 	import contact from '../assets/contact.js';
+	import Table from './Table.svelte';
 
 	let degrees = $derived(index === 0 ? 5 : Math.random() * 160 - 80);
 
@@ -66,7 +67,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper -z-10 -mb-20"
+	class="letter-wrapper -mb-20"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -80,9 +81,7 @@
 		style:height="{height}px"
 	>
 		<section class="prose-base border-0 pb-8 text-right leading-6">
-			<div class="flex justify-end">
-				<img src="/table.png" class="m-0! max-w-8 p-0! grayscale" alt="" />
-			</div>
+			<Table {index} />
 			<p>
 				Krisenstab
 				<br />

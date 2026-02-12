@@ -5,7 +5,7 @@
 	let { html, id, title, date, left, right, offset, name } = $props();
 </script>
 
-<article {@attach IntersectionRouter(name)} class="project mb-40 flex flex-col items-center">
+<article {@attach IntersectionRouter(name)} class="project z-1 mb-40 flex flex-col items-center">
 	<Cover {left} {right} {offset} />
 	<section class="description mx-4 prose prose-2xl mt-16 font-serif">
 		<h2>{title}</h2>
