@@ -1,0 +1,11 @@
+services:
+  cua_web:
+    build: .
+    container_name: krisenstab
+    restart: always
+    ports:
+      - '4800:4800'
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
