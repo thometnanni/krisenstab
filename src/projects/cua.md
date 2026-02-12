@@ -2,6 +2,7 @@
 title: China Unofficial Archives
 date: 2025 - ongoing
 description: The non-profit digital archive for censored and suppressed Chinese history.
+og: right
 offset: 80
 right: { src: 'media/cua-hero.jpg', alt: 'china unofficial archive hero image', srcset: '1.7x' }
 left:

@@ -1,6 +1,8 @@
 ---
 title: Web Design & Creative Coding
 date: 2023-2024
+description: Courses in web design and creative coding at Weißensee Kunsthochschule Berlin.
+og: left
 offset: -70
 left:
   {
