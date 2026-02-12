@@ -2,6 +2,7 @@
 title: Chemical Trajectories
 date: 2025
 description: Visualisation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation.
+og: right
 offset: -80
 left:
   {
