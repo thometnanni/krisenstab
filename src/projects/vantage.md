@@ -8,9 +8,10 @@ left:
 right:
   {
     src: 'media/vantage-loop.webp',
-    alt: 'vantage reconstruction of a photography of the 2001 Genova protests',
+    alt: 'vantage reconstruction of photographies of the 2001 Genova protests',
     bg: '#4d1a40',
-    padding: [1, 1.5]
+    padding: [1, 1.5],
+    srcset: '1x'
   }
 ---
 
