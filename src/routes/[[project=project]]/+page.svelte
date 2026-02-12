@@ -8,16 +8,15 @@
 	const letters = $derived(page.data.letters.filter((_, i) => i >= projects.length));
 </script>
 
-<main class="flex flex-col items-center gap-20">
+<main class="flex flex-col items-center">
 	{#if project}
 		<Project {...project} />
 	{/if}
 	{#each projects as project, i}
-		<Letter {...page.data.letters[i]} isFirst={i === 0}></Letter>
+		<Letter {...page.data.letters[i]} index={i}></Letter>
 		<Project {...project} />
 	{/each}
 	{#each letters as letter, i}
-		{@const bgColors = ['bg-emerald-50', 'bg-yellow-50', 'bg-fuchsia-50', 'bg-slate-50']}
-		<Letter {...letter} sticky class={bgColors[i % 4]}></Letter>
+		<Letter {...letter} sticky index={i + projects.length}></Letter>
 	{/each}
 </main>
