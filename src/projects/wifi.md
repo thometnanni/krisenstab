@@ -5,7 +5,7 @@ offset: 50
 left: { src: 'media/wifi1.png', alt: 'Still from Public WiFi', srcset: '3x' }
 right:
   {
-    src: 'media/wifi4.png',
+    src: 'media/wifi4.webp',
     alt: 'Photo of Not a Network',
     bg: '#AA963E',
     srcset: '3x',

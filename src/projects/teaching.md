@@ -14,7 +14,7 @@ right:
   {
     src: 'media/teaching_image_effect.webp',
     alt: 'image distortion effect applied to a photo',
-    srcset: '2x'
+    srcset: '1.2x'
   }
 ---
 
