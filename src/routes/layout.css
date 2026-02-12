@@ -38,7 +38,7 @@
 
 :root {
 	--pp-min: calc(var(--spacing) * 2);
-	--pp-max: calc(var(--spacing) * 10);
+	--pp-max: calc(var(--spacing) * 8);
 	--pp-val: calc(
 		var(--pp-min) + (var(--pp-max) - var(--pp-min)) * ((100vw - 320px) / (1200px - 320px))
 	);
@@ -46,7 +46,6 @@
 
 	text-rendering: geometricPrecision;
 }
-
 
 ::selection {
 	@apply bg-black text-white;

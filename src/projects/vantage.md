@@ -2,15 +2,15 @@
 title: Vantage
 date: 2024 - ongoing
 featured: true
-offset: 80
+offset: 100
 left:
   { src: 'media/vantage-gall.webp', alt: 'vantage reconstruction of a photography by Petra Gall' }
 right:
   {
     src: 'media/vantage-loop.webp',
     alt: 'vantage reconstruction of photographies of the 2001 Genova protests',
-    bg: '#4d1a40',
-    padding: [1, 1.5],
+    bg: '#ccd4d2',
+    padding: [5, 1, 1, 1],
     srcset: '1x'
   }
 ---

@@ -1,5 +1,5 @@
 ---
-title: Basic Web Design & Creative Coding
+title: Web Design & Creative Coding
 date: 2023-2024
 offset: -70
 left:
@@ -18,4 +18,4 @@ right:
   }
 ---
 
-We've been invited by Weißensee Kunsthochschule Berlin to take over the [basic web design](https://ornaments.thometnanni.net/) and [creative coding](https://observablehq.com/collection/@thometnanni/teaching-weissensee) courses for one semester each. We introduced our students to HTML and CSS foundations and explored interactivity and image effects with p5.js.
+We've been invited by Weißensee Kunsthochschule Berlin to take over the [web design](https://ornaments.thometnanni.net/) and [creative coding](https://observablehq.com/collection/@thometnanni/teaching-weissensee) courses for one semester each. We introduced our students to HTML and CSS foundations and explored interactivity and image effects with p5.js.
