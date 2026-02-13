@@ -18,6 +18,8 @@
 </svelte:head>
 
 {#if page.status !== 404}
-	<h1>{page.status}</h1>
-	<p>{page.error?.message ?? 'An unexpected error occurred.'}</p>
+	<section class="p-10">
+		<h1>{page.status}</h1>
+		<p>{page.error?.message ?? 'An unexpected error occurred.'}</p>
+	</section>
 {/if}
