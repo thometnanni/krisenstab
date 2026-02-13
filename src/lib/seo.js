@@ -1,4 +1,6 @@
-const baseUrl = "https://krisenstab.net/";
+import { join } from 'node:path';
+
+const baseUrl = 'https://krisenstab.net/';
 
 const seoDefaults = {
 	name: 'krisenstab',
@@ -21,6 +23,6 @@ export function getSeo(project) {
 		name: seoDefaults.name,
 		title: project?.title ? `${project.title} | ${seoDefaults.name}` : seoDefaults.name,
 		description: project?.description || seoDefaults.description,
-		image: baseUrl + ogImage || seoDefaults.image
+		image: join(baseUrl, ogImage || seoDefaults.image)
 	};
 }
