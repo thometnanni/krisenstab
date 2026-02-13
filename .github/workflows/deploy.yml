@@ -1,0 +1,51 @@
+# .github/workflows/deploy.yml
+name: Deploy to Server
+
+on:
+  push:
+    # Runs on pushes to the default branch (usually main or master)
+    branches:
+      - '2026-main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ------------------------------------------------------------------
+      # 1️⃣ Checkout the repo (optional – you may not need the code locally)
+      # ------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---------------------------------------------------------------
+      # 2️⃣ Set up SSH keys so the runner can connect to your server
+      # ---------------------------------------------------------------
+      - name: Install SSH client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
+      - name: Add SSH private key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Optional: skip host key checking (useful for first‑time connections)
+          echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+      # ---------------------------------------------------------------
+      # 3️⃣ Run the remote deployment commands via SSH
+      # ---------------------------------------------------------------
+      - name: Deploy on remote server
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER }} # e.g. "root" or another user
+          SERVER_HOST: ${{ secrets.SERVER_HOST }} # e.g. "example.com" or IP address
+        run: |
+          ssh "${SERVER_USER}@${SERVER_HOST}" <<'EOF'
+            set -e               # abort on any error
+            cd /srv/krisenstab
+            git pull
+            podman compose down -v
+            podman compose up --build -d
+          EOF
