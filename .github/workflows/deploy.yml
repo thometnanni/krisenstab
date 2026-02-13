@@ -7,6 +7,10 @@ on:
     branches:
       - '2026-main'
 
+concurrency:
+  group: production-deploy # any unique string
+  cancel-in-progress: true # optional – cancels the older run if a new one starts
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
