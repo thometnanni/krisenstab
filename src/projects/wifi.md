@@ -15,6 +15,6 @@ right:
   }
 ---
 
-In [Public WiFi](https://public-wifi.krisenstab.net/), network names are scanned with a custom built wifi recorder and juxtaposed with video recordings from the same locations. While predominantly encountering commercial and factory-setting network names, some appear to broadcast subliminal messages.
+In [Public WiFi](https://public-wifi.krisenstab.net/), we scan network names with a custom built wifi recorder and juxtapose them with video footage from the same locations. While predominantly encountering commercial and factory-setting network names, some appear to broadcast subliminal messages.
 
-This observation is further explored in [Not a Network](https://not-a-network.krisenstab.net/), which features a custom WiFi network that gradually performs poetry by altering its own name. The artwork operates on a WiFi-enabled Arduino and is best experienced by scanning networks from one’s own device.
+We explore this further in [Not a Network](https://not-a-network.krisenstab.net/), an offline but visible WiFi network that gradually performs poetry by altering its own name. The artwork operates on a WiFi-enabled Arduino and is best experienced by scanning networks from one’s own device.

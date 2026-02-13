@@ -1,7 +1,7 @@
 ---
 title: Chemical Trajectories
 date: 2025
-description: Visualisation of Romania’s chemical industry from socialist-era specialization to post-2000 fragmentation.
+description: Visualisation of Romania’s chemical industry from socialist-era specialisation to post-2000 fragmentation.
 og: right
 offset: -80
 left:
@@ -14,4 +14,4 @@ left:
 right: { src: '/media/chemical-bonds-exhibition-view.jpg', alt: 'exhibition view' }
 ---
 
-The third edition of the [Design Signals exhibition](https://linktr.ee/designsignals.faber) sets it focus on Romania’s chemical industry. We collaborated with Norbert Petrovici to create an [exhibit](https://chemical-bonds.krisenstab.net/) that visualises the sectors transformation from socialist-era specialization to post-2000 fragmentation.
+The third edition of the [Design Signals exhibition](https://linktr.ee/designsignals.faber) sets it focus on Romania’s chemical industry. We collaborated with Norbert Petrovici to create an [exhibit](https://chemical-bonds.krisenstab.net/) that visualises the sectors transformation from socialist-era specialisation to post-2000 fragmentation.
