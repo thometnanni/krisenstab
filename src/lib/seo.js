@@ -1,6 +1,4 @@
-import { join } from 'node:path';
-
-const baseUrl = 'https://krisenstab.net/';
+const baseUrl = 'https://krisenstab.net';
 
 const seoDefaults = {
 	name: 'krisenstab',
