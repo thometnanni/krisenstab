@@ -23,6 +23,6 @@ export function getSeo(project) {
 		name: seoDefaults.name,
 		title: project?.title ? `${project.title} | ${seoDefaults.name}` : seoDefaults.name,
 		description: project?.description || seoDefaults.description,
-		image: join(baseUrl, ogImage || seoDefaults.image)
+		image: `${baseUrl}/${ogImage.replace(/^\//, '')}`
 	};
 }
