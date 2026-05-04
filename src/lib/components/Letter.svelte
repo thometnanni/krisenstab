@@ -4,13 +4,27 @@
 	import contact from '../assets/contact.js';
 	import Table from './Table.svelte';
 
-	let degrees = $derived(index === 0 ? 5 : Math.random() * 160 - 80);
+	function seeded(seed) {
+		const x = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+		return x - Math.floor(x);
+	}
+
+	let randomRotation = $derived(seeded((index + 1) * 1.13));
+	let randomOffsetX = $derived(seeded((index + 1) * 2.17));
+	let randomOffsetY = $derived(seeded((index + 1) * 3.29));
+
+	let degrees = $derived(index === 0 ? 5 : randomRotation * 160 - 80);
 
 	let width = 210 * 4;
 	let height = 297 * 4;
+	const FALLBACK_VIEWPORT_WIDTH = 1280;
+	const FALLBACK_VIEWPORT_HEIGHT = 800;
 
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
+
+	let effectiveInnerWidth = $derived(innerWidth || FALLBACK_VIEWPORT_WIDTH);
+	let effectiveInnerHeight = $derived(innerHeight || FALLBACK_VIEWPORT_HEIGHT);
 
 	const colors = [
 		'bg-[#EBF4F0]',
@@ -29,25 +43,27 @@
 		width: rotatedBBox(width, height, 5).width,
 		height: Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
 	};
-	let scale = $derived(Math.min(1, innerWidth / basicBBox.width, innerHeight / basicBBox.height));
+	let scale = $derived(
+		Math.min(1, effectiveInnerWidth / basicBBox.width, effectiveInnerHeight / basicBBox.height)
+	);
 
 	const bbox = $derived(rotatedBBox(width, height, degrees, scale));
 
 	const wrapper = $derived.by(() => {
 		return {
-			width: sticky ? innerWidth : Math.min(innerWidth, bbox.width),
-			height: sticky ? innerHeight : bbox.height
+			width: sticky ? effectiveInnerWidth : Math.min(effectiveInnerWidth, bbox.width),
+			height: sticky ? effectiveInnerHeight : bbox.height
 		};
 	});
 
 	let offsetX = $derived(
 		sticky
-			? (wrapper.width - width) * 0.5 + (wrapper.width - bbox.width) * (Math.random() - 0.5)
+			? (wrapper.width - width) * 0.5 + (wrapper.width - bbox.width) * (randomOffsetX - 0.5)
 			: (wrapper.width - width) * 0.5
 	);
 	let offsetY = $derived(
 		sticky
-			? (wrapper.height - height) * 0.5 + (wrapper.height - bbox.height) * (Math.random() - 0.5)
+			? (wrapper.height - height) * 0.5 + (wrapper.height - bbox.height) * (randomOffsetY - 0.5)
 			: (wrapper.height - height) * 0.5
 	);
 
