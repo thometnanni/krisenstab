@@ -24,7 +24,7 @@
 		@apply link cursor-pointer text-[0.9em] text-[#ae24ff] no-underline;
 
 		&::before {
-			content: '✳';
+			content: '\2733\FE0E';
 			padding-right: 1px;
 			font-size: 0.85em;
 			vertical-align: middle;
@@ -32,7 +32,7 @@
 		}
 
 		&::after {
-			content: '✳';
+			content: '\2733\FE0E';
 			padding-left: 1px;
 			font-size: 0.85em;
 			vertical-align: middle;
