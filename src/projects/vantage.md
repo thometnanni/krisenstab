@@ -15,7 +15,7 @@ right:
   {
     src: 'media/vantage.webm',
     alt: 'vantage reconstruction showing Perspectives on Brandenburger Tor',
-    bg: '#788297',
+    bg: '#838EA1',
     padding: [1, 1, 3, 1]
   }
 ---
