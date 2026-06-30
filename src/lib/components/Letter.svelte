@@ -4,7 +4,8 @@
 	import contact from '../assets/contact.js';
 	import Table from './Table.svelte';
 
-	let degrees = $derived(index === 0 ? 5 : Math.random() * 160 - 80);
+	let isFirst = $derived(index === 0);
+	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
 
 	let width = 210 * 4;
 	let height = 297 * 4;
@@ -93,7 +94,9 @@
 			</p>
 
 			<p>
-				<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
+				<span class="highlight">
+					<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
+				</span>
 				<br />
 				{atob(contact.vat)}
 			</p>

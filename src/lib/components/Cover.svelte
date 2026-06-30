@@ -10,6 +10,8 @@
 		const r = center + offset * 0.01 * Math.max(rightHeight, leftHeight) * 0.5;
 		return { left: Math.max(0, -r), right: Math.max(0, r) };
 	});
+
+	const isVideo = (src) => /\.(webm|mp4|mov)$/i.test(src ?? '');
 </script>
 
 {#if left && right}
@@ -21,7 +23,11 @@
 			style:background={left.bg}
 			style:padding={left.padding?.map((p) => `calc(${p} * var(--passepartout))`).join(' ')}
 		>
-			<img loading="lazy" srcset="{left.src} {left.srcset ?? '2x'}" alt={left.alt} />
+			{#if isVideo(left.src)}
+				<video src={left.src} autoplay muted loop playsinline></video>
+			{:else}
+				<img loading="lazy" srcset="{left.src} {left.srcset ?? '2x'}" alt={left.alt} />
+			{/if}
 		</div>
 		<div
 			bind:clientHeight={rightHeight}
@@ -30,7 +36,11 @@
 			style:background={right.bg}
 			style:padding={right.padding?.map((p) => `calc(${p} * var(--passepartout))`).join(' ')}
 		>
-			<img loading="lazy" srcset="{right.src} {right.srcset ?? '2x'}" alt={right.alt} />
+			{#if isVideo(right.src)}
+				<video src={right.src} autoplay muted loop playsinline></video>
+			{:else}
+				<img loading="lazy" srcset="{right.src} {right.srcset ?? '2x'}" alt={right.alt} />
+			{/if}
 		</div>
 	</section>
 {/if}

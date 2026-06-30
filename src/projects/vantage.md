@@ -4,16 +4,19 @@ date: 2024 - ongoing
 description: Reconstructing the spatial context of video recordings.
 og: left
 featured: true
-offset: 40
+offset: -55
 left:
-  { src: 'media/vantage-gall.webp', alt: 'vantage reconstruction of a photography by Petra Gall' }
+  {
+    src: 'media/vajont-1.webp',
+    alt: 'vantage reconstruction of the vajont disaster',
+    srcset: '1.8x'
+  }
 right:
   {
-    src: 'media/vantage-loop.webp',
-    alt: 'vantage reconstruction of photographies of the 2001 Genova protests',
-    bg: '#ccd4d2',
-    padding: [5, 1, 1, 1],
-    srcset: '1x'
+    src: 'media/vantage.webm',
+    alt: 'vantage reconstruction showing Perspectives on Brandenburger Tor',
+    bg: '#788297',
+    padding: [1, 1, 3, 1]
   }
 ---
 

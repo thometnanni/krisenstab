@@ -3,7 +3,7 @@ title: Unfolding the Archive
 date: 2026
 description: A research interface for reading born-digital architecture archives.
 og: right
-featured: true
+featured: false
 slug: unfolding-the-archive
 offset: -70
 left:

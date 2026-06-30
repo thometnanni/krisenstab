@@ -30,10 +30,24 @@
 
 @utility link {
 	@apply font-normal italic;
-	text-decoration: underline dotted;
+	/* text-decoration: underline dotted; */
 	text-underline-offset: 0.2rem;
-	text-decoration-color: #ccc;
+	/* text-decoration-color: #ae24ff; */
 	cursor: pointer;
+}
+
+@utility highlight {
+	padding-top: 0px;
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+	text-decoration-color: color-mix(
+		in oklab,
+		var(--color-amber-300) /* oklch(87.9% 0.169 91.605) */ 40%,
+		transparent
+	);
+	text-decoration-thickness: 14px;
+	text-underline-offset: -14px;
+	/* @apply -mx-1.5 -my-0.5 bg-amber-300/40 px-1.5 py-0.5 no-underline!; */
 }
 
 :root {
