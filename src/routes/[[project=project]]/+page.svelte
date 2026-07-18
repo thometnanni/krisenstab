@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import Letter from '$lib/components/Letter.svelte';
 	import Project from '$lib/components/Project.svelte';
@@ -7,6 +8,11 @@
 	const project = $derived(page.data.projects.find(({ name }) => name === page.params.project));
 	const projects = $derived(page.data.projects.filter(({ name }) => name !== page.params.project));
 	const letters = $derived(page.data.letters.filter((_, i) => i >= projects.length));
+
+	let ready = $state(false);
+	onMount(() => {
+		ready = true;
+	});
 </script>
 
 <svelte:head>
@@ -22,7 +28,7 @@
 	<meta name="twitter:image" content={seo.image} />
 </svelte:head>
 
-<main class="flex flex-col items-center">
+<main class="flex flex-col items-center" style:visibility={ready ? 'visible' : 'hidden'}>
 	{#if project}
 		<Project {...project} />
 	{/if}
