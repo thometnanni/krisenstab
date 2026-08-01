@@ -10,6 +10,6 @@ images:
   - src: "https://d2w9rnfcy7mm78.cloudfront.net/42975192/original_fddbc157feedf7b57848a73fedc7e370.png?1769382829?bc=0"
   - src: "https://d2w9rnfcy7mm78.cloudfront.net/47082066/original_eb83fd57f0b2f3cf74bb4eff24cc16a6.jpeg?1781635855?bc=0"
   - src: 'media/wifi1.png'
-  - src: 'media/wifi4.webp'
+  - src: 'https://giacomo.website/files/wifi5.png'
     
 ---
