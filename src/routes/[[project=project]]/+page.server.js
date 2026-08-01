@@ -10,9 +10,7 @@ export async function load({ params }) {
 
 	const tables = await getTables();
 
-	const sortedProjects = projects
-		.toSorted((a, b) => (`${a.date}` < `${b.date}` ? 1 : -1))
-		.toSorted(featuredSort);
+	const sortedProjects = projects.toSorted((a, b) => (a.order ?? 99) - (b.order ?? 99));
 	const sortedLetters = letters
 		.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1))
 		.toSorted(featuredSort);

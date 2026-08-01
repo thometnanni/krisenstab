@@ -24,8 +24,19 @@
 }
 
 @theme {
+	--font-sans: 'Helvetica', 'Inter', sans-serif;
 	--font-serif: 'Libre Baskerville', serif;
 	--font-mono: 'Martian-Mono', monospace;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings:
+		'kern' 1,
+		'liga' 1,
+		'calt' 1;
+	letter-spacing: 0;
 }
 
 @utility link {

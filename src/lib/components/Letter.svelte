@@ -30,21 +30,23 @@
 		width: rotatedBBox(width, height, 5).width,
 		height: Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
 	};
-	let scale = $derived(Math.min(1, innerWidth / basicBBox.width, innerHeight / basicBBox.height));
+	let scale = $derived(
+		Math.min(1, innerWidth / basicBBox.width, innerHeight / basicBBox.height) * 1.0
+	);
 
 	const bbox = $derived(rotatedBBox(width, height, degrees, scale));
 
 	const wrapper = $derived.by(() => {
 		return {
-			width: sticky ? innerWidth : Math.min(innerWidth, bbox.width),
+			width: innerWidth,
 			height: sticky ? innerHeight : bbox.height
 		};
 	});
 
 	let offsetX = $derived(
-		sticky
-			? (wrapper.width - width) * 0.5 + (wrapper.width - bbox.width) * (Math.random() - 0.5)
-			: (wrapper.width - width) * 0.5
+		isFirst
+			? (wrapper.width - width) * 0.5
+			: (wrapper.width - width) * 0.5 + (wrapper.width - bbox.width) * (Math.random() - 0.5)
 	);
 	let offsetY = $derived(
 		sticky
@@ -68,7 +70,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper -mb-20"
+	class="letter-wrapper z-100 -mb-20 pointer-events-none"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -76,12 +78,12 @@
 	{@attach IntersectionRouter()}
 >
 	<article
-		class="letter prose prose-2xl p-8 font-mono {color}"
+		class="letter prose prose-2xl p-8 font-mono shadow {color}"
 		style:transform={`translate(${offsetX}px, ${offsetY}px) scale(${scale})  rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
 	>
-		<section class="prose-base border-0 pb-8 text-right leading-6">
+		<section class="prose-base border-0 pb-8 text-right leading-6 pointer-events">
 			<Table {index} />
 			<p>
 				Krisenstab
@@ -118,5 +120,10 @@
 
 	.letter-wrapper {
 		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.letter {
+		pointer-events: auto;
 	}
 </style>
