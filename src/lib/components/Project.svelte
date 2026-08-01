@@ -31,6 +31,9 @@
 		let dragging = false;
 		let startX = 0;
 		let animId;
+		let visible = false;
+		const isMobile = () => window.matchMedia('(pointer: coarse)').matches;
+		let lastTime = 0;
 
 		const draw = () => {
 			const cx = ((x % -half) - half) % -half;
@@ -55,10 +58,19 @@
 		el.addEventListener('touchmove', (e) => { if (dragging) onDragMove(e.touches[0].clientX); }, { passive: true });
 		el.addEventListener('touchend', onDragEnd);
 
-		const tick = () => {
-			if (!dragging) { x -= 0.6; draw(); }
+		const tick = (time) => {
 			animId = requestAnimationFrame(tick);
+			if (!visible) return;
+			if (isMobile() && time - lastTime < 32) return; // ~30fps on mobile
+			lastTime = time;
+			if (!dragging) { x -= 0.6; draw(); }
 		};
+
+		const observer = new IntersectionObserver(
+			([e]) => { visible = e.isIntersecting; },
+			{ threshold: 0 }
+		);
+		observer.observe(el);
 
 		track.querySelectorAll('img').forEach((img) => {
 			if (!img.complete) img.addEventListener('load', measure, { once: true });
@@ -75,6 +87,7 @@
 			destroy() {
 				cancelAnimationFrame(animId);
 				window.removeEventListener('resize', measure);
+				observer.disconnect();
 			}
 		};
 	}
@@ -85,7 +98,7 @@
 		<div use:carousel class="carousel h-40 cursor-grab sm:h-60" role="region" aria-label={title}>
 			<div class="track flex h-full will-change-transform">
 				{#each repeated as img, i (i)}
-					<figure class="relative h-full shrink-0 select-none">
+					<figure class="relative h-full shrink-0 select-none will-change-transform">
 						{#if isVideo(img.src)}
 							<video class="block h-full w-auto" src={img.src} autoplay muted loop playsinline draggable="false"></video>
 						{:else}
