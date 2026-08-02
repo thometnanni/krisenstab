@@ -78,22 +78,45 @@
 			if (!dragging) return;
 			dragging = false;
 			velocity = Math.max(-20, Math.min(20, dragVelocity));
+			lastFrameTime = performance.now();
 			el.style.cursor = '';
 		};
+
+		let startTouchY = 0;
+		let touchLocked = null; // 'h' | 'v' | null
 
 		const onMouseDown = (e) => { onDragStart(e.clientX); el.style.cursor = 'grabbing'; };
 		const onMouseLeave = () => { if (dragging) onDragEnd(); };
 		const onMouseMove = (e) => { if (dragging) onDragMove(e.clientX); };
 		const onMouseUp = () => { if (dragging) onDragEnd(); };
-		const onTouchStart = (e) => onDragStart(e.touches[0].clientX);
-		const onTouchMove = (e) => { if (dragging) onDragMove(e.touches[0].clientX); };
+
+		const onTouchStart = (e) => {
+			const t = e.touches[0];
+			startTouchY = t.clientY;
+			touchLocked = null;
+			onDragStart(t.clientX);
+		};
+
+		const onTouchMove = (e) => {
+			if (!dragging) return;
+			const t = e.touches[0];
+			if (!touchLocked) {
+				const dx = Math.abs(t.clientX - prevClientX);
+				const dy = Math.abs(t.clientY - startTouchY);
+				if (dx < 4 && dy < 4) return;
+				touchLocked = dx >= dy ? 'h' : 'v';
+			}
+			if (touchLocked === 'v') { onDragEnd(); return; }
+			e.preventDefault();
+			onDragMove(t.clientX);
+		};
 
 		el.addEventListener('mousedown', onMouseDown);
 		el.addEventListener('mouseleave', onMouseLeave);
 		window.addEventListener('mousemove', onMouseMove);
 		window.addEventListener('mouseup', onMouseUp);
 		el.addEventListener('touchstart', onTouchStart, { passive: true });
-		el.addEventListener('touchmove', onTouchMove, { passive: true });
+		el.addEventListener('touchmove', onTouchMove, { passive: false });
 		el.addEventListener('touchend', onDragEnd);
 
 		const tick = (time) => {
