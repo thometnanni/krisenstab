@@ -39,6 +39,10 @@ body {
 	letter-spacing: 0;
 }
 
+img {
+	dynamic-range-limit: standard;
+}
+
 @utility link {
 	@apply font-normal italic;
 	/* text-decoration: underline dotted; */
