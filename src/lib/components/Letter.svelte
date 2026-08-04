@@ -70,7 +70,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper -mb-5"
+	class="letter-wrapper -mb-20"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"

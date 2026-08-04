@@ -6,7 +6,7 @@
 	const parseLinks = (text = '') =>
 		text.replace(
 			/\[([^\]]+)\]\(([^)]+)\)/g,
-			'<a href="$2" target="_blank" rel="noopener noreferrer">$1 <span aria-hidden="true" style="font-size:0.7em">↗</span></a>'
+			'<a href="$2" target="_blank" rel="noopener noreferrer">$1 <span aria-hidden="true" style="font-size:1.2em">↗</span></a>'
 		);
 
 	const extractLink = (text = '') => text.match(/\(([^)]+)\)/)?.[1] ?? null;
@@ -23,13 +23,7 @@
 	function carouselAction(el) {
 		const track = el.querySelector('.track');
 
-		// Geometry — recomputed on resize/load
-		let figs = [],
-			offsets = [],
-			half = 0,
-			mid = 0,
-			b = 0,
-			k = 0;
+		let figs = [], offsets = [], half = 0, mid = 0, b = 0, k = 0;
 
 		const measure = () => {
 			figs = Array.from(track.querySelectorAll('figure'));
@@ -37,19 +31,19 @@
 			offsets = figs.map((f) => f.offsetLeft + f.offsetWidth / 2);
 			half = track.scrollWidth / 2;
 			mid = el.offsetWidth / 2;
-			b = el.offsetHeight * 0.95;
+			b = el.offsetHeight * 1.5;
 			k = b / (mid * mid);
 		};
 
-		// Scroll state
 		let x = 0;
 		let velocity = AUTO_SPEED;
-		let hoverOffset = 0;
-		let hoverTarget = 0;
-		let hovering = false;
-		let enterFraction = 0.5;
-
-		// Animation state
+		let dragging = false;
+		let didDrag = false;
+		let dragStartClientX = 0;
+		let startX = 0;
+		let dragVelocity = 0;
+		let prevClientX = 0;
+		let prevDragTime = 0;
 		let animId;
 		let visible = false;
 		let lastFrameTime = performance.now();
@@ -58,7 +52,7 @@
 
 		const draw = () => {
 			if (!figs.length || !half) return;
-			const cx = (((x + hoverOffset) % -half) - half) % -half;
+			const cx = ((x % -half) - half) % -half;
 			track.style.transform = `translateX(${cx}px)`;
 			for (let i = 0; i < figs.length; i++) {
 				const raw = offsets[i] + cx - mid;
@@ -67,77 +61,88 @@
 			}
 		};
 
-		// On entry: normalize x to one image set (visually lossless, images repeat every iw).
-		// Mouse position becomes the pivot — no jump. Left → first image, right → last image.
-		const onMouseEnter = (e) => {
-			hovering = true;
-			if (half > 0) {
-				const iw = half / 3;
-				const cx = (((x + hoverOffset) % -half) - half) % -half;
-				x = Math.max(-(iw - el.offsetWidth), Math.min(0, cx % -iw));
-				hoverOffset = 0;
-				hoverTarget = 0;
-			}
-			enterFraction = toFraction(e.clientX);
+		const onDragStart = (clientX) => {
+			dragging = true;
+			didDrag = false;
+			dragStartClientX = clientX;
+			startX = clientX - x;
+			dragVelocity = 0;
+			prevClientX = clientX;
+			prevDragTime = performance.now();
 		};
 
-		const onMouseLeave = () => {
-			hovering = false;
-			x += hoverOffset;
-			hoverOffset = 0;
-			hoverTarget = 0;
+		const onDragMove = (clientX) => {
+			if (!dragging) return;
+			if (Math.abs(clientX - dragStartClientX) > 4) didDrag = true;
+			const now = performance.now();
+			const dt = now - prevDragTime;
+			if (dt > 0) dragVelocity = ((clientX - prevClientX) / dt) * 16.67;
+			prevClientX = clientX;
+			prevDragTime = now;
+			x = clientX - startX;
+			draw();
+		};
+
+		const onDragEnd = () => {
+			if (!dragging) return;
+			dragging = false;
+			velocity = Math.max(-20, Math.min(20, dragVelocity));
 			lastFrameTime = performance.now();
+			el.style.cursor = '';
 		};
 
-		const toFraction = (clientX) => {
-			const { left, width } = el.getBoundingClientRect();
-			return Math.max(0, Math.min(1, (clientX - left) / width));
+		let startTouchY = 0;
+		let touchLocked = null;
+
+		const onMouseDown = (e) => { onDragStart(e.clientX); el.style.cursor = 'grabbing'; };
+		const onMouseLeave = () => { if (dragging) onDragEnd(); };
+		const onMouseMove = (e) => { if (dragging) onDragMove(e.clientX); };
+		const onMouseUp = () => { if (dragging) onDragEnd(); };
+		const onClick = (e) => { if (didDrag) { e.preventDefault(); e.stopPropagation(); didDrag = false; } };
+
+		const onTouchStart = (e) => {
+			const t = e.touches[0];
+			startTouchY = t.clientY;
+			touchLocked = null;
+			onDragStart(t.clientX);
 		};
 
-		const onMouseMove = (e) => {
-			if (!hovering || !half) return;
-			const iw = half / 3;
-			const scrollRange = Math.max(0, iw - el.offsetWidth);
-			if (!scrollRange) return;
-			const fraction = toFraction(e.clientX);
-			const distBack = -x;
-			const distFwd = scrollRange + x;
-			hoverTarget =
-				fraction < enterFraction
-					? enterFraction > 0
-						? ((enterFraction - fraction) / enterFraction) * distBack
-						: 0
-					: enterFraction < 1
-						? (-(fraction - enterFraction) / (1 - enterFraction)) * distFwd
-						: 0;
+		const onTouchMove = (e) => {
+			if (!dragging) return;
+			const t = e.touches[0];
+			if (!touchLocked) {
+				const dx = Math.abs(t.clientX - prevClientX);
+				const dy = Math.abs(t.clientY - startTouchY);
+				if (dx < 4 && dy < 4) return;
+				touchLocked = dx >= dy ? 'h' : 'v';
+			}
+			if (touchLocked === 'v') { onDragEnd(); return; }
+			e.preventDefault();
+			onDragMove(t.clientX);
 		};
 
-		el.addEventListener('mouseenter', onMouseEnter);
+		el.addEventListener('mousedown', onMouseDown);
 		el.addEventListener('mouseleave', onMouseLeave);
 		window.addEventListener('mousemove', onMouseMove);
+		window.addEventListener('mouseup', onMouseUp);
+		el.addEventListener('click', onClick, true);
+		el.addEventListener('touchstart', onTouchStart, { passive: true });
+		el.addEventListener('touchmove', onTouchMove, { passive: false });
+		el.addEventListener('touchend', onDragEnd);
 
 		const tick = (time) => {
 			animId = requestAnimationFrame(tick);
-			if (!visible) return;
+			if (!visible || dragging) return;
 
 			const dt = time - lastFrameTime;
 			if (isMobile() && dt < 28) return;
 			lastFrameTime = time;
 
 			const frames = dt / 16.67;
-
-			const diff = hoverTarget - hoverOffset;
-			hoverOffset += diff * Math.min(1, 0.06 * frames);
-			if (Math.abs(diff) < 0.1) hoverOffset = hoverTarget;
-
-			if (hovering) {
-				draw();
-				return;
-			}
-
 			const decay = Math.pow(FRICTION, frames);
 			velocity = velocity * decay + AUTO_SPEED * (1 - decay);
 			if (Math.abs(velocity - AUTO_SPEED) < 0.001) velocity = AUTO_SPEED;
+
 			x += velocity * frames;
 			draw();
 		};
@@ -167,6 +172,8 @@
 				cancelAnimationFrame(animId);
 				window.removeEventListener('resize', measure);
 				window.removeEventListener('mousemove', onMouseMove);
+				window.removeEventListener('mouseup', onMouseUp);
+				el.removeEventListener('click', onClick, true);
 				observer.disconnect();
 			}
 		};
@@ -174,11 +181,11 @@
 </script>
 
 <div style="overflow-x: clip">
-	<div use:carouselAction class="my-10 h-60 sm:my-0 sm:h-120" role="region" aria-label={title}>
+	<div use:carouselAction class="h-60 cursor-grab sm:h-80" role="region" aria-label={title}>
 		<div class="track flex h-full will-change-transform">
 			{#each repeated as img, i (i)}
 				{#if img.gap}
-					<div class="h-full w-50 shrink-0" aria-hidden="true"></div>
+					<div class="h-full w-10 shrink-0" aria-hidden="true"></div>
 				{:else}
 					{@const link = img.link ?? extractLink(img.alt ?? '')}
 					{#snippet fig()}
@@ -206,7 +213,7 @@
 								/>
 							{/if}
 							{#if img.alt}
-								<figcaption class="mt-1 text-xs font-medium">
+								<figcaption class="mt-1 text-xs font-mono">
 									{@html parseLinks(img.alt)}
 								</figcaption>
 							{/if}
@@ -218,7 +225,7 @@
 							target="_blank"
 							rel="noopener noreferrer"
 							draggable="false"
-							class="block h-full shrink-0">{@render fig()}</a
+							class="block h-full">{@render fig()}</a
 						>
 					{:else}
 						{@render fig()}

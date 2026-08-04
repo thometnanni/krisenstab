@@ -21,6 +21,9 @@
 	]);
 	const letterIdx = (letter) => letterOrder.findIndex((l) => l.name === letter.name);
 
+	const allProjectLetters = $derived(projects.flatMap((p) => lettersFor(p.name)));
+	const lastProjectLetterName = $derived(allProjectLetters.at(-1)?.name);
+
 	let ready = $state(false);
 	onMount(() => {
 		ready = true;
@@ -53,7 +56,7 @@
 	{#each projects as proj}
 		<Project {...proj} />
 		{#each lettersFor(proj.name) as letter}
-			<Letter {...letter} index={letterIdx(letter)} />
+			<Letter {...letter} sticky={letter.name === lastProjectLetterName} index={letterIdx(letter)} />
 		{/each}
 	{/each}
 	{#each remainingLetters as letter}
