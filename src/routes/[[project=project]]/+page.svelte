@@ -7,7 +7,19 @@
 	const seo = $derived(page.data.seo);
 	const project = $derived(page.data.projects.find(({ name }) => name === page.params.project));
 	const projects = $derived(page.data.projects.filter(({ name }) => name !== page.params.project));
-	const letters = $derived(page.data.letters.filter((_, i) => i >= projects.length));
+
+	const allLetters = $derived(page.data.letters);
+	const featuredLetters = $derived(allLetters.filter((l) => l.featured));
+	const lettersFor = (projectName) => allLetters.filter((l) => !l.featured && l.project === projectName);
+	const remainingLetters = $derived(allLetters.filter((l) => !l.featured && !l.project));
+
+	const letterOrder = $derived([
+		...featuredLetters,
+		...(project ? lettersFor(project.name) : []),
+		...projects.flatMap((p) => lettersFor(p.name)),
+		...remainingLetters
+	]);
+	const letterIdx = (letter) => letterOrder.findIndex((l) => l.name === letter.name);
 
 	let ready = $state(false);
 	onMount(() => {
@@ -29,14 +41,22 @@
 </svelte:head>
 
 <main class="flex flex-col items-center" style:visibility={ready ? 'visible' : 'hidden'}>
+	{#each featuredLetters as letter}
+		<Letter {...letter} index={letterIdx(letter)} />
+	{/each}
 	{#if project}
 		<Project {...project} />
+		{#each lettersFor(project.name) as letter}
+			<Letter {...letter} index={letterIdx(letter)} />
+		{/each}
 	{/if}
-	{#each projects as project, i}
-		<Letter {...page.data.letters[i]} index={i}></Letter>
-		<Project {...project} />
+	{#each projects as proj}
+		<Project {...proj} />
+		{#each lettersFor(proj.name) as letter}
+			<Letter {...letter} index={letterIdx(letter)} />
+		{/each}
 	{/each}
-	{#each letters as letter, i}
-		<Letter {...letter} sticky index={i + projects.length}></Letter>
+	{#each remainingLetters as letter}
+		<Letter {...letter} sticky index={letterIdx(letter)} />
 	{/each}
 </main>

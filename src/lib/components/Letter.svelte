@@ -70,7 +70,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper z-100 -mb-20 pointer-events-none"
+	class="letter-wrapper -mb-5"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -120,10 +120,5 @@
 
 	.letter-wrapper {
 		overflow: hidden;
-		pointer-events: none;
-	}
-
-	.letter {
-		pointer-events: auto;
 	}
 </style>
