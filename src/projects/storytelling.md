@@ -14,11 +14,11 @@ images:
       - src: 'media/refa.webm'
         width: 550  
         alt: "[refareader](https://refareader.fh-potsdam.de/)"
-      - src: 'media/refa_1.png'
+      - src: 'media/refa_1.webp'
         width: 350  
   - group: wbpc
     items:
-      - src: 'media/wbpc-1.png'
+      - src: 'media/wbpc-1.webp'
         width: 250    
       - src: 'media/wbpc-0.webp'
         width: 550    
