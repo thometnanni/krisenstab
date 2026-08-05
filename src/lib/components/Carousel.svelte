@@ -181,7 +181,7 @@
 </script>
 
 <div style="overflow-x: clip">
-	<div use:carouselAction class="h-60 cursor-grab sm:h-80" role="region" aria-label={title}>
+	<div use:carouselAction class="h-40 cursor-grab sm:h-80" role="region" aria-label={title}>
 		<div class="track flex h-full will-change-transform">
 			{#each repeated as img, i (i)}
 				{#if img.gap}
