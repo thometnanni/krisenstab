@@ -31,7 +31,7 @@
 			offsets = figs.map((f) => f.offsetLeft + f.offsetWidth / 2);
 			half = track.scrollWidth / 2;
 			mid = el.offsetWidth / 2;
-			b = el.offsetHeight * 1.5;
+			b = el.offsetHeight * (isMobile() ? 0.9 : 1.5);
 			k = b / (mid * mid);
 		};
 
