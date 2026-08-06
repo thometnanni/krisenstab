@@ -4,7 +4,7 @@
 	let { title, description = '', images = [] } = $props();
 </script>
 
-<article class="project pb-10sm:py-0 w-full pt-0 pb-10">
+<article class="project sm:py-0 w-full">
 	<Carousel {images} {title} />
 	<div class=" mt-40 mb-20 flex flex-col items-center text-center font-serif italic sm:my-40">
 		<p class="text-2xl font-normal sm:mb-2 sm:text-3xl sm:leading-none">{title}</p>

@@ -199,7 +199,7 @@
 							{#if isVideo(img.src)}
 								<video
 									class="block h-auto max-h-full w-auto"
-									style="{img.width ? `max-width:${img.width}px;` : ''}{img.cropBottom ? `clip-path:inset(0 0 ${img.cropBottom}px 0)` : ''}"
+									style={img.width ? `max-width:${img.width}px` : ''}
 									src={img.src}
 									autoplay
 									muted
