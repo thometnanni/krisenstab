@@ -12,7 +12,8 @@ images:
   - group: Refa
     items:
       - src: 'media/refa.webm'
-        width: 550  
+        width: 550
+        cropBottom: 18
         alt: "[refareader](https://refareader.fh-potsdam.de/)"
       - src: 'media/refa_1.webp'
         width: 350  
