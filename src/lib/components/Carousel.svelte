@@ -46,6 +46,7 @@
 		let prevDragTime = 0;
 		let animId;
 		let visible = false;
+		let hovered = false;
 		let lastFrameTime = performance.now();
 
 		const isMobile = () => window.matchMedia('(pointer: coarse)').matches;
@@ -94,8 +95,9 @@
 		let startTouchY = 0;
 		let touchLocked = null;
 
+		const onMouseEnter = () => { hovered = true; };
 		const onMouseDown = (e) => { onDragStart(e.clientX); el.style.cursor = 'grabbing'; };
-		const onMouseLeave = () => { if (dragging) onDragEnd(); };
+		const onMouseLeave = () => { hovered = false; if (dragging) onDragEnd(); };
 		const onMouseMove = (e) => { if (dragging) onDragMove(e.clientX); };
 		const onMouseUp = () => { if (dragging) onDragEnd(); };
 		const onClick = (e) => { if (didDrag) { e.preventDefault(); e.stopPropagation(); didDrag = false; } };
@@ -121,6 +123,7 @@
 			onDragMove(t.clientX);
 		};
 
+		el.addEventListener('mouseenter', onMouseEnter);
 		el.addEventListener('mousedown', onMouseDown);
 		el.addEventListener('mouseleave', onMouseLeave);
 		window.addEventListener('mousemove', onMouseMove);
@@ -132,7 +135,7 @@
 
 		const tick = (time) => {
 			animId = requestAnimationFrame(tick);
-			if (!visible || dragging) return;
+			if (!visible || dragging || hovered) return;
 
 			const dt = time - lastFrameTime;
 			if (isMobile() && dt < 28) return;
@@ -173,6 +176,7 @@
 				window.removeEventListener('resize', measure);
 				window.removeEventListener('mousemove', onMouseMove);
 				window.removeEventListener('mouseup', onMouseUp);
+				el.removeEventListener('mouseenter', onMouseEnter);
 				el.removeEventListener('click', onClick, true);
 				observer.disconnect();
 			}
@@ -195,7 +199,7 @@
 							{#if isVideo(img.src)}
 								<video
 									class="block h-auto max-h-full w-auto"
-									style={img.width ? `max-width:${img.width}px` : ''}
+									style="{img.width ? `max-width:${img.width}px;` : ''}{img.cropBottom ? `clip-path:inset(0 0 ${img.cropBottom}px 0)` : ''}"
 									src={img.src}
 									autoplay
 									muted
