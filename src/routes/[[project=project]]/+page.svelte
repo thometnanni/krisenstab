@@ -10,8 +10,31 @@
 
 	const allLetters = $derived(page.data.letters);
 	const featuredLetters = $derived(allLetters.filter((l) => l.featured));
-	const lettersFor = (projectName) => allLetters.filter((l) => !l.featured && l.project === projectName);
-	const remainingLetters = $derived(allLetters.filter((l) => !l.featured && !l.project));
+	const unfeaturedLetters = $derived(allLetters.filter((l) => !l.featured));
+	const orderedProjects = $derived(project ? [project, ...projects] : projects);
+
+	// letters without an explicit `project` are assigned to the next project
+	// missing one, newest first, so removing metadata falls back to the old
+	// positional pairing instead of leaving a project without a letter.
+	const projectLetters = $derived.by(() => {
+		const map = {};
+		const pool = unfeaturedLetters.filter((l) => !l.project);
+		for (const p of orderedProjects) {
+			const explicit = unfeaturedLetters.filter((l) => l.project === p.name);
+			if (explicit.length) {
+				map[p.name] = explicit;
+			} else {
+				const letter = pool.shift();
+				map[p.name] = letter ? [letter] : [];
+			}
+		}
+		return map;
+	});
+	const lettersFor = (projectName) => projectLetters[projectName] ?? [];
+	const remainingLetters = $derived.by(() => {
+		const assigned = new Set(Object.values(projectLetters).flat().map((l) => l.name));
+		return unfeaturedLetters.filter((l) => !l.project && !assigned.has(l.name));
+	});
 
 	const letterOrder = $derived([
 		...featuredLetters,
