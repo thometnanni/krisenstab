@@ -70,7 +70,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper  { !isFirst ? 'sm:-mb-10 -mt-40' : 'sm:-mb-30' }"
+	class="letter-wrapper relative {!isFirst ? '-z-1' : ''}"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -78,7 +78,7 @@
 	{@attach IntersectionRouter()}
 >
 	<article
-		class="letter absolute -z-1 prose prose-2xl p-8 font-mono shadow {color}"
+		class="letter absolute prose prose-2xl p-8 font-mono shadow {color}"
 		style:transform={`translate(${offsetX}px, ${offsetY}px) scale(${scale})  rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
@@ -112,7 +112,7 @@
 	.letter {
 		width: calc(210px * 4);
 		height: calc(297px * 4);
-		z-index: -1;
+		/* z-index: -1; */
 	}
 
 	:global(.letter a) {

@@ -1,5 +1,5 @@
 <script>
-	let { images = [], title = '', reverse = false } = $props();
+	let { images = [], title = '', reverse = false, first = false } = $props();
 
 	const isVideo = (src) => /\.(webm|mp4|mov)$/i.test(src ?? '');
 
@@ -15,7 +15,7 @@
 	);
 	const repeated = $derived(Array.from({ length: 6 }, () => flat).flat());
 
-	const AUTO_SPEED = -1.6;
+	const AUTO_SPEED = -0.6;
 	const FRICTION = 0.88;
 
 	function carouselAction(el, initialReverse) {
@@ -30,7 +30,7 @@
 			offsets = figs.map((f) => f.offsetLeft + f.offsetWidth / 2);
 			half = track.scrollWidth / 2;
 			mid = el.offsetWidth / 2;
-			b = el.offsetHeight * (isMobile() ? 0.35 : 0.6);
+			b = el.offsetHeight * (isMobile() ? 0.25 : 0.6);
 			k = b / (mid * mid);
 		};
 
@@ -189,17 +189,17 @@
 	}
 </script>
 
-<div style="overflow-x: clip">
+<div style="overflow-x: clip events-none" >
 	<div
 		use:carouselAction={reverse}
-		class="h-52 cursor-grab sm:h-126"
+		class="h-62 cursor-grab sm:h-126 sm:-mb-50 {first ? 'sm:-mt-30' : 'sm:mt-20'}"
 		role="region"
 		aria-label={title}
 	>
 		<div class="track flex h-full will-change-transform">
 			{#each repeated as img, i (i)}
 				{#if img.gap}
-					<div class="h-full w-40 shrink-0" aria-hidden="true"></div>
+					<div class="h-full w-20 sm:w-40 shrink-0" aria-hidden="true"></div>
 				{:else}
 					<figure
 						class="track-fig relative flex h-full shrink-0 flex-col will-change-transform select-none"

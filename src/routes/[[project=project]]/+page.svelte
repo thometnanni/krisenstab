@@ -49,10 +49,10 @@
 		<Letter {...letter} index={letterIdx(letter)} />
 	{/each}
 	{#if project}
-		<Project {...project} index={topicIdx(project)} />
+		<Project {...project} index={topicIdx(project)} first />
 	{/if}
-	{#each projects as proj}
-		<Project {...proj} index={topicIdx(proj)} />
+	{#each projects as proj, i}
+		<Project {...proj} index={topicIdx(proj)} first={!project && i === 0} />
 	{/each}
 	{#each bottomLetters as letter}
 		<Letter {...letter} sticky index={letterIdx(letter)} />

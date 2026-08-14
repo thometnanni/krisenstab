@@ -15,7 +15,7 @@ images:
       - src: '/media/faber_4.webp'
         width: 300
       - src: '/media/chemical-bonds-exhibition-view.webp'
-        width: 800
+        width: 600
         alt: "[Chemical bonds](https://chemical-bonds.krisenstab.net/)"
       - src: 'media/faber_5.webp'
         width: 200
