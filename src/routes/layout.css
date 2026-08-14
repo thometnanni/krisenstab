@@ -29,8 +29,7 @@
 	--font-mono: 'Martian-Mono', monospace;
 }
 
-html,
-body {
+html {
 	overflow-x: hidden;
 	max-width: 100vw;
 }

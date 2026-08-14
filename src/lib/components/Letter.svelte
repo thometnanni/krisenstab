@@ -70,8 +70,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper relative {!isFirst ? '-z-1' : ''}"
-	class:sticky
+	class="letter-wrapper {sticky ? 'sticky' : 'relative'} {!isFirst ? '-z-1' : ''}"
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
 	style:height="{wrapper.height}px"
