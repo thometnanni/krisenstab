@@ -1,7 +1,6 @@
 ---
 title: Research & Development
 order: 3
-description: We build experimental tools and prototypes exploring spatial reconstruction, open-source intelligence and computer vision.
 images:
   - group: vantage
     items:

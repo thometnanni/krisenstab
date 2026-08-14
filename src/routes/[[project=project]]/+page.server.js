@@ -7,13 +7,17 @@ import { getSeo } from '$lib/seo';
 export async function load({ params }) {
 	const projects = await parseModules(import.meta.glob('/src/projects/*.md', { eager: false }));
 	const letters = await parseModules(import.meta.glob('/src/letters/*.md', { eager: false }));
+	const topics = await parseModules(import.meta.glob('/src/topics/*.md', { eager: false }));
 
 	const tables = await getTables();
 
-	const sortedProjects = projects.toSorted((a, b) => (a.order ?? 99) - (b.order ?? 99));
-	const sortedLetters = letters
-		.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1))
-		.toSorted(featuredSort);
+	// a topic is the curated letter shown in place of a project's plain
+	// title/description, matched to its project by filename
+	const topicByProjectName = Object.fromEntries(topics.map((t) => [t.name, t.html]));
+	const sortedProjects = projects
+		.toSorted((a, b) => (a.order ?? 99) - (b.order ?? 99))
+		.map((p) => ({ ...p, topic: topicByProjectName[p.name] }));
+	const sortedLetters = letters.toSorted((a, b) => (`${a.name}` < `${b.name}` ? 1 : -1));
 	const project = sortedProjects.find(({ name }) => name === params.project);
 
 	return { projects: sortedProjects, letters: sortedLetters, seo: getSeo(project), tables };
@@ -31,11 +35,6 @@ async function parseModules(modules) {
 			};
 		})
 	);
-}
-
-function featuredSort(a, b) {
-	if (a.featured === b.featured) return 0;
-	return a.featured ? -1 : 1;
 }
 
 async function getTables() {

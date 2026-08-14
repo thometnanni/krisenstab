@@ -10,42 +10,20 @@
 
 	const allLetters = $derived(page.data.letters);
 	const featuredLetters = $derived(allLetters.filter((l) => l.featured));
-	const unfeaturedLetters = $derived(allLetters.filter((l) => !l.featured));
+	// letters that aren't featured pile up at the bottom of the page; the
+	// per-project sections are handled by curated topics instead
+	const bottomLetters = $derived(allLetters.filter((l) => !l.featured));
 	const orderedProjects = $derived(project ? [project, ...projects] : projects);
 
-	// letters without an explicit `project` are assigned to the next project
-	// missing one, newest first, so removing metadata falls back to the old
-	// positional pairing instead of leaving a project without a letter.
-	const projectLetters = $derived.by(() => {
-		const map = {};
-		const pool = unfeaturedLetters.filter((l) => !l.project);
-		for (const p of orderedProjects) {
-			const explicit = unfeaturedLetters.filter((l) => l.project === p.name);
-			if (explicit.length) {
-				map[p.name] = explicit;
-			} else {
-				const letter = pool.shift();
-				map[p.name] = letter ? [letter] : [];
-			}
-		}
-		return map;
-	});
-	const lettersFor = (projectName) => projectLetters[projectName] ?? [];
-	const remainingLetters = $derived.by(() => {
-		const assigned = new Set(Object.values(projectLetters).flat().map((l) => l.name));
-		return unfeaturedLetters.filter((l) => !l.project && !assigned.has(l.name));
-	});
+	// topics are curated letters matched to a project by name, rendered in
+	// place of that project's plain title/description
+	const topicLetters = $derived(
+		orderedProjects.filter((p) => p.topic).map((p) => ({ name: `topic-${p.name}` }))
+	);
 
-	const letterOrder = $derived([
-		...featuredLetters,
-		...(project ? lettersFor(project.name) : []),
-		...projects.flatMap((p) => lettersFor(p.name)),
-		...remainingLetters
-	]);
+	const letterOrder = $derived([...featuredLetters, ...topicLetters, ...bottomLetters]);
 	const letterIdx = (letter) => letterOrder.findIndex((l) => l.name === letter.name);
-
-	const allProjectLetters = $derived(projects.flatMap((p) => lettersFor(p.name)));
-	const lastProjectLetterName = $derived(allProjectLetters.at(-1)?.name);
+	const topicIdx = (p) => letterIdx({ name: `topic-${p.name}` });
 
 	let ready = $state(false);
 	onMount(() => {
@@ -71,18 +49,12 @@
 		<Letter {...letter} index={letterIdx(letter)} />
 	{/each}
 	{#if project}
-		<Project {...project} />
-		{#each lettersFor(project.name) as letter}
-			<Letter {...letter} index={letterIdx(letter)} />
-		{/each}
+		<Project {...project} index={topicIdx(project)} />
 	{/if}
 	{#each projects as proj}
-		<Project {...proj} />
-		{#each lettersFor(proj.name) as letter}
-			<Letter {...letter} sticky={letter.name === lastProjectLetterName} index={letterIdx(letter)} />
-		{/each}
+		<Project {...proj} index={topicIdx(proj)} />
 	{/each}
-	{#each remainingLetters as letter}
+	{#each bottomLetters as letter}
 		<Letter {...letter} sticky index={letterIdx(letter)} />
 	{/each}
 </main>

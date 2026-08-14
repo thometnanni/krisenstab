@@ -1,5 +1,5 @@
 <script>
-	let { images = [], title = '' } = $props();
+	let { images = [], title = '', reverse = false } = $props();
 
 	const isVideo = (src) => /\.(webm|mp4|mov)$/i.test(src ?? '');
 
@@ -9,20 +9,19 @@
 			'<a href="$2" target="_blank" rel="noopener noreferrer">$1 <span aria-hidden="true" style="font-size:1.2em">↗</span></a>'
 		);
 
-	const extractLink = (text = '') => text.match(/\(([^)]+)\)/)?.[1] ?? null;
-
 	// Support grouped [{group, items}] or flat [{src}] formats
 	const flat = $derived(
 		images.flatMap((img) => (img.items ? [...img.items, { gap: true }] : [img]))
 	);
 	const repeated = $derived(Array.from({ length: 6 }, () => flat).flat());
 
-	const AUTO_SPEED = -0.6;
+	const AUTO_SPEED = -1.6;
 	const FRICTION = 0.88;
 
-	function carouselAction(el) {
+	function carouselAction(el, initialReverse) {
 		const track = el.querySelector('.track');
 
+		let dir = 1 //initialReverse ? 1 : -1;
 		let figs = [], offsets = [], half = 0, mid = 0, b = 0, k = 0;
 
 		const measure = () => {
@@ -31,7 +30,7 @@
 			offsets = figs.map((f) => f.offsetLeft + f.offsetWidth / 2);
 			half = track.scrollWidth / 2;
 			mid = el.offsetWidth / 2;
-			b = el.offsetHeight * (isMobile() ? 0.9 : 1.5);
+			b = el.offsetHeight * (isMobile() ? 0.35 : 0.6);
 			k = b / (mid * mid);
 		};
 
@@ -58,7 +57,7 @@
 			for (let i = 0; i < figs.length; i++) {
 				const raw = offsets[i] + cx - mid;
 				const dx = raw - Math.round(raw / half) * half;
-				figs[i].style.transform = `translateY(${Math.min(dx * dx * k, b)}px)`;
+				figs[i].style.transform = `translateY(${dir * Math.min(dx * dx * k, b)}px)`;
 			}
 		};
 
@@ -135,7 +134,10 @@
 
 		const tick = (time) => {
 			animId = requestAnimationFrame(tick);
-			if (!visible || dragging || hovered) return;
+			if (!visible || dragging || hovered) {
+				lastFrameTime = time;
+				return;
+			}
 
 			const dt = time - lastFrameTime;
 			if (isMobile() && dt < 28) return;
@@ -171,6 +173,9 @@
 		animId = requestAnimationFrame(tick);
 
 		return {
+			update(newReverse) {
+				dir = newReverse ? -1 : 1;
+			},
 			destroy() {
 				cancelAnimationFrame(animId);
 				window.removeEventListener('resize', measure);
@@ -185,57 +190,54 @@
 </script>
 
 <div style="overflow-x: clip">
-	<div use:carouselAction class="h-40 cursor-grab sm:h-80" role="region" aria-label={title}>
+	<div
+		use:carouselAction={reverse}
+		class="h-52 cursor-grab sm:h-126"
+		role="region"
+		aria-label={title}
+	>
 		<div class="track flex h-full will-change-transform">
 			{#each repeated as img, i (i)}
 				{#if img.gap}
-					<div class="h-full w-10 shrink-0" aria-hidden="true"></div>
+					<div class="h-full w-40 shrink-0" aria-hidden="true"></div>
 				{:else}
-					{@const link = img.link ?? extractLink(img.alt ?? '')}
-					{#snippet fig()}
-						<figure
-							class="relative flex h-full shrink-0 flex-col will-change-transform select-none"
-						>
-							{#if isVideo(img.src)}
-								<video
-									class="block h-auto max-h-full w-auto"
-									style={img.width ? `max-width:${img.width}px` : ''}
-									src={img.src}
-									autoplay
-									muted
-									loop
-									playsinline
-									draggable="false"
-								></video>
-							{:else}
-								<img
-									class="block h-auto max-h-full w-auto"
-									style={img.width ? `max-width:${img.width}px` : ''}
-									src={img.src}
-									alt={img.alt ?? ''}
-									draggable="false"
-								/>
-							{/if}
-							{#if img.alt}
-								<figcaption class="mt-1 text-xs font-mono">
-									{@html parseLinks(img.alt)}
-								</figcaption>
-							{/if}
-						</figure>
-					{/snippet}
-					{#if link}
-						<a
-							href={link}
-							target="_blank"
-							rel="noopener noreferrer"
-							draggable="false"
-							class="block h-full">{@render fig()}</a
-						>
-					{:else}
-						{@render fig()}
-					{/if}
+					<figure
+						class="track-fig relative flex h-full shrink-0 flex-col will-change-transform select-none"
+					>
+						{#if isVideo(img.src)}
+							<video
+								class="block h-auto max-h-full w-auto min-w-50 max-w-120"
+								style={img.width ? `max-width:${img.width}px` : ''}
+								src={img.src}
+								autoplay
+								muted
+								loop
+								playsinline
+								draggable="false"
+							></video>
+						{:else}
+							<img
+								class="block h-auto max-h-full w-auto min-w-50 max-w-120"
+								style={img.width ? `max-width:${img.width}px` : ''}
+								src={img.src}
+								alt={img.alt ?? ''}
+								draggable="false"
+							/>
+						{/if}
+						{#if img.alt}
+							<figcaption class="mt-1 text-xs font-mono">
+								{@html parseLinks(img.alt)}
+							</figcaption>
+						{/if}
+					</figure>
 				{/if}
 			{/each}
 		</div>
 	</div>
 </div>
+
+<style>
+	.track-fig + .track-fig {
+		margin-left: -5rem;
+	}
+</style>

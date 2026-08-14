@@ -1,7 +1,6 @@
 ---
 title: Knowledge Visualisation
 order: 2
-description: We design data visualisations and interactive installations for museums, galleries and public institutions.
 images:
   - group: amazonia
     items:

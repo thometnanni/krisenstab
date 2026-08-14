@@ -1,11 +1,11 @@
 <script>
 	import IntersectionRouter from '$lib/assets/IntersectionRouter.js';
-	let { html, index, sticky = false } = $props();
+	let { html, index, sticky = false, maxDegrees = 80, center = false } = $props();
 	import contact from '../assets/contact.js';
 	import Table from './Table.svelte';
 
 	let isFirst = $derived(index === 0);
-	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
+	let degrees = $derived(isFirst ? 5 : Math.random() * maxDegrees * 2 - maxDegrees);
 
 	let width = 210 * 4;
 	let height = 297 * 4;
@@ -44,7 +44,7 @@
 	});
 
 	let offsetX = $derived(
-		isFirst
+		isFirst || center
 			? (wrapper.width - width) * 0.5
 			: (wrapper.width - width) * 0.5 + (wrapper.width - bbox.width) * (Math.random() - 0.5)
 	);
@@ -70,7 +70,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper -mb-20"
+	class="letter-wrapper  { !isFirst ? 'sm:-mb-10 -mt-40' : 'sm:-mb-30' }"
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -78,12 +78,12 @@
 	{@attach IntersectionRouter()}
 >
 	<article
-		class="letter prose prose-2xl p-8 font-mono shadow {color}"
+		class="letter absolute -z-1 prose prose-2xl p-8 font-mono shadow {color}"
 		style:transform={`translate(${offsetX}px, ${offsetY}px) scale(${scale})  rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
 	>
-		<section class="prose-base border-0 pb-8 text-right leading-6 pointer-events">
+		<section class="pointer-events prose-base border-0 pb-8 text-right leading-6">
 			<Table {index} />
 			<p>
 				Krisenstab
@@ -112,10 +112,15 @@
 	.letter {
 		width: calc(210px * 4);
 		height: calc(297px * 4);
+		z-index: -1;
 	}
 
 	:global(.letter a) {
 		@apply link not-italic;
+	}
+
+	:global(.letter img) {
+		@apply max-w-60;
 	}
 
 	.letter-wrapper {

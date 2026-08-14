@@ -1,7 +1,6 @@
 ---
 title: Teaching & Workshops
 order: 5
-description: We teach design and creative coding, introducing students and practitioners to programming and interactivity through hands-on practice.
 images:
   - group: Weißensee Kunsthochschule
     items:
