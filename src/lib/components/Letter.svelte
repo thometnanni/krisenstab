@@ -114,6 +114,10 @@
 		/* z-index: -1; */
 	}
 
+	:global(.letter h3) {
+		@apply text-3xl leading-tight font-normal;
+	}
+
 	:global(.letter a) {
 		@apply link not-italic;
 	}

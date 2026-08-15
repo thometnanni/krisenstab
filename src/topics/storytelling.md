@@ -1,3 +1,4 @@
-Interactive Storytelling
+### We build narrative tools and interactive interfaces for cultural heritage, investigative journalism and open-source research with a focus on storytelling. 
 
-We build narrative tools and interactive interfaces for cultural heritage, investigative journalism and open-source research. 
+Best,   
+Giacomo & Fidel
