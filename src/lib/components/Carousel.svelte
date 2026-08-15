@@ -189,7 +189,7 @@
 	}
 </script>
 
-<div style="overflow-x: clip events-none" >
+<div class="overflow-x-clip">
 	<div
 		use:carouselAction={reverse}
 		class="h-62 cursor-grab sm:h-126 sm:-mb-40 {first ? 'sm:-mt-30' : '-mt-50'}"
