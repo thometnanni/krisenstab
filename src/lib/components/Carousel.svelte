@@ -192,7 +192,7 @@
 <div style="overflow-x: clip events-none" >
 	<div
 		use:carouselAction={reverse}
-		class="h-62 cursor-grab sm:h-126 sm:-mb-50 {first ? 'sm:-mt-30' : 'sm:mt-20'}"
+		class="h-62 cursor-grab sm:h-126 sm:-mb-40 {first ? 'sm:-mt-30' : '-mt-50'}"
 		role="region"
 		aria-label={title}
 	>
