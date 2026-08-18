@@ -3,11 +3,7 @@
 
 	const isVideo = (src) => /\.(webm|mp4|mov)$/i.test(src ?? '');
 
-	const parseLinks = (text = '') =>
-		text.replace(
-			/\[([^\]]+)\]\(([^)]+)\)/g,
-			'<a href="$2" target="_blank" rel="noopener noreferrer">$1 <span aria-hidden="true" style="font-size:1.2em">↗</span></a>'
-		);
+	const stripLinks = (text = '') => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
 	// Support grouped [{group, items}] or flat [{src}] formats
 	const flat = $derived(
@@ -16,6 +12,7 @@
 	const repeated = $derived(Array.from({ length: 6 }, () => flat).flat());
 
 	const AUTO_SPEED = -0.6;
+	const HOVER_SPEED = AUTO_SPEED * 0.25;
 	const FRICTION = 0.88;
 
 	function carouselAction(el, initialReverse) {
@@ -134,7 +131,7 @@
 
 		const tick = (time) => {
 			animId = requestAnimationFrame(tick);
-			if (!visible || dragging || hovered) {
+			if (!visible || dragging) {
 				lastFrameTime = time;
 				return;
 			}
@@ -145,8 +142,9 @@
 
 			const frames = dt / 16.67;
 			const decay = Math.pow(FRICTION, frames);
-			velocity = velocity * decay + AUTO_SPEED * (1 - decay);
-			if (Math.abs(velocity - AUTO_SPEED) < 0.001) velocity = AUTO_SPEED;
+			const target = hovered ? HOVER_SPEED : AUTO_SPEED;
+			velocity = velocity * decay + target * (1 - decay);
+			if (Math.abs(velocity - target) < 0.001) velocity = target;
 
 			x += velocity * frames;
 			draw();
@@ -199,7 +197,7 @@
 		<div class="track flex h-full will-change-transform">
 			{#each repeated as img, i (i)}
 				{#if img.gap}
-					<div class="h-full w-20 sm:w-40 shrink-0" aria-hidden="true"></div>
+					<div class="h-full w-3 sm:w-6 shrink-0" aria-hidden="true"></div>
 				{:else}
 					<figure
 						class="track-fig relative flex h-full shrink-0 flex-col will-change-transform select-none"
@@ -226,7 +224,7 @@
 						{/if}
 						{#if img.alt}
 							<figcaption class="mt-1 text-xs font-mono">
-								{@html parseLinks(img.alt)}
+								{stripLinks(img.alt)}
 							</figcaption>
 						{/if}
 					</figure>
@@ -235,9 +233,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.track-fig + .track-fig {
-		margin-left: -5rem;
-	}
-</style>
