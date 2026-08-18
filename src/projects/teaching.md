@@ -1,6 +1,6 @@
 ---
 title: Teaching & Workshops
-order: 2
+order: 3
 images:
   - group: Weißensee Kunsthochschule
     items:

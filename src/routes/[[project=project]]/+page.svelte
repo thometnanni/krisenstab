@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import Letter from '$lib/components/Letter.svelte';
 	import Project from '$lib/components/Project.svelte';
+	import ProjectList from '$lib/components/ProjectList.svelte';
 
 	const seo = $derived(page.data.seo);
 	const project = $derived(page.data.projects.find(({ name }) => name === page.params.project));
@@ -54,6 +55,7 @@
 	{#each projects as proj, i}
 		<Project {...proj} index={topicIdx(proj)} first={!project && i === 0} />
 	{/each}
+	<ProjectList />
 	{#each bottomLetters as letter}
 		<Letter {...letter} sticky index={letterIdx(letter)} />
 	{/each}

@@ -1,6 +1,6 @@
 ---
 title: Prototyping & R&D
-order: 3
+order: 2
 images:
   - group: vantage
     items:
