@@ -1,12 +1,11 @@
 ---
-title: Research & Development
+title: Prototyping & R&D
 order: 3
 images:
   - group: vantage
     items:
       - src: 'media/vantage_loop.webp'
       - src: 'media/vantage_2.webp'
-        alt: '[Vantage](https://vantage.krisenstab.net/)'
         width: 400
       - src: 'media/vantage_3.webp'
 
