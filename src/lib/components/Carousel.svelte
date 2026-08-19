@@ -11,7 +11,7 @@
 	);
 	const repeated = $derived(Array.from({ length: 6 }, () => flat).flat());
 
-	const AUTO_SPEED = -0.6;
+	const AUTO_SPEED = -1.3;
 	const HOVER_SPEED = AUTO_SPEED * 0.25;
 	const FRICTION = 0.88;
 
@@ -190,7 +190,7 @@
 <div class="overflow-x-clip">
 	<div
 		use:carouselAction={reverse}
-		class="h-62 cursor-grab sm:h-126 sm:-mb-40 {first ? 'sm:-mt-30' : '-mt-50'}"
+		class="h-62 cursor-grab sm:h-80 sm:-mb-40 {first ? 'sm:-mt-30' : '-mt-50'}"
 		role="region"
 		aria-label={title}
 	>
