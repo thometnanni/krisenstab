@@ -21,7 +21,7 @@ images:
   - group: unfolding
     items:
       - src: 'media/unfolding_1.webp'
-        width: 650
+        width: 450
       - src: 'media/unfolding_2.webp'
         width: 550
       - src: 'media/unfolding-prototypes-loop.webp'
@@ -30,7 +30,7 @@ images:
   - group: cua
     items:
       - src: 'media/cua_1.webp'
-        width: 600
+        width: 300
 
   - group: tor
     items:
