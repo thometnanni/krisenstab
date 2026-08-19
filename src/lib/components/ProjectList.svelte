@@ -5,7 +5,7 @@
 </script>
 
 {#if entries.length}
-	<section class="my-20 flex w-full max-w-[1080px] items-center flex-col px-8 font-mono text-sm">
+	<section class="my-40 flex w-full max-w-[1080px] items-center flex-col px-8 font-mono text-sm">
 		<h2 class="mb-4 text-xs">Recent Projects</h2>
 		<ul class="flex items-center font-normal flex-col gap-1">
 			{#each entries as { year, title, url } (url)}
