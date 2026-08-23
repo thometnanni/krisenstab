@@ -27,7 +27,7 @@
 			offsets = figs.map((f) => f.offsetLeft + f.offsetWidth / 2);
 			half = track.scrollWidth / 2;
 			mid = el.offsetWidth / 2;
-			b = el.offsetHeight * (isMobile() ? 0.4 : 0.9);
+			b = el.offsetHeight * (isMobile() ? 0.2 : 0.4);
 			k = b / (mid * mid);
 		};
 
@@ -190,7 +190,7 @@
 <div class="overflow-x-clip">
 	<div
 		use:carouselAction={reverse}
-		class="h-62 cursor-grab sm:h-80 sm:-mb-40 {first ? 'sm:-mt-30' : '-mt-50'}"
+		class="h-62 cursor-grab sm:h-120 sm:-mb-40 {first ? 'sm:-mt-30' : '-mt-50'}"
 		role="region"
 		aria-label={title}
 	>
@@ -200,7 +200,7 @@
 					<div class="h-full w-3 sm:w-6 shrink-0" aria-hidden="true"></div>
 				{:else}
 					<figure
-						class="track-fig relative flex h-full shrink-0 flex-col will-change-transform select-none"
+						class="track-fig relative flex h-full shrink-0 flex-col justify-center will-change-transform select-none"
 					>
 						{#if isVideo(img.src)}
 							<video
