@@ -5,15 +5,18 @@
 </script>
 
 {#if entries.length}
-	<section class="my-40 flex w-full max-w-[1080px] items-center flex-col px-8 font-mono text-sm">
+	<section class="my-40 flex w-full max-w-[1080px] flex-col items-center px-8 font-mono text-base">
 		<h2 class="mb-4 text-xs">Recent Projects</h2>
-		<ul class="flex items-center font-normal flex-col gap-1">
+		<ul class="flex flex-col items-center gap-2 font-normal">
 			{#each entries as { year, title, url } (url)}
-				<li class="flex gap-4">
-					<a href={url} target="_blank" rel="external noopener noreferrer" class="link not-italic truncate">
-						{title}
+				<li>
+					<a
+						href={url}
+						target="_blank"
+						rel="external noopener noreferrer"
+						class="link truncate not-italic underline"
+						>{title}{#if year},<span class="shrink-0 underline">{year}</span>{/if}
 					</a>
-					{#if year}<span class="shrink-0">{year}</span>{/if}
 				</li>
 			{/each}
 		</ul>
