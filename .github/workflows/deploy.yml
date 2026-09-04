@@ -49,7 +49,9 @@ jobs:
           ssh "${SERVER_USER}@${SERVER_HOST}" <<'EOF'
             set -e               # abort on any error
             cd /srv/krisenstab
-            git pull
+            git fetch origin
+            git reset --hard origin/2026-main
             podman compose down -v
-            podman compose up --build -d
+            podman compose build --no-cache
+            podman compose up -d --force-recreate
           EOF
