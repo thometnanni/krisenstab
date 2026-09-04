@@ -52,7 +52,6 @@ jobs:
             git fetch origin
             git reset --hard origin/2026-main
             podman compose down -v
-            podman rmi -f localhost/krisenstab_cua_web:latest || true
             podman compose build --no-cache
             podman compose up -d --force-recreate
           EOF
