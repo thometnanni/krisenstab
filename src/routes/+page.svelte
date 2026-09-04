@@ -17,7 +17,7 @@
 
 <div class="container">
 	<div class="intro">
-		<dither-dither class="dither" src="/cover.jpg" width="400"></dither-dither>
+		<dither-dither class="dither" src="/cover.jpg" width="350"></dither-dither>
 
 		<p>
 			We are a design studio working at the intersection of technology, journalism and culture.
