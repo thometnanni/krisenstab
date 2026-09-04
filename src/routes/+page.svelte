@@ -40,6 +40,8 @@
 		</p>
 	</div>
 
+    <br />
+
 	<div class="col">
 		<div class="item">
 			<a target="_blank" href="https://vantage.krisenstab.net/">Vantage</a><br />
