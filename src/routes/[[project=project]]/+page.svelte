@@ -1,62 +1,157 @@
 <script>
 	import { onMount } from 'svelte';
-	import { page } from '$app/state';
-	import Letter from '$lib/components/Letter.svelte';
-	import Project from '$lib/components/Project.svelte';
-	import ProjectList from '$lib/components/ProjectList.svelte';
 
-	const seo = $derived(page.data.seo);
-	const project = $derived(page.data.projects.find(({ name }) => name === page.params.project));
-	const projects = $derived(page.data.projects.filter(({ name }) => name !== page.params.project));
-
-	const allLetters = $derived(page.data.letters);
-	const featuredLetters = $derived(allLetters.filter((l) => l.featured));
-	// letters that aren't featured pile up at the bottom of the page; the
-	// per-project sections are handled by curated topics instead
-	const bottomLetters = $derived(allLetters.filter((l) => !l.featured));
-	const orderedProjects = $derived(project ? [project, ...projects] : projects);
-
-	// topics are curated letters matched to a project by name, rendered in
-	// place of that project's plain title/description
-	const topicLetters = $derived(
-		orderedProjects.filter((p) => p.topic).map((p) => ({ name: `topic-${p.name}` }))
-	);
-
-	const letterOrder = $derived([...featuredLetters, ...topicLetters, ...bottomLetters]);
-	const letterIdx = (letter) => letterOrder.findIndex((l) => l.name === letter.name);
-	const topicIdx = (p) => letterIdx({ name: `topic-${p.name}` });
-
-	let ready = $state(false);
 	onMount(() => {
-		ready = true;
+		import('dither-dither');
 	});
 </script>
 
 <svelte:head>
-	<title>{seo.title}</title>
-	<meta name="description" content={seo.description} />
-	<meta property="og:site_name" content={seo.name} />
-	<meta property="og:title" content={seo.title} />
-	<meta property="og:description" content={seo.description} />
-	<meta property="og:image" content={seo.image} />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={seo.title} />
-	<meta name="twitter:description" content={seo.description} />
-	<meta name="twitter:image" content={seo.image} />
+	<title>krisenstab</title>
+	<meta
+		name="description"
+		content="We are a design studio working at the intersection of technology, journalism and culture."
+	/>
 </svelte:head>
 
-<main class="flex flex-col items-center" style:visibility={ready ? 'visible' : 'hidden'}>
-	{#each featuredLetters as letter}
-		<Letter {...letter} index={letterIdx(letter)} />
-	{/each}
-	{#if project}
-		<Project {...project} index={topicIdx(project)} first />
-	{/if}
-	{#each projects as proj, i}
-		<Project {...proj} index={topicIdx(proj)} first={!project && i === 0} />
-	{/each}
-	<ProjectList />
-	{#each bottomLetters as letter}
-		<Letter {...letter} sticky index={letterIdx(letter)} />
-	{/each}
-</main>
+<div class="container">
+	<div class="intro">
+		<dither-dither class="dither" src="/cover.jpg" width="400"></dither-dither>
+
+		<p>
+			We are a design studio working at the intersection of technology, journalism and culture.
+			<br />
+			Our work specialises in creating hybrid interfaces for complex datasets, enabling new
+			forms of exploration and understanding.
+		</p>
+
+		<p>
+			Our work is <a href="https://github.com/thometnanni/krisenstab">open source</a> and we
+			document our <a href="https://www.are.na/krisenstab/">process</a> on a regular basis.
+			<br />
+
+			<a href="mailto:hi@krisenstab.net">Reach out</a> for collaborations, commissions, or
+			questions.
+		</p>
+
+		<p>
+			Best,<br />
+			Giacomo &amp; Fidel
+		</p>
+	</div>
+
+	<div class="col">
+		<div class="item">
+			<a target="_blank" href="https://vantage.krisenstab.net/">Vantage</a><br />
+			2026
+		</div>
+
+		<div class="item">
+			<a target="_blank" href="https://unfolding-the-archive.thometnanni.net/"
+				>Unfolding the Archive</a
+			><br />
+			2025
+		</div>
+
+		<div class="item">
+			<a target="_blank" href="http://china-unofficial-archives.org/"
+				>China Unofficial Archive</a
+			><br />
+			2025
+		</div>
+
+		<div class="item">
+			<a target="_blank" href="https://chemical-bonds.krisenstab.net/">Chemical Bonds</a><br />
+			2025
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="item">
+			<a target="_blank" href="https://www.are.na/krisenstab/">are.na</a>
+		</div>
+
+		<div class="item">
+			<a target="_blank" href="https://github.com/thometnanni/krisenstab">github</a>
+		</div>
+
+		<div class="item">
+			<a target="_blank" href="https://krisenstab.substack.com">substack</a>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="item">
+			<a href="mailto:hi@krisenstab.net">hi@krisenstab.net</a><br />
+			Emser Str. 68<br />
+			12051 Berlin<br />
+			VAT DE405805468
+		</div>
+	</div>
+</div>
+
+<style>
+	:global(body) {
+		padding: 14px;
+		margin: 0;
+		font-family: 'Times New Roman', serif;
+		font-size: 16px;
+	}
+
+	.intro {
+		max-width: 600px;
+	}
+
+	.dither {
+		display: block;
+		width: 100%;
+		margin-bottom: 18px;
+		image-rendering: pixelated;
+	}
+
+	.col {
+		display: block;
+		width: 240px;
+		float: left;
+		padding-top: 40px;
+		padding-right: 14px;
+	}
+
+	.item {
+		padding-bottom: 0.4em;
+	}
+
+	.item:last-child {
+		padding-bottom: 1.5em;
+	}
+
+	a {
+		text-decoration: none;
+		color: rgb(0, 0, 255);
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.container {
+			width: 100%;
+		}
+
+		.col {
+			width: 100%;
+			padding: 0;
+		}
+
+		.item:empty {
+			padding-bottom: 0;
+		}
+	}
+
+	@media only screen and (min-width: 600px) {
+		.container {
+			width: 1000px;
+		}
+	}
+</style>
