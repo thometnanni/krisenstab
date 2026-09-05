@@ -27,8 +27,9 @@
 		</p>
 
 		<p>
-			Our work is <a href="https://github.com/thometnanni">open source</a> and we
-			document our <a href="https://www.are.na/krisenstab/">process</a> on a regular basis.
+			Our work is <a href="https://github.com/thometnanni">open source</a> and we document our
+			<a href="https://www.are.na/krisenstab/">process</a>
+			on a regular basis.
 			<br />
 
 			<a href="mailto:hi@krisenstab.net">Reach out</a> for collaborations, commissions, or questions.
@@ -40,14 +41,20 @@
 		</p>
 	</div>
 
-    <br />
+	<br />
 
 	<div class="col">
 		<div class="item">
-			<a target="_blank" href="https://vantage.krisenstab.net/">Vantage</a><br />
+			Exhibiting at BIO29
+			<br />
 			2026
 		</div>
 
+		<div class="item">
+			Index of Contemporary Agriculture
+			<br />
+			2026
+		</div>
 		<div class="item">
 			<a target="_blank" href="https://unfolding-the-archive.thometnanni.net/"
 				>Unfolding the Archive</a
@@ -64,6 +71,14 @@
 		<div class="item">
 			<a target="_blank" href="https://chemical-bonds.krisenstab.net/">Chemical Bonds</a><br />
 			2025
+		</div>
+		<div class="item">
+			<a target="_blank" href="https://vantage.krisenstab.net/">Vantage</a><br />
+			2024-2026
+		</div>
+		<div class="item">
+			<a target="_blank" href="https://github.com/fidelthomet/dither-dither">dither-dither</a><br />
+			2024
 		</div>
 	</div>
 
@@ -99,7 +114,18 @@
 		font-size: 16px;
 	}
 
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
 	.intro {
+		display: block;
+		flex-basis: 100%;
+		width: 100%;
+	}
+
+	.intro > * {
 		max-width: 600px;
 	}
 
@@ -112,15 +138,18 @@
 	}
 
 	.col {
-		display: block;
-		width: 240px;
-		float: left;
+		flex: 0 0 220px;
 		padding-top: 40px;
 		padding-right: 14px;
 	}
 
+	.col:nth-of-type(3) {
+		flex-basis: 120px;
+	}
+
 	.item {
-		padding-bottom: 0.4em;
+		padding-bottom: 0.5em;
+		line-height: 1.1;
 	}
 
 	.item:last-child {
@@ -142,7 +171,7 @@
 		}
 
 		.col {
-			width: 100%;
+			flex-basis: 100%;
 			padding: 0;
 		}
 
