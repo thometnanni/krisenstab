@@ -27,7 +27,7 @@
 		</p>
 
 		<p>
-			Our work is <a href="https://github.com/thometnanni/krisenstab">open source</a> and we
+			Our work is <a href="https://github.com/thometnanni">open source</a> and we
 			document our <a href="https://www.are.na/krisenstab/">process</a> on a regular basis.
 			<br />
 
