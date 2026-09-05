@@ -22,7 +22,7 @@
 		<p>
 			We are a design studio working at the intersection of technology, journalism and culture.
 			<br />
-			Our work specialises in creating hybrid interfaces for complex datasets, enabling new forms of exploration
+			We specialise in creating hybrid interfaces for complex datasets, enabling new forms of exploration
 			and understanding.
 		</p>
 
