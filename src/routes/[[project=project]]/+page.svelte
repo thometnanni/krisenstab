@@ -6,7 +6,7 @@
 	const seo = $derived(page.data.seo);
 	const project = $derived(page.data.projects.find(({ name }) => name === page.params.project));
 	const projects = $derived(page.data.projects.filter(({ name }) => name !== page.params.project));
-	const letters = $derived(page.data.letters.filter((_, i) => i >= projects.length));
+	const letters = $derived(page.data.letters);
 </script>
 
 <svelte:head>
@@ -23,14 +23,9 @@
 </svelte:head>
 
 <main class="flex flex-col items-center">
-	{#if project}
-		<Project {...project} />
-	{/if}
-	{#each projects as project, i}
-		<Letter {...page.data.letters[i]} index={i}></Letter>
-		<Project {...project} />
-	{/each}
-	{#each letters as letter, i}
-		<Letter {...letter} sticky index={i + projects.length}></Letter>
-	{/each}
+	<div class="-mt-[32vh]">
+		{#each letters as letter, i (i)}
+			<Letter {...letter} sticky index={i} isLast={i === letters.length - 1}></Letter>
+		{/each}
+	</div>
 </main>

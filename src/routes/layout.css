@@ -2,9 +2,9 @@
 @plugin '@tailwindcss/typography';
 
 @font-face {
-	font-family: 'Libre Baskerville';
-	src: url('/fonts/libre-baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
-	font-weight: 300 800;
+	font-family: 'Areal';
+	src: url('/fonts/ABCArealSuperfamilyVariable.woff2') format('woff2-variations');
+	font-weight: 400 700;
 	font-style: normal;
 }
 
@@ -24,29 +24,40 @@
 }
 
 @theme {
-	--font-serif: 'Libre Baskerville', serif;
-	--font-mono: 'Martian-Mono', monospace;
+	--font-sans: 'Areal';
+	--color-dark: #0556b1;
+	--color-light: #ffc8f0;
+}
+
+@utility var-mono {
+	font-variation-settings: 'MONO' 100;
+}
+
+@utility var-half-mono {
+	font-variation-settings: 'MONO' 50;
 }
 
 @utility link {
-	@apply font-normal italic;
+	@apply font-normal text-inherit;
 	/* text-decoration: underline dotted; */
+	text-decoration: underline;
 	text-underline-offset: 0.2rem;
+	text-decoration-thickness: 0.1rem;
 	/* text-decoration-color: #ae24ff; */
 	cursor: pointer;
 }
 
 @utility highlight {
 	padding-top: 0px;
-	text-decoration: underline;
+	/* text-decoration: underline;
 	text-decoration-skip-ink: none;
 	text-decoration-color: color-mix(
 		in oklab,
-		var(--color-amber-300) /* oklch(87.9% 0.169 91.605) */ 40%,
+		var(--color-amber-300) 40%,
 		transparent
 	);
 	text-decoration-thickness: 14px;
-	text-underline-offset: -14px;
+	text-underline-offset: -14px; */
 	/* @apply -mx-1.5 -my-0.5 bg-amber-300/40 px-1.5 py-0.5 no-underline!; */
 }
 
@@ -67,4 +78,8 @@
 
 .prose {
 	@apply leading-tight text-black;
+}
+
+#sketch {
+	display: none;
 }

@@ -7,5 +7,130 @@
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
+		<canvas id="sketch"></canvas>
 	</body>
+	<script src="p5.min-2.js"></script>
+	<script>
+		const imageUrls = [
+			'chemical-bonds-exhibition-view.jpg',
+			'unfolding-prototypes-loop.webp',
+			'wbpc-0.webp',
+			'cua-items.webp',
+			'unfolding-the-archive-calendar-detail.webp',
+			'wifi1.png',
+			'teaching_image_effect.webp',
+			'vajont-1.webp',
+			'wifi4.webp'
+		];
+
+		let images;
+		let startTime;
+		let pillGraphics;
+		const CYCLE_DURATION = 5000;
+		const TRANSITION_DURATION = 2000;
+
+		function imageCover(img, x, y, w, h, alpha = 255) {
+			const imgAspect = img.width / img.height;
+			const containerAspect = w / h;
+
+			let scaledW, scaledH;
+
+			if (imgAspect > containerAspect) {
+				scaledH = h;
+				scaledW = h * imgAspect;
+			} else {
+				scaledW = w;
+				scaledH = w / imgAspect;
+			}
+
+			const offsetX = (w - scaledW) / 2;
+			const offsetY = (h - scaledH) / 2;
+
+			push();
+			translate(x, y);
+			rectMode(CORNER);
+			tint(255, alpha);
+			image(img, offsetX, offsetY, scaledW, scaledH);
+			pop();
+		}
+
+		function drawBlurryPillBackground(element, paddingX = 10, paddingY = 10, blur = 20) {
+			if (!element) return;
+			const r = element.getBoundingClientRect();
+			const x = r.left - paddingX;
+			const y = r.top - paddingY;
+			const w = r.width + paddingX * 2;
+			const h = r.height + paddingY * 2;
+			const radius = h / 2;
+
+			pillGraphics.clear();
+			pillGraphics.push();
+			if (
+				mouseX >= r.left &&
+				mouseX <= r.left + r.width &&
+				mouseY >= r.top &&
+				mouseY <= r.top + r.height
+			) {
+				pillGraphics.fill(0);
+			} else {
+				pillGraphics.fill(255);
+			}
+			pillGraphics.noStroke();
+			pillGraphics.rectMode(CORNER);
+			pillGraphics.rect(x, y, w, h, radius);
+			pillGraphics.pop();
+			pillGraphics.filter(BLUR, blur);
+
+			image(pillGraphics, 0, 0);
+		}
+
+		async function setup() {
+			createCanvas(innerWidth, innerHeight, P2D, document.querySelector('#sketch'));
+
+			images = await Promise.all(imageUrls.map((url) => loadImage(`media/${url}`)));
+			startTime = millis();
+
+			pillGraphics = createGraphics(innerWidth, innerHeight);
+		}
+
+		function draw() {
+			background(255);
+			const elapsed = millis() - startTime;
+			const cycleTime = elapsed % CYCLE_DURATION;
+
+			const currentIndex = (images.length + Math.floor(elapsed / CYCLE_DURATION)) % images.length;
+			const nextIndex = (currentIndex + 1) % images.length;
+
+			blendMode(MULTIPLY);
+
+			if (cycleTime < TRANSITION_DURATION) {
+				// Seconds 0-1: fade in next image
+				const fadeIn = (cycleTime / TRANSITION_DURATION) * 255;
+				imageCover(images[currentIndex], 0, 0, width, height, 255);
+				imageCover(images[nextIndex], 0, 0, width, height, fadeIn);
+				// blendMode(BLEND);
+				// filter(BLUR, (cycleTime / TRANSITION_DURATION) * 20);
+			} else if (cycleTime < TRANSITION_DURATION * 2) {
+				// Seconds 1-2: fade out current image
+				const fadeOut = ((cycleTime - TRANSITION_DURATION) / TRANSITION_DURATION) * 255;
+				imageCover(images[currentIndex], 0, 0, width, height, 255 - fadeOut);
+				imageCover(images[nextIndex], 0, 0, width, height, 255);
+				// blendMode(BLEND);
+				// filter(BLUR, 20 - (cycleTime / TRANSITION_DURATION) * 20);
+			} else {
+				// Seconds 2-5: only next image visible
+				imageCover(images[nextIndex], 0, 0, width, height, 255);
+			}
+
+			blendMode(BLEND);
+
+			drawBlurryPillBackground(document.querySelector('#email'), 20, 10, 10);
+			drawBlurryPillBackground(document.querySelector('#projects'), 20, 10, 10);
+		}
+
+		function windowResized() {
+			resizeCanvas(windowWidth, windowHeight);
+			pillGraphics.resizeCanvas(windowWidth, windowHeight);
+		}
+	</script>
 </html>

@@ -1,30 +1,17 @@
 <script>
 	import IntersectionRouter from '$lib/assets/IntersectionRouter.js';
-	let { html, index, sticky = false } = $props();
+	let { html, index, sticky = false, isLast } = $props();
 	import contact from '../assets/contact.js';
 	import Table from './Table.svelte';
 
 	let isFirst = $derived(index === 0);
 	let degrees = $derived(isFirst ? 5 : Math.random() * 160 - 80);
 
-	let width = 210 * 4;
-	let height = 297 * 4;
+	let width = 210 * 3.65;
+	let height = 297 * 3.65;
 
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
-
-	const colors = [
-		'bg-[#EBF4F0]',
-		'bg-[#F5F6F7]',
-		'bg-[#EEF2F6]',
-		'bg-[#F8F1F9]',
-		'bg-[#F9F1F1]',
-		'bg-[#F1F7F9]',
-		'bg-[#F1F9F4]',
-		'bg-[#FBF9E4]'
-	];
-
-	let color = $derived(colors[index % colors.length]);
 
 	let basicBBox = {
 		width: rotatedBBox(width, height, 5).width,
@@ -42,15 +29,23 @@
 	});
 
 	let offsetX = $derived(
-		sticky
+		!isFirst
 			? (wrapper.width - width) * 0.5 + (wrapper.width - bbox.width) * (Math.random() - 0.5)
 			: (wrapper.width - width) * 0.5
 	);
 	let offsetY = $derived(
-		sticky
+		!isFirst
 			? (wrapper.height - height) * 0.5 + (wrapper.height - bbox.height) * (Math.random() - 0.5)
 			: (wrapper.height - height) * 0.5
 	);
+
+	let marginBottom = $derived(
+		isLast
+			? innerHeight - offsetY - bbox.height
+			: 0
+	);
+
+	$effect(() => console.log(marginBottom))
 
 	function rotatedBBox(width, height, degrees, scale = 1) {
 		const rad = (degrees * Math.PI) / 180;
@@ -69,6 +64,7 @@
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
 	class="letter-wrapper -mb-20"
+	class:mb-0={isLast}
 	class:sticky
 	style:top={sticky && '0%'}
 	style:width="{wrapper.width}px"
@@ -76,13 +72,17 @@
 	{@attach IntersectionRouter()}
 >
 	<article
-		class="letter prose prose-2xl p-8 font-mono {color}"
+		class="letter prose-2xl p-8 font-sans leading-tight var-half-mono bg-[#F5FFC5] text-dark border border-dark text-pretty"
+		// class:bg-light={index % 2 === 1}
+		// class:bg-dark={index % 2 === 0}
+		// class:text-dark={index % 2 === 1}
+		// class:text-light={index % 2 === 0}
 		style:transform={`translate(${offsetX}px, ${offsetY}px) scale(${scale})  rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
 	>
-		<section class="prose-base border-0 pb-8 text-right leading-6">
-			<Table {index} />
+		<section class="prose-base border-0 pb-8 text-right leading-6 var-mono">
+			<!-- <Table {index} {scale} /> -->
 			<p>
 				Krisenstab
 				<br />
@@ -94,9 +94,7 @@
 			</p>
 
 			<p>
-				<span class="highlight">
-					<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
-				</span>
+				<a class="no-underline!" href="mailto:{atob(contact.mail)}">{atob(contact.mail)}</a>
 				<br />
 				{atob(contact.vat)}
 			</p>
@@ -108,12 +106,13 @@
 <style>
 	@reference '../../routes/layout.css';
 	.letter {
-		width: calc(210px * 4);
-		height: calc(297px * 4);
+		width: calc(210px * 3.65);
+		height: calc(297px * 3.65);
 	}
 
 	:global(.letter a) {
-		@apply link not-italic;
+		@apply link;
+		font-variation-settings: 'MONO' 50, 'slnt' -5;
 	}
 
 	.letter-wrapper {
