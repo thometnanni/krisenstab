@@ -84,6 +84,28 @@
 			image(pillGraphics, 0, 0);
 		}
 
+		function drawBlurryBackground(element, paddingX = 10, paddingY = 10, blur = 20) {
+			if (!element) return;
+			const r = element.getBoundingClientRect();
+			const x = r.left - paddingX;
+			const y = r.top - paddingY;
+			const w = r.width + paddingX * 2;
+			const h = r.height - paddingY;
+
+			pillGraphics.clear();
+			pillGraphics.push();
+
+			pillGraphics.fill(0);
+
+			pillGraphics.noStroke();
+			pillGraphics.rectMode(CORNER);
+			pillGraphics.rect(x, y, w, h);
+			pillGraphics.pop();
+			pillGraphics.filter(BLUR, blur);
+
+			image(pillGraphics, 0, 0);
+		}
+
 		async function setup() {
 			createCanvas(innerWidth, innerHeight, P2D, document.querySelector('#sketch'));
 
@@ -126,6 +148,8 @@
 
 			drawBlurryPillBackground(document.querySelector('#email'), 20, 10, 10);
 			drawBlurryPillBackground(document.querySelector('#projects'), 20, 10, 10);
+
+			drawBlurryBackground(document.querySelector('#projects-background'), 20, 10, 10);
 		}
 
 		function windowResized() {

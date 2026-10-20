@@ -39,14 +39,6 @@
 			: (wrapper.height - height) * 0.5
 	);
 
-	let marginBottom = $derived(
-		isLast
-			? innerHeight - offsetY - bbox.height
-			: 0
-	);
-
-	$effect(() => console.log(marginBottom))
-
 	function rotatedBBox(width, height, degrees, scale = 1) {
 		const rad = (degrees * Math.PI) / 180;
 		const c = Math.abs(Math.cos(rad));
@@ -63,7 +55,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <div
-	class="letter-wrapper -mb-20"
+	class="letter-wrapper pointer-events-none -mb-20"
 	class:mb-0={isLast}
 	class:sticky
 	style:top={sticky && '0%'}
@@ -72,11 +64,7 @@
 	{@attach IntersectionRouter()}
 >
 	<article
-		class="letter prose-2xl p-8 font-sans leading-tight var-half-mono bg-[#F5FFC5] text-dark border border-dark text-pretty"
-		// class:bg-light={index % 2 === 1}
-		// class:bg-dark={index % 2 === 0}
-		// class:text-dark={index % 2 === 1}
-		// class:text-light={index % 2 === 0}
+		class="letter pointer-events-auto prose-2xl border border-dark bg-[#F5FFC5] p-8 font-sans leading-tight text-pretty text-dark var-half-mono"
 		style:transform={`translate(${offsetX}px, ${offsetY}px) scale(${scale})  rotate(${degrees}deg)`}
 		style:width="{width}px"
 		style:height="{height}px"
@@ -112,7 +100,9 @@
 
 	:global(.letter a) {
 		@apply link;
-		font-variation-settings: 'MONO' 50, 'slnt' -5;
+		font-variation-settings:
+			'MONO' 50,
+			'slnt' -5;
 	}
 
 	.letter-wrapper {
