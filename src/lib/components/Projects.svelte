@@ -12,6 +12,8 @@
 | Not a Network | 2023 | 2023 | Broadcasting poetry through Wi-Fi network names. | [video](https://not-a-network.krisenstab.net) |
 `;
 
+	const start = Math.random();
+
 	const projects = raw
 		.trim()
 		.split('\n')
@@ -25,19 +27,24 @@
 		.map((row, _, rows) => {
 			return Object.fromEntries(rows[0].map((label, i) => [label.toLowerCase(), row[i]]));
 		})
-		.filter((_, i) => i >= 2);
+		.filter((_, i) => i >= 2)
+		.map((r, i) => ({ ...r, offset: (start + 1.618 * i) % 1 }));
 </script>
 
 <section
 	id="projects-background"
-	class="relative flex w-full flex-col items-center gap-5 px-7.5 pt-15 pb-20 text-light"
+	class="relative flex w-full flex-col gap-5 px-7.5 pt-15 pb-20 text-light"
 >
 	{#each projects as project (project.name)}
-		<article class="w-full max-w-60">
-			<h2 class="text-2xl">
-				{project.name}
-			</h2>
-			<p>{project.description}</p>
-		</article>
+		<div class="flex">
+			<div style:flex={project.offset}></div>
+			<article class="w-full max-w-100" style:left="">
+				<h2 class="text-2xl">
+					{project.name}
+				</h2>
+				<p class="text-pretty">{project.description}</p>
+			</article>
+			<div style:flex={1 - project.offset}></div>
+		</div>
 	{/each}
 </section>
