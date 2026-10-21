@@ -7,16 +7,29 @@
 	import Projects from '$lib/components/Projects.svelte';
 	let { children } = $props();
 
+	let anchor = $state();
+	let showingProjects = $state(false);
+
 	function resize() {
 		document.querySelector('#background').setAttribute('width', innerWidth);
 		document.querySelector('#background').setAttribute('height', innerHeight);
 	}
 
+	function anchorTop() {
+		return anchor.getBoundingClientRect().top + scrollY;
+	}
+
+	function toggle() {
+		showingProjects = !showingProjects;
+		scrollTo({ top: showingProjects ? 0 : anchorTop(), behavior: 'smooth' });
+	}
+
 	onMount(() => {
 		if ('scrollRestoration' in history) {
 			history.scrollRestoration = 'manual';
-			window.scrollTo(0, 0);
 		}
+
+		scrollTo({ top: anchorTop(), behavior: 'instant' });
 
 		resize();
 
@@ -34,6 +47,7 @@
 	light="#FFC8F0"
 ></dither-dither>
 <Projects />
+<div bind:this={anchor}></div>
 <div class="sticky top-0 bottom-0 mb-[calc(100vh-92px)] grid grid-cols-1 grid-rows-1">
 	<section class="col-span-1 col-start-1 row-start-1 row-end-1 flex justify-between p-7.5">
 		<h1 class="text-2xl">
@@ -45,7 +59,9 @@
 		</h1>
 
 		<nav class="text-2xl">
-			<span class="text-dark hover:text-light" id="projects">projects</span>
+			<button class="cursor-pointer text-dark hover:text-light" id="projects" onclick={toggle}
+				>{showingProjects ? 'updates' : 'projects'}</button
+			>
 		</nav>
 	</section>
 </div>

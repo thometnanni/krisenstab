@@ -7,7 +7,7 @@
 | Chemical Trajectories | 2025 | 2025 | Exhibit for Design Signals ‹Chemical Bonds›, Timisoara, RO | |
 | Unfolding the Archive | 2025 | 2025 | Understanding architectural practice through born-digital design records. A collaboration with Ania Molenda (Nieuwe Instituut). | [visualisation](https://unfolding-the-archive.krisenstab.net) |
 | Vantage | 2024 | 2026 | Photo- and video-based spatial reconstructions for investigative journalists and fact-checkers. | [toolkit](https://vantage.krisenstab.net) |
-| ‹dither-dither› | 2024 | 2026 | Bringing dithering to the web. | [demo](https://thometnanni.github.io/dither-dither/) |
+| dither-dither | 2024 | 2026 | Bringing dithering to the web. | [demo](https://thometnanni.github.io/dither-dither/) |
 | Public Wi-Fi | 2023 | 2023 | An exploration of place and SSIDs. | [video](https://public-wifi.krisenstab.net) |
 | Not a Network | 2023 | 2023 | Broadcasting poetry through Wi-Fi network names. | [video](https://not-a-network.krisenstab.net) |
 `;
@@ -38,11 +38,15 @@
 	{#each projects as project (project.name)}
 		<div class="flex">
 			<div style:flex={project.offset}></div>
-			<article class="w-full max-w-100" style:left="">
-				<h2 class="text-2xl">
-					{project.name}
+			<article class="w-full max-w-90">
+				<h2 class="inline uppercase var-mono">
+					{project.name} ↗&nbsp;
 				</h2>
-				<p class="text-pretty">{project.description}</p>
+				<p class="inline text-pretty">{project.description}</p>
+				<!-- <span class="var-mono"> •&nbsp;</span>
+				<a class="inline text-pretty underline"
+					>{project.links.replace(/\[/, '').replace(/\].+/, '')}</a
+				> -->
 			</article>
 			<div style:flex={1 - project.offset}></div>
 		</div>
