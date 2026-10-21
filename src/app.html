@@ -25,7 +25,6 @@
 
 		let images;
 		let startTime;
-		let pillGraphics;
 		const CYCLE_DURATION = 5000;
 		const TRANSITION_DURATION = 2000;
 
@@ -54,56 +53,165 @@
 			pop();
 		}
 
-		function drawBlurryPillBackground(element, paddingX = 10, paddingY = 10, blur = 20) {
+		// Soft edges are gradients, not a blur filter. The falloff follows a Gaussian blur's profile
+		// (sigma = feather / 3), sampled as many colour stops so there are no kinks. An edge sits at 50%
+		// coverage and fades out over `feather` px either side.
+		const rgba = (c, a) => `rgba(${c}, ${c}, ${c}, ${a})`;
+		const STEPS = 12;
+
+		// Standard normal CDF (Abramowitz & Stegun erf approximation)
+		function phi(z) {
+			const x = Math.abs(z) / Math.SQRT2;
+			const t = 1 / (1 + 0.3275911 * x);
+			const erf =
+				1 -
+				((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t +
+					0.254829592) *
+					t *
+					Math.exp(-x * x);
+			return 0.5 * (1 + Math.sign(z) * erf);
+		}
+
+		// Coverage at signed distance `s` outside a blurred edge (positive = outside)
+		const coverage = (s, feather) => 1 - phi(s / (feather / 3));
+
+		// Linear gradient across one edge band, from `outer` (+feather) to `inner` (-feather)
+		function edgeGradient(ctx, x0, y0, x1, y1, feather, c) {
+			const g = ctx.createLinearGradient(x0, y0, x1, y1);
+			for (let i = 0; i <= STEPS; i++) {
+				const t = i / STEPS;
+				g.addColorStop(t, rgba(c, coverage(feather - 2 * feather * t, feather)));
+			}
+			return g;
+		}
+
+		// Pill shape: soft top and bottom edges along a straight middle, plus a soft round cap at each end.
+		// Each cap is only its outer half-disc, so it meets the middle along a line instead of overlapping it.
+		function paintSoftPill(ctx, x, y, w, h, feather, c) {
+			const r = h / 2;
+			const f = Math.min(feather, r);
+			const x1 = x + r;
+			const x2 = x + w - r;
+			const mid = Math.max(x2 - x1, 0);
+
+			ctx.fillStyle = rgba(c, 1);
+			ctx.fillRect(x1, y + f, mid, h - f * 2);
+
+			ctx.fillStyle = edgeGradient(ctx, 0, y - f, 0, y + f, f, c);
+			ctx.fillRect(x1, y - f, mid, f * 2);
+
+			ctx.fillStyle = edgeGradient(ctx, 0, y + h + f, 0, y + h - f, f, c);
+			ctx.fillRect(x1, y + h - f, mid, f * 2);
+
+			const R = r + f;
+			const caps = [
+				[x1, Math.PI / 2, (3 * Math.PI) / 2],
+				[x2, -Math.PI / 2, Math.PI / 2]
+			];
+			for (const [cx, start, end] of caps) {
+				const g = ctx.createRadialGradient(cx, y + r, 0, cx, y + r, R);
+				for (let i = 0; i <= STEPS; i++) {
+					const t = i / STEPS;
+					g.addColorStop(t, rgba(c, coverage(t * R - r, f)));
+				}
+				ctx.fillStyle = g;
+				ctx.beginPath();
+				ctx.arc(cx, y + r, R, start, end);
+				ctx.closePath();
+				ctx.fill();
+			}
+		}
+
+		// Cached results. A shape is painted once per size and colour, then just copied each frame.
+		// Canvases are sized in device pixels so they stay sharp on retina screens.
+		const dpr = () => window.devicePixelRatio || 1;
+
+		function makeCanvas(w, h) {
+			const canvas = document.createElement('canvas');
+			canvas.width = Math.ceil(w * dpr());
+			canvas.height = Math.ceil(h * dpr());
+			return canvas;
+		}
+
+		const spriteCache = new Map();
+
+		function pillSprite(id, w, h, feather, c) {
+			const key = `${w}:${h}:${feather}`;
+			const cacheKey = `${id}:${c}`;
+			const hit = spriteCache.get(cacheKey);
+			if (hit && hit.key === key) return hit.canvas;
+
+			const canvas = makeCanvas(w + feather * 2, h + feather * 2);
+			const ctx = canvas.getContext('2d');
+			ctx.scale(dpr(), dpr());
+			paintSoftPill(ctx, feather, feather, w, h, feather, c);
+
+			spriteCache.set(cacheKey, { key, canvas });
+			return canvas;
+		}
+
+		// The background only has a soft bottom edge, the same all along its width, so a strip one px
+		// wide can be stretched across the whole width.
+		const stripCache = new Map();
+
+		function bottomStrip(feather, c) {
+			const cacheKey = `${feather}:${c}`;
+			if (stripCache.has(cacheKey)) return stripCache.get(cacheKey);
+
+			const canvas = makeCanvas(1, feather * 2);
+			const ctx = canvas.getContext('2d');
+			const img = ctx.createImageData(canvas.width, canvas.height);
+
+			for (let j = 0; j < canvas.height; j++) {
+				// Row centre, measured outward (downwards) from the edge in the middle of the strip
+				const d = ((j + 0.5) / canvas.height) * feather * 2 - feather;
+				const a = coverage(d, feather) * 255;
+				for (let i = 0; i < canvas.width; i++) {
+					const k = (j * canvas.width + i) * 4;
+					img.data[k] = img.data[k + 1] = img.data[k + 2] = c;
+					img.data[k + 3] = a;
+				}
+			}
+
+			ctx.putImageData(img, 0, 0);
+			stripCache.set(cacheKey, canvas);
+			return canvas;
+		}
+
+		function drawSoftPill(element, paddingX = 10, paddingY = 10, feather = 40) {
 			if (!element) return;
 			const r = element.getBoundingClientRect();
-			const x = r.left - paddingX;
-			const y = r.top - paddingY;
-			const w = r.width + paddingX * 2;
-			const h = r.height + paddingY * 2;
-			const radius = h / 2;
-
-			pillGraphics.clear();
-			pillGraphics.push();
-			if (
+			const hovered =
 				mouseX >= r.left &&
 				mouseX <= r.left + r.width &&
 				mouseY >= r.top &&
-				mouseY <= r.top + r.height
-			) {
-				pillGraphics.fill(0);
-			} else {
-				pillGraphics.fill(255);
-			}
-			pillGraphics.noStroke();
-			pillGraphics.rectMode(CORNER);
-			pillGraphics.rect(x, y, w, h, radius);
-			pillGraphics.pop();
-			pillGraphics.filter(BLUR, blur);
+				mouseY <= r.top + r.height;
 
-			image(pillGraphics, 0, 0);
+			const w = r.width + paddingX * 2;
+			const h = r.height + paddingY * 2;
+			const sprite = pillSprite(element.id, w, h, feather, hovered ? 0 : 255);
+
+			drawingContext.drawImage(
+				sprite,
+				r.left - paddingX - feather,
+				r.top - paddingY - feather,
+				w + feather * 2,
+				h + feather * 2
+			);
 		}
 
-		function drawBlurryBackground(element, paddingX = 10, paddingY = 10, blur = 20) {
+		function drawSoftBackground(element, paddingX = 10, paddingY = 10, feather = 20) {
 			if (!element) return;
 			const r = element.getBoundingClientRect();
 			const x = r.left - paddingX;
 			const y = r.top - paddingY;
 			const w = r.width + paddingX * 2;
 			const h = r.height - paddingY;
+			const ctx = drawingContext;
 
-			pillGraphics.clear();
-			pillGraphics.push();
-
-			pillGraphics.fill(0);
-
-			pillGraphics.noStroke();
-			pillGraphics.rectMode(CORNER);
-			pillGraphics.rect(x, y, w, h);
-			pillGraphics.pop();
-			pillGraphics.filter(BLUR, blur);
-
-			image(pillGraphics, 0, 0);
+			ctx.fillStyle = rgba(0, 1);
+			ctx.fillRect(x, y, w, h - feather);
+			ctx.drawImage(bottomStrip(feather, 0), x, y + h - feather, w, feather * 2);
 		}
 
 		async function setup() {
@@ -111,8 +219,6 @@
 
 			images = await Promise.all(imageUrls.map((url) => loadImage(`media/${url}`)));
 			startTime = millis();
-
-			pillGraphics = createGraphics(innerWidth, innerHeight);
 		}
 
 		function draw() {
@@ -146,15 +252,14 @@
 
 			blendMode(BLEND);
 
-			drawBlurryPillBackground(document.querySelector('#email'), 20, 10, 10);
-			drawBlurryPillBackground(document.querySelector('#projects'), 20, 10, 10);
+			drawSoftPill(document.querySelector('#email'), 20, 10, 50);
+			drawSoftPill(document.querySelector('#projects'), 20, 10, 40);
 
-			drawBlurryBackground(document.querySelector('#projects-background'), 20, 10, 10);
+			drawSoftBackground(document.querySelector('#projects-background'), 20, 10, 20);
 		}
 
 		function windowResized() {
 			resizeCanvas(windowWidth, windowHeight);
-			pillGraphics.resizeCanvas(windowWidth, windowHeight);
 		}
 	</script>
 </html>
