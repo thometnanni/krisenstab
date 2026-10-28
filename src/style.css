@@ -1,0 +1,56 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+  }
+  img,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+  h1 {
+    @apply text-2xl font-normal;
+  }
+  h2,
+  h3,
+  p {
+    @apply text-base font-normal;
+  }
+  a {
+    @apply no-underline hover:underline;
+    text-underline-offset: 0.2rem;
+    color: inherit;
+  }
+}
+
+@font-face {
+  font-family: "Areal";
+  src: url("ABCArealSuperfamilyVariable.woff2") format("woff2-variations");
+  font-weight: 400 700;
+  font-style: normal;
+}
+
+@theme {
+  --font-sans: "Areal";
+  --font-mono: "Areal";
+  --font-half-mono: "Areal";
+  --color-dark: #0556b1;
+  --color-light: #ffc8f0;
+  --color-accent: #f5ffc5;
+}
+
+@utility font-mono {
+  font-variation-settings: "MONO" 100;
+}
+
+@utility font-half-mono {
+  font-variation-settings: "MONO" 50;
+}

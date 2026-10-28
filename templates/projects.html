@@ -1,10 +1,12 @@
 {{#.}}
-<div class="project">
-  <!-- <div style:flex="{project.offset}"></div> -->
-  <article class="w-full max-w-90">
-    <h2 class="inline uppercase var-mono">{{title}} ↗&nbsp;</h2>
-    <p class="inline text-pretty">{{description.plain}}</p>
+<div class="project flex">
+  <div style="flex:{{left}}"></div>
+  <article class="w-full max-w-90 text-dark font-sans">
+    <span class="font-mono"
+      ><a href="{{url}}"><h2 class="inline uppercase">{{title}} ↗</h2></a>
+    </span>
+    <p class="inline text-pretty">{{description}}</p>
   </article>
-  <!-- <div style:flex="{1" - project.offset}></div> -->
+  <div style="flex:{{right}}"></div>
 </div>
 {{/.}}
