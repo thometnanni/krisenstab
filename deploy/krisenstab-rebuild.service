@@ -6,4 +6,5 @@ After=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/srv/krisenstab
-ExecStart=/usr/bin/podman compose up --build -d
+ExecStart=/usr/bin/podman build -t krisenstab .
+ExecStart=/usr/bin/podman compose up -d

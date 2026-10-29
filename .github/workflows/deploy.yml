@@ -51,5 +51,6 @@ jobs:
             cd /srv/krisenstab
             git pull
             podman compose down -v
-            podman compose up --build -d
+            podman build -t krisenstab .
+            podman compose up -d
           EOF

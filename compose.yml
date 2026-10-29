@@ -1,15 +1,7 @@
 services:
   krisenstab:
-    build:
-      context: .
-      containerfile: Containerfile
-      secrets:
-        - arena_token
+    image: krisenstab
     container_name: krisenstab
     restart: always
     ports:
       - '4800:4800'
-
-secrets:
-  arena_token:
-    environment: ARENA_TOKEN

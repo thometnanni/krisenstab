@@ -9,12 +9,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-# Copy the rest of the source code
+# Copy the rest of the source code, including .env (read by dotenv in index.js)
 COPY . .
 
-# ARENA_TOKEN is provided as a build secret so it never ends up in an image layer
-RUN --mount=type=secret,id=arena_token \
-    ARENA_TOKEN="$(cat /run/secrets/arena_token)" node index.js
+# The token lives in this stage's layers only; the nginx stage does not include them
+RUN node index.js
 
 # -------------------------------------------------
 # 2. Runtime stage  - static files served by nginx
