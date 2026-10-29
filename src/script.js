@@ -265,11 +265,18 @@ export async function init(imageUrls) {
       if (!el) return;
 
       const r = el.getBoundingClientRect();
+      // if (shape.type === BACKGROUND) {
+      //   r.left = 0;
+      //   r.width = innerWidth;
+      // }
       const hovered = mouseX >= r.left && mouseX <= r.right && mouseY >= r.top && mouseY <= r.bottom;
-      // The background's height is one paddingY short, as in the original sketch
-      const h = shape.type === BACKGROUND ? r.height - shape.paddingY : r.height + shape.paddingY * 2;
 
-      rects.set([r.left - shape.paddingX, r.top - shape.paddingY, r.width + shape.paddingX * 2, h], i * 4);
+      const left = (shape.type === BACKGROUND ? 0 : r.left) - shape.paddingX;
+      const top = shape.type === BACKGROUND ? -500 : r.top - shape.paddingY;
+      const width = (shape.type === BACKGROUND ? innerWidth : r.width) + shape.paddingX * 2;
+      const height = shape.type === BACKGROUND ? r.height + 500 - shape.paddingY : r.height + shape.paddingY * 2;
+
+      rects.set([left, top, width, height], i * 4);
       feathers[i] = shape.feather;
       colors[i] = shape.type === PILL && !hovered ? 1 : 0;
       types[i] = shape.type;

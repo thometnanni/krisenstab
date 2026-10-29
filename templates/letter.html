@@ -1,0 +1,33 @@
+{{#.}}
+<div
+  class="sticky top-0 letter-wrapper pointer-events-none {{^last}}-mb-20{{/last}}{{#last}}mb-0{{/last}}"
+  style="--deg: {{degrees}}deg; --bw: {{bboxWidth}}px; --bh: {{bboxHeight}}px; --rx: {{rx}}; --ry: {{ry}}"
+>
+  <div
+    class="letter pointer-events-auto border border-dark bg-accent p-8 font-half-mono leading-tight text-pretty text-dark"
+  >
+    <section class="pb-8 text-right text-base leading-6 font-mono">
+      <p>
+        Krisenstab
+        <br />
+        Thomet & Nanni GbR
+        <br />
+        <span data-contact="street"></span>
+        <br />
+        <span data-contact="town"></span>
+      </p>
+
+      <p>
+        <a data-contact="mail" data-contact-href></a>
+        <br />
+        <span data-contact="vat"></span>
+      </p>
+    </section>
+
+    <article class="text-2xl">
+      <p class="leading-6 font-mono">{{dateLabel}}</p>
+      {{{message}}}
+    </article>
+  </div>
+</div>
+{{/.}}

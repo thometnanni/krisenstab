@@ -27,9 +27,8 @@ async function main() {
     message: d.content.html,
   }));
 
-  console.log(letters);
-
   document.querySelector("#projects").innerHTML = await createProjects(channels.projects.data);
+  document.querySelector(".letters").innerHTML = await createLetters(letters);
   document.querySelector("#sketch").textContent =
     `import { init } from "./script.js";\ninit(${JSON.stringify(images)});`;
   document.querySelector("style").innerHTML = await buildCss(dom.serialize());
@@ -101,6 +100,43 @@ async function createProjects(data) {
 
   const html = Mustache.render(await readFile("./templates/projects.html", "utf8"), projects);
   return html;
+}
+
+async function createLetters(letters) {
+  const width = 210 * 3.65;
+  const height = 297 * 3.65;
+  const data = letters.map(({ date, message }, i) => {
+    const isFirst = i === 0;
+    const degrees = isFirst ? 5 : Math.random() * 160 - 80;
+    const rad = (degrees * Math.PI) / 180;
+    const cos = Math.abs(Math.cos(rad));
+    const sin = Math.abs(Math.sin(rad));
+    return {
+      dateLabel: isFirst ? null : formatDate(date),
+      message,
+      degrees,
+      // bounding box of the rotated letter at scale 1
+      bboxWidth: width * cos + height * sin,
+      bboxHeight: height * cos + width * sin,
+      rx: isFirst ? 0 : Math.random() - 0.5,
+      ry: isFirst ? 0 : Math.random() - 0.5,
+      last: i === letters.length - 1,
+    };
+  });
+
+  return Mustache.render(await readFile("./templates/letter.html", "utf8"), data);
+}
+
+function formatDate(date) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).formatToParts(new Date(`${date}T00:00:00Z`));
+  const get = (type) => parts.find((part) => part.type === type).value;
+  return `${get("weekday")}, ${get("day")} ${get("month")} ${get("year")}`;
 }
 
 async function copyAssets() {
