@@ -14,7 +14,7 @@ const slugs = {
 async function main() {
   const channels = await loadChannels();
   const update = await updateChannels(channels);
-  // if (!update) return;
+  if (!update) return;
 
   const index = await readFile("./src/index.html", "utf8");
   const dom = new JSDOM(index);
@@ -55,7 +55,8 @@ async function updateChannels(channels) {
     const res = await fetch(`https://api.are.na/v3/channels/${slugs[key]}/contents?per=100`, {
       headers: {
         Authorization: `Bearer ${process.env.ARENA_TOKEN}`,
-        "If-None-Match": channel.etag,
+        "User-Agent": "krisenstab/1.0.0 (+hi@krisenstab.net)",
+        // "If-None-Match": channel.etag,
       },
     });
     if (res.status === 304) continue;
