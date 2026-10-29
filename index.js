@@ -92,9 +92,10 @@ async function buildCss(html) {
 async function createProjects(data) {
   const offset = Math.random();
   const phi = (1 + Math.sqrt(5)) / 2;
-  const projects = data.map(({ description, title, source }, i) => ({
+  const projects = data.map(({ description, title, source, image }, i) => ({
     description: description?.plain,
     title,
+    image: image?.small?.src,
     url: source?.url,
     left: (offset + phi * i) % 1,
     right: 1 - ((offset + phi * i) % 1),
