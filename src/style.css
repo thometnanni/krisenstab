@@ -77,9 +77,12 @@
   image-rendering: pixelated;
 }
 
-/* Letter geometry: --bw and --bh are set per letter at build time, --scale is set on <html> by index.html */
 :root {
   --scale: 1;
+}
+
+.is-hover {
+  color: var(--color-light);
 }
 
 .letter-wrapper {

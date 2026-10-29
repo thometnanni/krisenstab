@@ -252,6 +252,15 @@ export async function init(imageUrls) {
   let mouseX = -1;
   let mouseY = -1;
 
+  // Hover is decided here from the element actually under the pointer, so the shader and the CSS agree
+  function updateHover() {
+    const target = mouseX < 0 ? null : document.elementFromPoint(mouseX, mouseY);
+    for (const shape of SHAPES) {
+      const el = document.getElementById(shape.id);
+      if (el) el.classList.toggle("is-hover", shape.type === PILL && !!target && el.contains(target));
+    }
+  }
+
   function resize() {
     dpr = 1;
     canvas.width = Math.ceil(innerWidth * dpr);
@@ -279,7 +288,7 @@ export async function init(imageUrls) {
       //   r.left = 0;
       //   r.width = innerWidth;
       // }
-      const hovered = mouseX >= r.left && mouseX <= r.right && mouseY >= r.top && mouseY <= r.bottom;
+      const hovered = el.classList.contains("is-hover");
 
       const left = (shape.type === BACKGROUND ? 0 : r.left) - shape.paddingX;
       const top = shape.type === BACKGROUND ? r.top - 500 : r.top - shape.paddingY;
@@ -359,10 +368,20 @@ export async function init(imageUrls) {
     requestAnimationFrame(frame);
   }
 
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", () => {
+    resize();
+    updateHover();
+  });
   window.addEventListener("pointermove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    updateHover();
+  });
+  // Scrolling moves elements under a still pointer, and leaving the window sends no pointermove
+  window.addEventListener("scroll", updateHover, { passive: true });
+  document.documentElement.addEventListener("pointerleave", () => {
+    mouseX = -1;
+    updateHover();
   });
 
   resize();
