@@ -278,6 +278,8 @@ export async function init(imageUrls) {
     const feathers = new Float32Array(3);
     const colors = new Float32Array(3);
     const types = new Float32Array(3);
+    // Rects include the top overscroll on some browsers while the fixed canvas does not, so undo it (scrollY is negative there)
+    const overscroll = Math.min(0, scrollY);
 
     SHAPES.forEach((shape, i) => {
       const el = document.getElementById(shape.id);
@@ -291,7 +293,7 @@ export async function init(imageUrls) {
       const hovered = el.classList.contains("is-hover");
 
       const left = (shape.type === BACKGROUND ? 0 : r.left) - shape.paddingX;
-      const top = shape.type === BACKGROUND ? r.top - 500 : r.top - shape.paddingY;
+      const top = shape.type === BACKGROUND ? r.top - 500 : r.top - shape.paddingY + overscroll;
       const width = (shape.type === BACKGROUND ? innerWidth : r.width) + shape.paddingX * 2;
       const height = shape.type === BACKGROUND ? r.height + 500 - shape.paddingY : r.height + shape.paddingY * 2;
 
