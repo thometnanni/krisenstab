@@ -4,7 +4,7 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - '2026-main'
+      - "dithered"
   workflow_dispatch:
 
 concurrency:
