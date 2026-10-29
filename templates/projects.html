@@ -1,13 +1,20 @@
 {{#.}}
 <div class="project flex text-base">
   <div style="flex:{{left}}"></div>
-  <article class="w-full max-w-90 text-light font-sans text-pretty" data-img="{{image}}">
+  <article class="w-full max-w-90 text-light font-sans text-pretty">
     <a href="{{url}}" class="group block no-underline!">
       <span class="font-mono"
         ><span class="group-hover:underline"><h2 class="inline uppercase">{{title}}&nbsp;↗</h2></span>
       </span>
       <p class="inline text-pretty">{{description}}</p>
     </a>
+    <dither-dither
+      class="hover-img -z-10"
+      src="{{image}}"
+      cross-origin
+      light="#f5ffc5"
+      dark="transparent"
+    ></dither-dither>
   </article>
   <div style="flex:{{right}}"></div>
 </div>

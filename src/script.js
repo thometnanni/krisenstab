@@ -195,7 +195,18 @@ function imageWeights(cycleTime) {
   return [0, 1];
 }
 
+// Moves the project images to the pointer. Showing them is left to CSS :hover, and touch never moves them
+function initHoverImage() {
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
+    document.documentElement.style.setProperty("--hover-x", `${e.clientX}px`);
+    document.documentElement.style.setProperty("--hover-y", `${e.clientY}px`);
+  });
+}
+
 export async function init(imageUrls) {
+  initHoverImage();
+
   const canvas = document.querySelector("canvas");
   const gl = canvas.getContext("webgl2");
   if (!gl) {

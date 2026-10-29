@@ -71,14 +71,6 @@ async function updateChannels(channels) {
   return update;
 }
 
-// async function buildCss() {
-//   const input = await readFile("src/style.css", "utf8");
-//   const { css } = await postcss([tailwindcss({ optimize: { minify: true } })]).process(input, {
-//     from: "src/style.css",
-//   });
-//   return css;
-// }
-
 async function buildCss(html) {
   // const path = join(import.meta.dirname, "style.css");
   const compiler = await compile(await readFile("src/style.css", "utf8"), {
@@ -148,4 +140,6 @@ async function copyAssets() {
   });
 
   await cp("src/script.js", "dist/script.js");
+
+  await cp("node_modules/dither-dither/dist/dither-dither.js", "dist/dither-dither.js");
 }

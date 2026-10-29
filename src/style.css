@@ -85,6 +85,25 @@
   color: var(--color-light);
 }
 
+.hover-img {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  max-width: 20rem;
+  max-height: 20rem;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(calc(var(--hover-x, 0px) - 4px), calc(var(--hover-y, 0px) + 24px));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project article:hover .hover-img {
+    display: block;
+  }
+}
+
 .letter-wrapper {
   --w: calc(210px * 3.65);
   --h: calc(297px * 3.65);
