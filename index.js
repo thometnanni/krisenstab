@@ -20,7 +20,9 @@ async function main() {
   const dom = new JSDOM(index);
   const document = dom.window.document;
 
-  const images = channels.images.data.filter(({ type }) => type === "Image").map(({ image }) => image.small.src);
+  const images = channels.images.data
+    .filter(({ type, image }) => type === "Image" && image.content_type !== "image/gif")
+    .map(({ image }) => image.small.src);
 
   const letters = channels.letters.data.map((d) => ({
     date: d.title ?? d.updated_at.replace(/T.+/, ""),
@@ -50,7 +52,7 @@ async function loadChannels() {
 async function updateChannels(channels) {
   let update = false;
   for (const [key, channel] of Object.entries(channels)) {
-    const res = await fetch(`https://api.are.na/v3/channels/${slugs[key]}/contents`, {
+    const res = await fetch(`https://api.are.na/v3/channels/${slugs[key]}/contents?per=60`, {
       headers: {
         Authorization: `Bearer ${process.env.ARENA_TOKEN}`,
         "If-None-Match": channel.etag,
