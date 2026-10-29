@@ -141,5 +141,5 @@ async function copyAssets() {
 
   await cp("src/script.js", "dist/script.js");
 
-  await cp("node_modules/dither-dither/dist/dither-dither.js", "dist/dither-dither.js");
+  await cp("node_modules/@krisenstab/dither-dither/dist/dither-dither.js", "dist/dither-dither.js");
 }
