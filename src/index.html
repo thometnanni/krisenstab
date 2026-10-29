@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>krisenstab</title>
+    <link rel="preload" href="ABCArealSuperfamilyVariable.woff2" as="font" type="font/woff2" crossorigin />
     <style></style>
   </head>
   <body class="bg-dark font-sans">
@@ -59,8 +60,6 @@
     updateScale();
     addEventListener("resize", updateScale);
 
-    document.querySelector("main > nav").scrollIntoView();
-
     const viewToggle = document.querySelector("#view");
 
     function updateViewToggle() {
@@ -74,5 +73,10 @@
         document.querySelector("#projects").scrollIntoView({ behavior: "smooth" });
       }
     });
+
+    const nav = document.querySelector("main > nav");
+    const scrollToNav = () => nav.scrollIntoView();
+    document.fonts.ready.then(() => requestAnimationFrame(scrollToNav));
+    addEventListener("load", scrollToNav);
   </script>
 </html>
