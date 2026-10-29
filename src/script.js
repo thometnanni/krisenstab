@@ -282,7 +282,7 @@ export async function init(imageUrls) {
       const hovered = mouseX >= r.left && mouseX <= r.right && mouseY >= r.top && mouseY <= r.bottom;
 
       const left = (shape.type === BACKGROUND ? 0 : r.left) - shape.paddingX;
-      const top = shape.type === BACKGROUND ? -500 : r.top - shape.paddingY;
+      const top = shape.type === BACKGROUND ? r.top - 500 : r.top - shape.paddingY;
       const width = (shape.type === BACKGROUND ? innerWidth : r.width) + shape.paddingX * 2;
       const height = shape.type === BACKGROUND ? r.height + 500 - shape.paddingY : r.height + shape.paddingY * 2;
 
