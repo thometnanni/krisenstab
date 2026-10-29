@@ -20,7 +20,7 @@ jobs:
       # 1️⃣ Checkout the repo (optional – you may not need the code locally)
       # ------------------------------------------------------------------
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # ---------------------------------------------------------------
       # 2️⃣ Set up SSH keys so the runner can connect to your server
