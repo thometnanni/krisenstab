@@ -25,7 +25,7 @@ async function main() {
     .map(({ image }) => image.small.src);
 
   const letters = channels.letters.data.map((d) => ({
-    date: d.title ?? d.updated_at.replace(/T.+/, ""),
+    date: d.title ?? d.created_at.replace(/T.+/, ""),
     message: d.content.html,
   }));
 
@@ -93,9 +93,9 @@ async function createProjects(data) {
   const offset = Math.random();
   const phi = (1 + Math.sqrt(5)) / 2;
   const projects = data.map(({ description, title, source }, i) => ({
-    description: description.plain,
+    description: description?.plain,
     title,
-    url: source.url,
+    url: source?.url,
     left: (offset + phi * i) % 1,
     right: 1 - ((offset + phi * i) % 1),
   }));
