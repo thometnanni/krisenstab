@@ -1,0 +1,9 @@
+[Unit]
+Description=Rebuild and restart the krisenstab container (refreshes Are.na content)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/srv/krisenstab
+ExecStart=/usr/bin/podman compose up --build -d
