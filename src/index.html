@@ -6,13 +6,33 @@
     <title>krisenstab</title>
     <style></style>
   </head>
-  <body>
-    <canvas class="absolute w-full h-full"></canvas>
+  <body class="bg-dark font-sans">
+    <canvas class="fixed w-full h-full pixelated -z-1 block"></canvas>
     <main>
-      <section id="projects" class="flex flex-col gap-7.5"></section>
-      <nav></nav>
+      <section id="projects" class="flex flex-col gap-7.5 px-7.5 py-15"></section>
+      <nav class="flex justify-between p-7.5">
+        <h1 class="text-2xl">
+          <a class="text-dark no-underline! hover:text-light" id="email">♥♥@♥♥♥♥♥♥♥♥♥♥.♥♥♥</a>
+        </h1>
+
+        <nav class="text-2xl">
+          <button class="cursor-pointer text-dark hover:text-light" id="view">projects</button>
+        </nav>
+      </nav>
       <section class="letters"></section>
     </main>
   </body>
-  <script src="script.js"></script>
+  <script type="module" id="sketch"></script>
+  <script>
+    const contact = {
+      street: "RW1zZXIgU3RyLiA2OA==",
+      town: "MTIwNTEgQmVybGlu",
+      mail: "aGlAa3Jpc2Vuc3RhYi5uZXQ=",
+      vat: "REU0MDU4MDU0Njg=",
+    };
+
+    const email = document.querySelector("#email");
+    email.innerHTML = atob(contact.mail);
+    email.setAttribute("href", `mailto:${atob(contact.mail)}`);
+  </script>
 </html>

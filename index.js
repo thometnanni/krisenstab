@@ -20,7 +20,18 @@ async function main() {
   const dom = new JSDOM(index);
   const document = dom.window.document;
 
+  const images = channels.images.data.filter(({ type }) => type === "Image").map(({ image }) => image.small.src);
+
+  const letters = channels.letters.data.map((d) => ({
+    date: d.title ?? d.updated_at.replace(/T.+/, ""),
+    message: d.content.html,
+  }));
+
+  console.log(letters);
+
   document.querySelector("#projects").innerHTML = await createProjects(channels.projects.data);
+  document.querySelector("#sketch").textContent =
+    `import { init } from "./script.js";\ninit(${JSON.stringify(images)});`;
   document.querySelector("style").innerHTML = await buildCss(dom.serialize());
   await mkdir("dist", { recursive: true });
   await writeFile("dist/index.html", dom.serialize());

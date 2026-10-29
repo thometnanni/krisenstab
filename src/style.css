@@ -29,6 +29,20 @@
     text-underline-offset: 0.2rem;
     color: inherit;
   }
+  button {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-transform: none;
+    cursor: pointer;
+  }
 }
 
 @font-face {
@@ -36,6 +50,7 @@
   src: url("ABCArealSuperfamilyVariable.woff2") format("woff2-variations");
   font-weight: 400 700;
   font-style: normal;
+  font-display: block;
 }
 
 @theme {
@@ -53,4 +68,8 @@
 
 @utility font-half-mono {
   font-variation-settings: "MONO" 50;
+}
+
+@utility pixelated {
+  image-rendering: pixelated;
 }
