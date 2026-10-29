@@ -231,11 +231,21 @@ export async function init(imageUrls) {
   // Fullscreen triangle generated from gl_VertexID, so no buffers are needed
   gl.bindVertexArray(gl.createVertexArray());
 
-  const [textures, threshold] = await Promise.all([
-    Promise.all(imageUrls.map((url) => loadTexture(gl, url))),
-    loadThreshold(gl, BLUE_NOISE_URL),
-  ]);
-  const startTime = performance.now();
+  // Images are fetched when the timeline reaches them, see frame()
+  const textures = [];
+  const requests = [];
+  function requestTexture(index) {
+    if (!requests[index]) {
+      requests[index] = loadTexture(gl, imageUrls[index]).then((texture) => {
+        textures[index] = texture;
+      });
+    }
+  }
+  requestTexture(0);
+
+  const threshold = await loadThreshold(gl, BLUE_NOISE_URL);
+  let playTime = 0;
+  let lastTime = performance.now();
 
   let dpr = 1;
   let target;
@@ -286,10 +296,23 @@ export async function init(imageUrls) {
   }
 
   function frame() {
-    const elapsed = performance.now() - startTime;
-    const cycleTime = elapsed % CYCLE_DURATION;
-    const current = (textures.length + Math.floor(elapsed / CYCLE_DURATION)) % textures.length;
-    const next = (current + 1) % textures.length;
+    const now = performance.now();
+    playTime += now - lastTime;
+    lastTime = now;
+
+    const cycle = Math.floor(playTime / CYCLE_DURATION);
+    const current = cycle % imageUrls.length;
+    const next = (cycle + 1) % imageUrls.length;
+    requestTexture(current);
+    requestTexture(next);
+    if (!textures[current] || !textures[next]) {
+      // Hold the timeline at the start of this cycle until its images have arrived
+      playTime = cycle * CYCLE_DURATION;
+      requestAnimationFrame(frame);
+      return;
+    }
+
+    const cycleTime = playTime - cycle * CYCLE_DURATION;
     const [weightA, weightB] = imageWeights(cycleTime);
     const shapes = shapeUniforms();
 

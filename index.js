@@ -52,7 +52,7 @@ async function loadChannels() {
 async function updateChannels(channels) {
   let update = false;
   for (const [key, channel] of Object.entries(channels)) {
-    const res = await fetch(`https://api.are.na/v3/channels/${slugs[key]}/contents?per=60`, {
+    const res = await fetch(`https://api.are.na/v3/channels/${slugs[key]}/contents?per=100`, {
       headers: {
         Authorization: `Bearer ${process.env.ARENA_TOKEN}`,
         "If-None-Match": channel.etag,
