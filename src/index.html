@@ -23,20 +23,20 @@
     <style></style>
   </head>
   <body class="bg-dark font-sans">
-    <canvas class="fixed w-full h-lvh pixelated -z-1 block"></canvas>
+    <canvas class="fixed w-full h-lvh pixelated block"></canvas>
     <main class="flex flex-col">
       <section
         id="projects"
-        class="flex flex-col gap-7.5 px-7.5 pt-22.5 pb-22.5 max-w-[2000px] w-full self-center min-h-[calc(100dvh-82px)] justify-between"
+        class="flex flex-col z-10 gap-7.5 px-7.5 pt-22.5 pb-22.5 max-w-[2000px] w-full self-center min-h-[calc(100dvh-82px)] justify-between"
       ></section>
-      <nav class="sticky top-0 bottom-0 flex justify-between p-7.5 mb-[calc(55vh-92px)]">
+      <nav class="sticky z-10 top-0 bottom-0 flex justify-between p-7.5 mb-[calc(55vh-92px)]">
         <h1 class="text-2xl">
           <a class="text-dark no-underline!" id="email">krisenstab</a>
         </h1>
 
         <button class="text-2xl cursor-pointer text-dark" id="view">projects</button>
       </nav>
-      <section class="letters flex flex-col items-center"></section>
+      <section class="letters z-10 flex flex-col items-center"></section>
     </main>
   </body>
   <script type="module">
