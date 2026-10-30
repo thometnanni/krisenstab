@@ -273,9 +273,8 @@ export async function init(imageUrls) {
   }
 
   function resize() {
-    dpr = 1;
-    canvas.width = Math.ceil(innerWidth * dpr);
-    canvas.height = Math.ceil(innerHeight * dpr);
+    canvas.width = Math.ceil(canvas.getBoundingClientRect().width);
+    canvas.height = Math.ceil(canvas.getBoundingClientRect().height);
     if (target) {
       gl.deleteTexture(target.texture);
       gl.deleteFramebuffer(target.framebuffer);
@@ -353,7 +352,7 @@ export async function init(imageUrls) {
     gl.uniform1f(sceneU.uAspectB, textures[next].aspect);
     gl.uniform1f(sceneU.uWeightA, weightA);
     gl.uniform1f(sceneU.uWeightB, weightB);
-    gl.uniform2f(sceneU.uRes, innerWidth, innerHeight);
+    gl.uniform2f(sceneU.uRes, canvas.width, canvas.height);
     gl.uniform1f(sceneU.uDpr, dpr);
     gl.uniform4fv(sceneU.uRect, shapes.rects);
     gl.uniform1fv(sceneU.uFeather, shapes.feathers);
