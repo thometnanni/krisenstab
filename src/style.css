@@ -11,6 +11,7 @@
   }
   html {
     @apply bg-dark;
+    overscroll-behavior: none;
   }
   body {
     margin: 0;
@@ -88,6 +89,10 @@
   color: var(--color-light);
 }
 
+.project .is-hover {
+  color: var(--color-dark);
+}
+
 .hover-img {
   display: none;
   position: fixed;
@@ -98,7 +103,10 @@
   max-height: 20rem;
   pointer-events: none;
   user-select: none;
-  transform: translate(calc(var(--hover-x, 0px) - 4px), calc(var(--hover-y, 0px) + 24px));
+  transform: translate(
+    calc(var(--hover-x, 0px) - 4px),
+    calc(var(--hover-y, 0px) + 24px)
+  );
 }
 
 @media (hover: hover) and (pointer: fine) {
