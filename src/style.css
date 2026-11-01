@@ -89,10 +89,6 @@
   color: var(--color-light);
 }
 
-.project .is-hover {
-  color: var(--color-dark);
-}
-
 .hover-img {
   display: none;
   position: fixed;

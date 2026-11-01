@@ -5,12 +5,18 @@ const BLUE_NOISE_URL = "blue-noise.png";
 
 const PILL = 0;
 const BACKGROUND = 1;
+const BLOB = -1;
+
+const MAX_SHAPES = 48;
+const CONNECTOR_COLOR = 0.1;
 
 // Same order as the p5 sketch: background first, pills on top
 const SHAPES = [
-  { id: "projects", type: BACKGROUND, paddingX: 20, paddingY: 10, feather: 20 },
-  { id: "email", type: PILL, paddingX: 20, paddingY: 10, feather: 50 },
-  { id: "view", type: PILL, paddingX: 20, paddingY: 10, feather: 40 },
+  { selector: "#projects", type: BACKGROUND, paddingX: 20, paddingY: 10, feather: 20 },
+  { selector: ".project a", type: BLOB, paddingX: 8, paddingY: 4, feather: 12, color: 1 },
+  { selector: ".project a.is-hover", type: PILL, paddingX: 16, paddingY: 10, feather: 8 },
+  { selector: "#email", type: PILL, paddingX: 20, paddingY: 10, feather: 50 },
+  { selector: "#view", type: PILL, paddingX: 20, paddingY: 10, feather: 40 },
 ];
 
 const VERTEX = `#version 300 es
@@ -31,10 +37,10 @@ uniform float uWeightA;
 uniform float uWeightB;
 uniform vec2 uRes;
 uniform float uDpr;
-uniform vec4 uRect[3];
-uniform float uFeather[3];
-uniform float uColor[3];
-uniform float uType[3];
+uniform vec4 uRect[${MAX_SHAPES}];
+uniform float uFeather[${MAX_SHAPES}];
+uniform float uColor[${MAX_SHAPES}];
+uniform float uType[${MAX_SHAPES}];
 
 out vec4 outColor;
 
@@ -49,6 +55,12 @@ float phi(float z) {
 // Coverage at signed distance s outside a blurred edge (positive = outside)
 float coverage(float s, float feather) {
   return 1.0 - phi(s / (feather / 3.0));
+}
+
+// Polynomial smooth minimum, melts two distance fields together within k px
+float smin(float a, float b, float k) {
+  float h = max(k - abs(a - b), 0.0) / k;
+  return min(a, b) - h * h * k * 0.25;
 }
 
 // Cover-fit: the same crop as imageCover
@@ -69,7 +81,10 @@ void main() {
   vec3 b = texture(uTexB, coverUV(uv, uAspectB)).rgb;
   vec3 col = mix(vec3(1.0), a, uWeightA) * mix(vec3(1.0), b, uWeightB);
 
-  for (int i = 0; i < 3; i++) {
+  float blob = 1e5;
+  float words = 1e5;
+
+  for (int i = 0; i < ${MAX_SHAPES}; i++) {
     vec4 r = uRect[i];
     if (r.z <= 0.0 || r.w <= 0.0) continue;
 
@@ -85,6 +100,15 @@ void main() {
       vec2 q = vec2(clamp(p.x, r.x + rad, r.x + r.z - rad), r.y + rad);
       float sd = length(p - q) - rad;
       cov = coverage(sd, f);
+
+      // Blob: pills merge into one shape, painted once after the last, lighter on the connectors
+      if (uType[i] < -0.5) {
+        blob = smin(blob, sd, 30.0);
+        if (uColor[i] > ${CONNECTOR_COLOR}) words = smin(words, sd, 30.0);
+        if (uType[i + 1] < -0.5) continue;
+        col = mix(col, vec3(mix(${CONNECTOR_COLOR}, 1.0, coverage(words, 24.0))), coverage(blob, f));
+        continue;
+      }
     }
     col = mix(col, vec3(uColor[i]), cov);
   }
@@ -195,6 +219,29 @@ function imageWeights(cycleTime) {
   return [0, 1];
 }
 
+// One box per line of each shape, plus the blob's connectors. The last slot stays empty as the shader looks one shape ahead
+function shapeBoxes() {
+  const boxes = [];
+  for (const shape of SHAPES) {
+    let previous;
+    for (const el of document.querySelectorAll(shape.selector)) {
+      const lines = [...el.getClientRects()];
+      boxes.push(...lines.map((r) => ({ shape, el, r })));
+
+      // Short connector where this element meets the previous one, so far-apart projects still join the blob
+      if (shape.type === BLOB && previous) {
+        const start = Math.max(previous.left, lines[0].left);
+        const end = Math.min(previous.right, lines[0].right);
+        const width = Math.max(start - end, 0) + 80;
+        const r = new DOMRect((start + end - width) / 2, previous.top, width, lines[0].bottom - previous.top);
+        boxes.push({ shape: { ...shape, color: CONNECTOR_COLOR }, el, r });
+      }
+      previous = lines.at(-1);
+    }
+  }
+  return boxes.filter(({ r }) => r.bottom > -100 && r.top < innerHeight + 100).slice(0, MAX_SHAPES - 1);
+}
+
 // Moves the project images to the pointer. Showing them is left to CSS :hover, and touch never moves them
 function initHoverImage() {
   window.addEventListener("pointermove", (e) => {
@@ -267,8 +314,9 @@ export async function init(imageUrls) {
   function updateHover() {
     const target = mouseX < 0 ? null : document.elementFromPoint(mouseX, mouseY);
     for (const shape of SHAPES) {
-      const el = document.getElementById(shape.id);
-      if (el) el.classList.toggle("is-hover", shape.type === PILL && !!target && el.contains(target));
+      for (const el of document.querySelectorAll(shape.selector)) {
+        el.classList.toggle("is-hover", shape.type !== BACKGROUND && !!target && el.contains(target));
+      }
     }
   }
 
@@ -282,20 +330,16 @@ export async function init(imageUrls) {
     target = createTarget(gl, canvas.width, canvas.height);
   }
 
-  // Padded rect, hover state and colour for each shape. Missing elements stay zeroed and are skipped.
+  // Padded rect, hover state and colour for each box. Unused slots stay zeroed and are skipped.
   function shapeUniforms() {
-    const rects = new Float32Array(12);
-    const feathers = new Float32Array(3);
-    const colors = new Float32Array(3);
-    const types = new Float32Array(3);
+    const rects = new Float32Array(MAX_SHAPES * 4);
+    const feathers = new Float32Array(MAX_SHAPES);
+    const colors = new Float32Array(MAX_SHAPES);
+    const types = new Float32Array(MAX_SHAPES);
     // Rects include the top overscroll on some browsers while the fixed canvas does not, so undo it (scrollY is negative there)
     const overscroll = Math.min(0, scrollY);
 
-    SHAPES.forEach((shape, i) => {
-      const el = document.getElementById(shape.id);
-      if (!el) return;
-
-      const r = el.getBoundingClientRect();
+    shapeBoxes().forEach(({ shape, el, r }, i) => {
       // if (shape.type === BACKGROUND) {
       //   r.left = 0;
       //   r.width = innerWidth;
@@ -309,7 +353,7 @@ export async function init(imageUrls) {
 
       rects.set([left, top, width, height], i * 4);
       feathers[i] = shape.feather;
-      colors[i] = shape.type === PILL && !hovered ? 1 : 0;
+      colors[i] = shape.color ?? (shape.type === PILL && !hovered ? 1 : 0);
       types[i] = shape.type;
     });
 
@@ -385,6 +429,7 @@ export async function init(imageUrls) {
     updateHover();
   });
   window.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
     mouseX = e.clientX;
     mouseY = e.clientY;
     updateHover();
