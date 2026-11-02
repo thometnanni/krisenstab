@@ -233,7 +233,7 @@ function shapeBoxes() {
         const start = Math.max(previous.left, lines[0].left);
         const end = Math.min(previous.right, lines[0].right);
         const width = Math.max(start - end, 0) + 80;
-        const r = new DOMRect((start + end - width) / 2, previous.top, width, lines[0].bottom - previous.top);
+        const r = new DOMRect((start + end - width) / 2, previous.bottom, width, lines[0].top - previous.bottom);
         boxes.push({ shape: { ...shape, color: CONNECTOR_COLOR }, el, r });
       }
       previous = lines.at(-1);
