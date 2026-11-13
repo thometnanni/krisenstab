@@ -56,7 +56,7 @@ async function updateChannels(channels) {
       headers: {
         Authorization: `Bearer ${process.env.ARENA_TOKEN}`,
         "User-Agent": "krisenstab/1.0.0 (+hi@krisenstab.net)",
-        // "If-None-Match": channel.etag,
+        "If-None-Match": channel.etag,
       },
     });
     if (res.status === 304) continue;
