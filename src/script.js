@@ -35,6 +35,7 @@ uniform vec4 uRect[3];
 uniform float uFeather[3];
 uniform float uColor[3];
 uniform float uType[3];
+uniform vec4 uProjects[64];
 
 out vec4 outColor;
 
@@ -69,6 +70,16 @@ void main() {
   vec3 b = texture(uTexB, coverUV(uv, uAspectB)).rgb;
   vec3 col = mix(vec3(1.0), a, uWeightA) * mix(vec3(1.0), b, uWeightB);
 
+  // Pills behind the project links
+  float mask = 0.0;
+  for (int i = 0; i < 64; i++) {
+    vec4 r = uProjects[i];
+    if (r.w <= 0.0) continue;
+    float rad = r.w * 0.5;
+    vec2 q = vec2(clamp(p.x, r.x + rad, r.x + r.z - rad), r.y + rad);
+    mask = max(mask, coverage(length(p - q) - rad, 20.0));
+  }
+
   for (int i = 0; i < 3; i++) {
     vec4 r = uRect[i];
     if (r.z <= 0.0 || r.w <= 0.0) continue;
@@ -87,9 +98,10 @@ void main() {
       cov = coverage(sd, f);
     }
     col = mix(col, vec3(uColor[i]), cov);
+    if (uType[i] < 0.5) mask *= 1.0 - cov; 
   }
 
-  outColor = vec4(col, 1.0);
+  outColor = vec4(col, 1.0 - mask);
 }`;
 
 // Pass 2: monochrome dithering, from the dither-dither package (dist/dither-dither.js)
@@ -111,9 +123,10 @@ vec4 dither(vec2 position, vec4 color) {
   vec4 limit = texture(uThreshold, uv);
 
   float dithered = brightness < limit.x ? 0.0 : 1.0;
+  if (1.0 - color.a > texture(uThreshold, fract(uv + 0.5)).x) dithered = 0.0; // project pills
   vec4 tone = mix(uDarkColor, uLightColor, dithered);
 
-  float alpha = tone.a * color.a;
+  float alpha = tone.a;
   return vec4(tone.rgb * alpha, alpha);
 }
 
@@ -229,6 +242,7 @@ export async function init(imageUrls) {
     "uFeather",
     "uColor",
     "uType",
+    "uProjects",
   ]);
   const postU = uniformLocations(gl, postProgram, [
     "uScene",
@@ -358,6 +372,15 @@ export async function init(imageUrls) {
     gl.uniform1fv(sceneU.uFeather, shapes.feathers);
     gl.uniform1fv(sceneU.uColor, shapes.colors);
     gl.uniform1fv(sceneU.uType, shapes.types);
+
+    // One pill per line of project
+    const projects = new Float32Array(256);
+    [...document.querySelectorAll(".project a > *")]
+      .flatMap((el) => [...el.getClientRects()])
+      .slice(0, 64)
+      .forEach((r, i) => projects.set([r.left - 20, r.top - 10 + Math.min(0, scrollY), r.width + 40, r.height + 20], i * 4));
+    gl.uniform4fv(sceneU.uProjects, projects);
+    
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     // Pass 2: post-processing to the screen
